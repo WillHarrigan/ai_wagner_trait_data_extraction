@@ -8,9 +8,11 @@ The overarching goal of this project is to advance the automation of data retrie
 
 #### Project Overview
 Data Source: 
+
 Manual of the Flowering Plants of Hawai‘i (Wagner)
 
 Scope: 
+
 Over 3,000 species of Hawaiian plants
 
 Methodology:
