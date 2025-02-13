@@ -7,9 +7,14 @@ Each species is described in a dedicated passage presented in a narrative format
 The overarching goal of this project is to advance the automation of data retrieval from extensive, non-standardized textual sources. Additionally, our work contributes to the development of a comprehensive plant trait database for Hawaiian flora.
 
 #### Project Overview
-Data Source: Manual of the Flowering Plants of Hawai‘i (Wagner)
-Scope: Over 3,000 species of Hawaiian plants
+Data Source: 
+Manual of the Flowering Plants of Hawai‘i (Wagner)
+
+Scope: 
+Over 3,000 species of Hawaiian plants
+
 Methodology:
+
 Adaptive prompt engineering for automated text extraction
 Handling variations in language and structure
 Improving efficiency over manual data entry
