@@ -1,4 +1,4 @@
-## Automated Extraction of Functional Trait Data from Hawaiian Plant Descriptions
+## 🌿🌿 Automated Extraction of Functional Trait Data from Hawaiian Plant Descriptions 🌿🌿
 #### Mission Statement
 Our research team is developing automated methods to extract functional trait data from unstructured text sources. Specifically, we are extracting trait data from the Manual of the Flowering Plants of Hawai‘i by Wagner, which provides detailed descriptions of over 3,000 Hawaiian plant species, including physiological and life cycle characteristics.
 
