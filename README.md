@@ -17,3 +17,8 @@ Adaptive prompt engineering for automated text extraction
 Handling variations in language and structure
 Improving efficiency over manual data entry
 Outcome: A structured plant trait database to support ecological research
+
+To do list:
+1. Need to improve the transcription of the text from the Wagner directly. There are some clear errors. 
+2. Need to write a prompt that allows for more leniant analysis of True/False when comparing extracted data.
+3. Need to run the full analysis and write code to calculate accuracy. 
