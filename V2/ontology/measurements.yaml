@@ -1,0 +1,730 @@
+# Non-categorical fields (datatype: quantitative / text / list / path), each
+# tagged with structure / sex / position so an agent can ask e.g. 'what fields
+# do I record for the male calyx?'. Categorical traits live in categorical/.
+# Hand-edit this file directly; the top-level key is kept as `measurements:`.
+
+measurements:
+  # --- taxon_identity ---
+  infraspecific_epithet:
+    group: taxon_identity
+    kind: text
+    description: "Infraspecific taxon name following the species name"
+    structure: ~
+    sex: neutral
+    position: []
+  common_name:
+    group: taxon_identity
+    kind: text
+    description: "Common or vernacular name of the plant"
+    structure: ~
+    sex: neutral
+    position: []
+  hawaiian_name:
+    group: taxon_identity
+    kind: text
+    description: "Hawaiian name of the plant, including diacritical marks"
+    structure: ~
+    sex: neutral
+    position: []
+
+  # --- source_document ---
+  wagner_pg_number:
+    group: source_document
+    kind: text
+    description: "Reference page number in Wagner's Manual of Flowering Plants of Hawaii"
+    structure: ~
+    sex: neutral
+    position: []
+  plate_references:
+    group: source_document
+    kind: list
+    description: "Plate references for this species as they appear in the passage (e.g. 'Plate 7'). Case-insensitive; ignore markdown formatting like *Plate 7* or **plate 7**."
+    structure: ~
+    sex: neutral
+    position: []
+
+  # --- reproductive_morphology ---
+  ploidy:
+    group: reproductive_morphology
+    kind: list
+    description: "Ploidy level for the specific species expressed as a function of n (e.g., 1n, 2n or 3n, etc..)"
+    structure: ploidy
+    sex: neutral
+    position: []
+  chromosome_number:
+    group: reproductive_morphology
+    kind: list
+    description: "Species specific chromosome count (integer number)"
+    structure: chromosome
+    sex: neutral
+    position: []
+
+  # --- stem_morphology ---
+  stem_height:
+    group: stem_morphology
+    kind: measurement
+    description: "Overall height of the plant or length of the main stem"
+    structure: stem
+    sex: neutral
+    position: []
+
+  # --- leaf_morphology ---
+  leaf_dimensions:
+    group: leaf_morphology
+    kind: dimensions
+    description: "Dimensions of leaves or individual leaf blade"
+    structure: leaf
+    sex: neutral
+    position: []
+  petiole_length:
+    group: leaf_morphology
+    kind: measurement
+    description: "Length of leaf stalk (petiole)."
+    structure: petiole
+    sex: neutral
+    position: []
+
+  # --- leaflet_morphology ---
+  leaflets_leaf_dimensions:
+    group: leaflet_morphology
+    kind: dimensions
+    description: "Dimensions of individual leaflets"
+    structure: leaflets_leaf
+    sex: neutral
+    position: []
+
+  # --- juvenile_leaf_morphology ---
+  juvenile_leaf_dimensions:
+    group: juvenile_leaf_morphology
+    kind: dimensions
+    description: "Dimensions of juvenile leaves"
+    structure: juvenile_leaf
+    sex: neutral
+    position: []
+
+  # --- inflorescence_morphology ---
+  inflorescence_dimensions:
+    group: inflorescence_morphology
+    kind: dimensions
+    description: "Dimensions of the inflorescence."
+    structure: inflorescence
+    sex: neutral
+    position: []
+  peduncle_dimensions:
+    group: inflorescence_morphology
+    kind: dimensions
+    description: "Main inflorescence (peduncle) stalk dimensions"
+    structure: peduncle
+    sex: neutral
+    position: []
+  pedicel_dimensions:
+    group: inflorescence_morphology
+    kind: dimensions
+    description: "Individual flower stalk (pedicel) in an inflorescence dimensions"
+    structure: pedicel
+    sex: neutral
+    position: []
+  rachis_length:
+    group: inflorescence_morphology
+    kind: measurement
+    description: "Main inflorescence stalk (rachis) length"
+    structure: rachis
+    sex: neutral
+    position: []
+  rachis_diameter:
+    group: inflorescence_morphology
+    kind: measurement
+    description: "Main inflorescence stalk (rachis) diameter"
+    structure: rachis
+    sex: neutral
+    position: [diameter]
+  hypanthium_dimensions:
+    group: inflorescence_morphology
+    kind: dimensions
+    description: "Floral cup (hypanthium) dimensions"
+    structure: hypanthium
+    sex: neutral
+    position: []
+  umbellet_length:
+    group: inflorescence_morphology
+    kind: measurement
+    description: "Secondary umbel unit length"
+    structure: umbellet
+    sex: neutral
+    position: []
+  staminate_inflorescence_dimensions:
+    group: inflorescence_morphology
+    kind: dimensions
+    description: "Male inflorescence dimensions"
+    structure: inflorescence
+    sex: male
+    position: []
+  pistillate_inflorescence_dimensions:
+    group: inflorescence_morphology
+    kind: dimensions
+    description: "Female inflorescence dimensions"
+    structure: inflorescence
+    sex: female
+    position: []
+  staminate_peduncle_dimensions:
+    group: inflorescence_morphology
+    kind: dimensions
+    description: "Main inflorescence (peduncle) stalk of male/staminate plant dimensions"
+    structure: peduncle
+    sex: male
+    position: []
+  pistillate_peduncle_dimensions:
+    group: inflorescence_morphology
+    kind: dimensions
+    description: "Main inflorescence (peduncle) stalk of female/pistillate plant dimensions"
+    structure: peduncle
+    sex: female
+    position: []
+  staminate_pedicel_dimensions:
+    group: inflorescence_morphology
+    kind: dimensions
+    description: "Individual flower stalk (pedicel) in an inflorescence of male/staminate plant dimensions"
+    structure: pedicel
+    sex: male
+    position: []
+  pistillate_pedicel_dimensions:
+    group: inflorescence_morphology
+    kind: dimensions
+    description: "Individual flower stalk (pedicel)  in an inflorescence of female/pistillate plant dimensions"
+    structure: pedicel
+    sex: female
+    position: []
+
+  # --- inflorescence_specific_morphology ---
+  head_length:
+    group: inflorescence_specific_morphology
+    kind: measurement
+    description: "Capitulum length"
+    structure: head
+    sex: neutral
+    position: []
+  head_diameter:
+    group: inflorescence_specific_morphology
+    kind: measurement
+    description: "Capitulum diameter"
+    structure: head
+    sex: neutral
+    position: [diameter]
+  pappus_length:
+    group: inflorescence_specific_morphology
+    kind: measurement
+    description: "Pappus length."
+    structure: pappus
+    sex: neutral
+    position: []
+  ray_dimensions:
+    group: inflorescence_specific_morphology
+    kind: dimensions
+    description: "Describes dimensions of rays or ray florets."
+    structure: ray
+    sex: neutral
+    position: []
+  ray_color:
+    group: inflorescence_specific_morphology
+    kind: text
+    description: "Ray floret color"
+    structure: ray
+    sex: neutral
+    position: []
+  floret_color:
+    group: inflorescence_specific_morphology
+    kind: text
+    description: "Color of florets (must specify florets vs flower/petal color)"
+    structure: floret
+    sex: neutral
+    position: []
+  florets_length:
+    group: inflorescence_specific_morphology
+    kind: measurement
+    description: "Length of small flowers that compose a flower head (capitulum)"
+    structure: florets
+    sex: neutral
+    position: []
+  spathe_color:
+    group: inflorescence_specific_morphology
+    kind: text
+    description: "Color of spathe"
+    structure: spathe
+    sex: neutral
+    position: []
+  spathe_dimensions:
+    group: inflorescence_specific_morphology
+    kind: dimensions
+    description: "Dimensions of spathe"
+    structure: spathe
+    sex: neutral
+    position: []
+  spadix_length:
+    group: inflorescence_specific_morphology
+    kind: measurement
+    description: "Length of spadix"
+    structure: spadix
+    sex: neutral
+    position: []
+
+  # --- bract_involucre_morphology ---
+  bract_dimensions:
+    group: bract_involucre_morphology
+    kind: dimensions
+    description: "Bract dimensions."
+    structure: bract
+    sex: neutral
+    position: []
+  bract_lower_length:
+    group: bract_involucre_morphology
+    kind: measurement
+    description: "Lower/basal bract length"
+    structure: bract
+    sex: neutral
+    position: [lower]
+  bract_outer_length:
+    group: bract_involucre_morphology
+    kind: measurement
+    description: "Outer bract length"
+    structure: bract
+    sex: neutral
+    position: [outer]
+  bracteoles_dimensions:
+    group: bract_involucre_morphology
+    kind: dimensions
+    description: "Dimensions of bracteoles"
+    structure: bracteoles
+    sex: neutral
+    position: []
+  involucre_dimensions:
+    group: bract_involucre_morphology
+    kind: dimensions
+    description: "Involucre dimensions"
+    structure: involucre
+    sex: neutral
+    position: []
+  staminate_involucre_length:
+    group: bract_involucre_morphology
+    kind: measurement
+    description: "Length of involucre of staminate/male heads."
+    structure: involucre
+    sex: male
+    position: []
+  pistillate_involucre_length:
+    group: bract_involucre_morphology
+    kind: measurement
+    description: "Length of involucre of pistillate/female heads."
+    structure: involucre
+    sex: female
+    position: []
+
+  # --- outer_flower_morphology ---
+  corolla_color:
+    group: outer_flower_morphology
+    kind: text
+    description: "Color of petals (corolla)"
+    structure: corolla
+    sex: neutral
+    position: []
+  perianth_color:
+    group: outer_flower_morphology
+    kind: text
+    description: "Color of perianth (undifferentiated tepals)"
+    structure: perianth
+    sex: neutral
+    position: []
+  perianth_dimensions:
+    group: outer_flower_morphology
+    kind: dimensions
+    description: "Dimensions of collective outer envelope (must include petals, calyx, sepals) of flower."
+    structure: perianth
+    sex: neutral
+    position: []
+  corolla_dimensions:
+    group: outer_flower_morphology
+    kind: dimensions
+    description: "Dimensions of flower petals."
+    structure: corolla
+    sex: neutral
+    position: []
+  calyx_dimensions:
+    group: outer_flower_morphology
+    kind: dimensions
+    description: "Dimensions of flower sepals."
+    structure: calyx
+    sex: neutral
+    position: []
+  labellum_color:
+    group: outer_flower_morphology
+    kind: text
+    description: "Color of labellum/lip (modified orchid petal)"
+    structure: labellum
+    sex: neutral
+    position: []
+  labellum_dimensions:
+    group: outer_flower_morphology
+    kind: dimensions
+    description: "Dimensions of labellum/lip."
+    structure: labellum
+    sex: neutral
+    position: []
+  calyx_teeth_dimensions:
+    group: outer_flower_morphology
+    kind: dimensions
+    description: "Dimensions of the lobes of the calyx margin."
+    structure: calyx_teeth
+    sex: neutral
+    position: [teeth]
+  calyx_lobe_dimensions:
+    group: outer_flower_morphology
+    kind: dimensions
+    description: "Dimensions of calyx lobes in flowers with fused sepals."
+    structure: calyx_lobe
+    sex: neutral
+    position: [lobe]
+  upper_calyx_length:
+    group: outer_flower_morphology
+    kind: measurement
+    description: "Length of upper flower sepals specifically."
+    structure: calyx
+    sex: neutral
+    position: [upper]
+  lower_calyx_length:
+    group: outer_flower_morphology
+    kind: measurement
+    description: "Length of lower flower sepals specifically."
+    structure: calyx
+    sex: neutral
+    position: [lower]
+  inner_calyx_length:
+    group: outer_flower_morphology
+    kind: measurement
+    description: "Length of inner flower sepals specifically."
+    structure: calyx
+    sex: neutral
+    position: [inner]
+  outer_calyx_length:
+    group: outer_flower_morphology
+    kind: measurement
+    description: "Length of outer flower sepals specifically."
+    structure: calyx
+    sex: neutral
+    position: [outer]
+  inner_calyx_lobes_dimensions:
+    group: outer_flower_morphology
+    kind: dimensions
+    description: "Dimensions of inner calyx lobes when flowers sepals are joined together."
+    structure: calyx_lobes
+    sex: neutral
+    position: [inner, lobe, lobes]
+  outer_calyx_lobes_dimensions:
+    group: outer_flower_morphology
+    kind: dimensions
+    description: "Dimensions of outer calyx lobes when flowers sepals are joined together."
+    structure: calyx_lobes
+    sex: neutral
+    position: [outer, lobe, lobes]
+  male_calyx_dimensions:
+    group: outer_flower_morphology
+    kind: dimensions
+    description: "Dimensions of the male (staminate) flower calyx specifically."
+    structure: calyx
+    sex: male
+    position: []
+  female_calyx_dimensions:
+    group: outer_flower_morphology
+    kind: dimensions
+    description: "Dimensions of the female (pistillate) flower calyx specifically."
+    structure: calyx
+    sex: female
+    position: []
+  male_calyx_lobe_dimensions:
+    group: outer_flower_morphology
+    kind: dimensions
+    description: "Dimensions of the lobes of male (staminate) flower calyx."
+    structure: calyx_lobe
+    sex: male
+    position: [lobe]
+  male_calyx_inner_lobe_length:
+    group: outer_flower_morphology
+    kind: measurement
+    description: "Length of the inner lobes of male (staminate) flower calyx."
+    structure: calyx
+    sex: male
+    position: [inner, lobe]
+  male_calyx_outer_lobe_dimensions:
+    group: outer_flower_morphology
+    kind: dimensions
+    description: "Dimensions of the outer lobes of male (staminate) flower calyx."
+    structure: calyx
+    sex: male
+    position: [outer, lobe]
+  female_calyx_lobe_dimensions:
+    group: outer_flower_morphology
+    kind: dimensions
+    description: "Dimensions of the lobes of female (pistillate) flower calyx."
+    structure: calyx_lobe
+    sex: female
+    position: [lobe]
+  female_calyx_inner_lobe_dimensions:
+    group: outer_flower_morphology
+    kind: dimensions
+    description: "Dimensions of the inner lobes of female (pistillate) flower calyx."
+    structure: calyx
+    sex: female
+    position: [inner, lobe]
+  female_calyx_outer_lobe_dimensions:
+    group: outer_flower_morphology
+    kind: dimensions
+    description: "Dimensions of the outer lobes of female (pistillate) flower calyx."
+    structure: calyx
+    sex: female
+    position: [outer, lobe]
+  calyx_tube_dimensions:
+    group: outer_flower_morphology
+    kind: dimensions
+    description: "Dimensions of the tubular, fused base of sepals (calyx tube)."
+    structure: calyx_tube
+    sex: neutral
+    position: [tube]
+  male_calyx_tube_length:
+    group: outer_flower_morphology
+    kind: measurement
+    description: "Length of the tubular, fused base of sepals (calyx tube) on male (staminate) flowers."
+    structure: calyx_tube
+    sex: male
+    position: [tube]
+  corolla_tube_dimensions:
+    group: outer_flower_morphology
+    kind: dimensions
+    description: "Dimensions of the tubular, fused structure of the petals (corolla tube)."
+    structure: corolla_tube
+    sex: neutral
+    position: [tube]
+  corolla_lobe_dimensions:
+    group: outer_flower_morphology
+    kind: dimensions
+    description: "Dimensions of the free parts of fused petals (corolla lobe)."
+    structure: corolla_lobe
+    sex: neutral
+    position: [lobe]
+  corolla_lip_length:
+    group: outer_flower_morphology
+    kind: measurement
+    description: "Length of the corolla lip or labellum which is a specialized lobe of flowers with fused petals."
+    structure: corolla
+    sex: neutral
+    position: [lip]
+  upper_corolla_length:
+    group: outer_flower_morphology
+    kind: measurement
+    description: "Length of upper flower petals (corolla) specifically."
+    structure: corolla
+    sex: neutral
+    position: [upper]
+  lower_corolla_length:
+    group: outer_flower_morphology
+    kind: measurement
+    description: "Length of lower flower petals (corolla) specifically."
+    structure: corolla
+    sex: neutral
+    position: [lower]
+  upper_corolla_lobes_length:
+    group: outer_flower_morphology
+    kind: measurement
+    description: "Length of upper lobes or lip of the fused petals (corolla)."
+    structure: corolla_lobes
+    sex: neutral
+    position: [upper, lobe, lobes]
+  lower_corolla_lobes_length:
+    group: outer_flower_morphology
+    kind: measurement
+    description: "Length of lower lobes or lip of the fused petals (corolla)."
+    structure: corolla_lobes
+    sex: neutral
+    position: [lower, lobe, lobes]
+  staminate_corolla_length:
+    group: outer_flower_morphology
+    kind: measurement
+    description: "Length of staminate flower petals (corolla) specifically."
+    structure: corolla
+    sex: male
+    position: []
+  pistillate_corolla_length:
+    group: outer_flower_morphology
+    kind: measurement
+    description: "Length of pistillate flower petals (corolla) specifically."
+    structure: corolla
+    sex: female
+    position: []
+  staminate_corolla_tube_dimensions:
+    group: outer_flower_morphology
+    kind: dimensions
+    description: "Dimensions of the tubular, fused structure of the petals (corolla tube) of male (staminate) flowers."
+    structure: corolla_tube
+    sex: male
+    position: [tube]
+  pistillate_corolla_tube_dimensions:
+    group: outer_flower_morphology
+    kind: dimensions
+    description: "Dimensions of the tubular, fused structure of the petals (corolla tube) of female (pistillate) flowers."
+    structure: corolla_tube
+    sex: female
+    position: [tube]
+  male_corolla_lobe_dimensions:
+    group: outer_flower_morphology
+    kind: dimensions
+    description: "Dimensions of the free parts of fused petals (corolla lobe) of male (staminate) flowers."
+    structure: corolla_lobe
+    sex: male
+    position: [lobe]
+  female_corolla_lobe_dimensions:
+    group: outer_flower_morphology
+    kind: dimensions
+    description: "Dimensions of the free parts of fused petals (corolla lobe) of female (pistillate) flowers."
+    structure: corolla_lobe
+    sex: female
+    position: [lobe]
+  perianth_inner_color:
+    group: outer_flower_morphology
+    kind: text
+    description: "Color of inner perianth specifically."
+    structure: perianth
+    sex: neutral
+    position: [inner]
+  perianth_outer_color:
+    group: outer_flower_morphology
+    kind: text
+    description: "Color of outer perianth specifically."
+    structure: perianth
+    sex: neutral
+    position: [outer]
+  perianth_outer_dimensions:
+    group: outer_flower_morphology
+    kind: dimensions
+    description: "Dimensions of the outer collective of the outer outer envelope of flower (must include corolla, calyx, sepals)"
+    structure: perianth
+    sex: neutral
+    position: [outer]
+  perianth_inner_dimensions:
+    group: outer_flower_morphology
+    kind: dimensions
+    description: "Dimensions of the inner collective of the outer outer envelope of flower (must include corolla, calyx, sepals)"
+    structure: perianth
+    sex: neutral
+    position: [inner]
+  perianth_tube_length:
+    group: outer_flower_morphology
+    kind: measurement
+    description: "Length of the tubular structure formed by the perianth when tepals are fused."
+    structure: perianth_tube
+    sex: neutral
+    position: [tube]
+  perianth_lobes_dimensions:
+    group: outer_flower_morphology
+    kind: dimensions
+    description: "Length of the lobes formed by the fusion of perianth segments."
+    structure: perianth_lobes
+    sex: neutral
+    position: [lobe, lobes]
+  staminate_perianth_tube_length:
+    group: outer_flower_morphology
+    kind: measurement
+    description: "Length of the tubular structure formed by the perianth when tepals are fused on staminate/male flowers."
+    structure: perianth_tube
+    sex: male
+    position: [tube]
+  pistillate_perianth_tube_length:
+    group: outer_flower_morphology
+    kind: measurement
+    description: "Length of the tubular structure formed by the perianth when tepals are fused on pistillate/female flowers."
+    structure: perianth_tube
+    sex: female
+    position: [tube]
+  tepal_length:
+    group: outer_flower_morphology
+    kind: measurement
+    description: "Length of tepals when petals and sepals are not differentiated."
+    structure: tepal
+    sex: neutral
+    position: []
+  staminate_tepal_length:
+    group: outer_flower_morphology
+    kind: measurement
+    description: "Length of tepals of male/staminate plants"
+    structure: tepal
+    sex: male
+    position: []
+  pistillate_tepal_length:
+    group: outer_flower_morphology
+    kind: measurement
+    description: "Length of tepals of female/pistillate plants"
+    structure: tepal
+    sex: female
+    position: []
+  flower_dimensions:
+    group: outer_flower_morphology
+    kind: dimensions
+    description: "Dimensions given for the overall flower."
+    structure: flower
+    sex: neutral
+    position: [lower]
+
+  # --- fruit_morphology ---
+  fruit_length:
+    group: fruit_morphology
+    kind: measurement
+    description: "Fruit length"
+    structure: fruit
+    sex: neutral
+    position: []
+  fruit_width:
+    group: fruit_morphology
+    kind: measurement
+    description: "Fruit width"
+    structure: fruit
+    sex: neutral
+    position: []
+  fruit_diameter:
+    group: fruit_morphology
+    kind: measurement
+    description: "Fruit diameter"
+    structure: fruit
+    sex: neutral
+    position: [diameter]
+  bur_length:
+    group: fruit_morphology
+    kind: measurement
+    description: "Bur (spiny fruit covering) length"
+    structure: bur
+    sex: neutral
+    position: []
+  seeds_perfruit:
+    group: fruit_morphology
+    kind: measurement
+    description: "Number of seeds per fruit"
+    structure: fruit
+    sex: neutral
+    position: []
+  seed_length:
+    group: fruit_morphology
+    kind: measurement
+    description: "Seed length."
+    structure: seed
+    sex: neutral
+    position: []
+  seed_width:
+    group: fruit_morphology
+    kind: measurement
+    description: "Seed width"
+    structure: seed
+    sex: neutral
+    position: []
+  seed_diameter:
+    group: fruit_morphology
+    kind: measurement
+    description: "Seed diameter"
+    structure: seed
+    sex: neutral
+    position: [diameter]
+

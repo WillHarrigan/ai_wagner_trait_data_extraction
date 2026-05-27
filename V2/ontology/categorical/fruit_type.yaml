@@ -1,0 +1,34 @@
+name: fruit_type
+group: fruit_morphology
+multi: true
+description: Type of  mature, ripened ovary of a flowering plant or fruit described.
+
+values:
+  - name: ACHENE
+    label: Achene
+    definition: A small, dry, one-seeded fruit that does not split open at maturity.
+    synonyms: [achene]
+  - name: BERRY
+    label: Berry
+    definition: A fleshy fruit with seeds embedded in the pulp, developed from a single ovary.
+    synonyms: [berry, baccate]
+  - name: CAPSULE
+    label: Capsule
+    definition: A dry fruit from a compound ovary that splits open to release seeds.
+    synonyms: [capsule, capsular]
+  - name: DRUPE
+    label: Drupe
+    definition: A fleshy fruit with a single hard stone (pit) enclosing the seed.
+    synonyms: [drupe, stone fruit, drupaceous]
+  - name: LEGUME
+    label: Legume
+    definition: A dry fruit (pod) from a single carpel that splits along two sutures.
+    synonyms: [legume, pod]
+  - name: NUT
+    label: Nut
+    definition: A dry, one-seeded fruit with a hard woody wall that does not split open.
+    synonyms: [nut]
+  - name: MERICARP
+    label: Mericarp
+    definition: One of the segments into which a schizocarp splits at maturity.
+    synonyms: [mericarp, mericarps]

@@ -1,0 +1,43 @@
+# --- Data: inputs, intermediate, and outputs --------------------------------
+# The Wagner source corpus and anything derived from it. Regenerable; not
+# meant to live in git.
+V2/test_data/
+V2/parsed/
+extraction_agent/extracted_wagner_data.csv
+extraction_agent/manual_extracted_wagner_data.csv
+extraction_agent/wagner_species.txt
+validation_agent/
+
+# Per-species log files written by the V2 pipeline (under parsed/).
+# Covered by V2/parsed/ above, listed here for clarity.
+*.log
+
+# --- Secrets ----------------------------------------------------------------
+.env
+.env.*
+*.key
+*.pem
+
+# --- Python caches & virtualenvs --------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.venv-*/
+venv/
+env/
+
+# --- Jupyter ----------------------------------------------------------------
+.ipynb_checkpoints/
+
+# --- macOS junk -------------------------------------------------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# --- IDE / editor noise -----------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*~

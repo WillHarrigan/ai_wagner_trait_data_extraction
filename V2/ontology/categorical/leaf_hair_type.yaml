@@ -1,0 +1,6 @@
+name: leaf_hair_type
+group: leaf_indumentum
+multi: true
+description: Type of leaf surface indumentum.
+# Same controlled vocabulary as stem_hair_type — borrowed to avoid duplication.
+same_values_as: stem_hair_type

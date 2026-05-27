@@ -1,0 +1,5 @@
+name: juvenile_leaf_shape_type
+group: juvenile_leaf_morphology
+multi: true
+description: Shape of juvenile leaves
+same_values_as: leaf_shape_type

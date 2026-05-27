@@ -1,0 +1,31 @@
+name: breeding_type
+group: life_form
+multi: true
+description: Plant reproductive class (infer from taxonomy)
+
+values:
+  - name: MONOECIOUS
+    label: Monoecious
+    definition: Separate male and female flowers borne on the same individual plant.
+    synonyms: [monoecious]
+  - name: DIOECIOUS
+    label: Dioecious
+    definition: Male and female flowers borne on separate individual plants.
+    synonyms: [dioecious]
+  - name: POLYGAMOUS
+    label: Polygamous
+    definition: Bearing both bisexual and unisexual flowers on the same or different plants.
+    synonyms: [polygamous]
+  - name: ANDROMONOECIOUS
+    label: Andromonoecious
+    definition: Bearing both bisexual and male (staminate) flowers on the same plant.
+    synonyms: [andromonoecious]
+    parents: [MONOECIOUS]
+  - name: GYNODIOECIOUS
+    label: Gynodioecious
+    definition: Some plants bear only female flowers, others bear bisexual flowers.
+    synonyms: [gynodioecious]
+  - name: CLEISTOGAMOUS
+    label: Cleistogamous
+    definition: Self-pollinating within flowers that never open.
+    synonyms: [cleistogamous, cleistogamy]

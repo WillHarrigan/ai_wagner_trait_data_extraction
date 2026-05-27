@@ -1,0 +1,220 @@
+# Wagner Trait Ontology — all traits and fields
+
+15 groups · 24 categorical traits · 100 fields
+
+
+## taxon_identity
+   Identity of the organism — names and major-group classification (the actual taxon info, not document metadata).
+
+   CATEGORICAL TRAITS (1):
+     - description                          (4 values) — Major plant group classification (infer from taxonomy)
+
+   FIELDS (3):
+     - common_name                          [text] — Common or vernacular name of the plant
+     - hawaiian_name                        [text] — Hawaiian name of the plant, including diacritical marks
+     - infraspecific_epithet                [text] — Infraspecific taxon name following the species name
+
+## source_document
+   Non-trait document / provenance metadata — page number and paths to the species' images in the parsed source file.
+
+   FIELDS (2):
+     - plate_references                     [list] — Plate references for this species as they appear in the passage (e.g. 'Plate 7'). Case-insensitive; ignore markdown formatting like *Plate 7* or **plate 7**.
+     - wagner_pg_number                     [text] — Reference page number in Wagner's Manual of Flowering Plants of Hawaii
+
+## life_form
+   Growth habit / life form and reproductive (breeding) class.
+
+   CATEGORICAL TRAITS (2):
+     - breeding_type                        (6 values) — Plant reproductive class (infer from taxonomy)
+     - life_form_type                       (10 values) — Growth habit or life form (annual herb, perennial herb, shrub, tree, vine, etc.)
+
+## reproductive_morphology
+   Cytology — ploidy level and chromosome number.
+
+   FIELDS (2):
+     - chromosome_number                    [list]  [struct=chromosome] — Species specific chromosome count (integer number)
+     - ploidy                               [list]  [struct=ploidy] — Ploidy level for the specific species expressed as a function of n (e.g., 1n, 2n or 3n, etc..)
+
+## distribution
+   Where the plant occurs (Hawaiian islands), its origin, and conservation status.
+
+   CATEGORICAL TRAITS (3):
+     - island_type                          (9 values) — Hawaiian island(s) on which the plant is found.
+     - origin                               (4 values) — Origin abbreviated at the beginning of the passage (end/endemic, nat/naturalized, PC/paleotropical cosmopoltian.)
+     - status                               (5 values) — Conservation or rarity status
+
+## stem_morphology
+   Stem / overall plant height and stem indumentum (hair type).
+
+   CATEGORICAL TRAITS (1):
+     - stem_hair_type                       (13 values) — Describes the stem hair type of the main stem (NOT penduncle) (e.g., glabrous, hirsute, tomentose, etc.)
+
+   FIELDS (1):
+     - stem_height                          [quantitative]  [struct=stem] — Overall height of the plant or length of the main stem
+
+## leaf_morphology
+   Leaf structure, shape, margin, phyllotaxy, and leaf/petiole dimensions. Covers WHOLE-LEAF traits (use leaflet_morphology for individual leaflets of compound leaves, and leaf_indumentum for leaf-surface hair detail).
+
+   CATEGORICAL TRAITS (4):
+     - leaf_margin_type                     (4 values) — Type of leaf edge (entire, serrate, lobed, etc.)
+     - leaf_shape_type                      (33 values) — Shape of leaf blade (ovate, lanceolate, cordate, etc.)
+     - leaf_type                            (2 values) — Leaf structure type (simple or compound)
+     - phyllotaxy_type                      (8 values) — The arrangement of leaves around the stem (words like pairs and leaflet information are important indicators).
+
+   FIELDS (2):
+     - leaf_dimensions                      [quantitative]  [struct=leaf] — Dimensions of leaves or individual leaf blade
+     - petiole_length                       [quantitative]  [struct=petiole] — Length of leaf stalk (petiole).
+
+## leaf_indumentum
+   Hair type on leaf surfaces (overall, upper, lower). Applies when the passage describes leaf-surface indumentum/pubescence — independent of leaf_morphology, which covers shape/margin/dimensions.
+
+   CATEGORICAL TRAITS (3):
+     - leaf_hair_type                       (13 values) — Type of leaf surface indumentum.
+     - lower_leaf_hair_type                 (13 values) — Specific description of lower leaf surface indumentum.
+     - upper_leaf_hair_type                 (13 values) — Specific description of upper leaf surface indumentum.
+
+## leaflet_morphology
+   Morphology of individual leaflets in compound leaves. Applies when the passage explicitly describes LEAFLETS (use leaf_morphology for whole-leaf descriptions, including leaves described as "lobed" or "dissected" — those are NOT leaflets).
+
+   CATEGORICAL TRAITS (3):
+     - leaflets_leaf_margin_type            (4 values) — Margin type of leaflets
+     - leaflets_leaf_shape_type             (33 values) — Shape of individual leaflets
+     - leaflets_leaf_type                   (2 values) — Leaflet leaf structure type in compound leaves
+
+   FIELDS (1):
+     - leaflets_leaf_dimensions             [quantitative]  [struct=leaflets_leaf] — Dimensions of individual leaflets
+
+## juvenile_leaf_morphology
+   Morphology of juvenile (early-stage) leaves. Applies when the passage explicitly describes juvenile or seedling leaves — independent of leaf_morphology, which covers adult leaves.
+
+   CATEGORICAL TRAITS (4):
+     - juvenile_leaf_hair_type              (13 values) — Indumentum type on juvenile leaves
+     - juvenile_leaf_margin_type            (4 values) — Margin type of juvenile leaves
+     - juvenile_leaf_shape_type             (33 values) — Shape of juvenile leaves
+     - juvenile_leaf_type                   (2 values) — Leaf structure type in juvenile plants
+
+   FIELDS (1):
+     - juvenile_leaf_dimensions             [quantitative]  [struct=juvenile_leaf] — Dimensions of juvenile leaves
+
+## inflorescence_morphology
+   Inflorescence type and the dimensions of its parts (peduncle, pedicel, rachis, hypanthium, umbellet).
+
+   CATEGORICAL TRAITS (1):
+     - inflorescence_type                   (17 values) — Type of inflorescence
+
+   FIELDS (13):
+     - hypanthium_dimensions                [quantitative]  [struct=hypanthium] — Floral cup (hypanthium) dimensions
+     - inflorescence_dimensions             [quantitative]  [struct=inflorescence] — Dimensions of the inflorescence.
+     - pedicel_dimensions                   [quantitative]  [struct=pedicel] — Individual flower stalk (pedicel) in an inflorescence dimensions
+     - peduncle_dimensions                  [quantitative]  [struct=peduncle] — Main inflorescence (peduncle) stalk dimensions
+     - pistillate_inflorescence_dimensions  [quantitative]  [sex=female, struct=inflorescence] — Female inflorescence dimensions
+     - pistillate_pedicel_dimensions        [quantitative]  [sex=female, struct=pedicel] — Individual flower stalk (pedicel)  in an inflorescence of female/pistillate plant dimensions
+     - pistillate_peduncle_dimensions       [quantitative]  [sex=female, struct=peduncle] — Main inflorescence (peduncle) stalk of female/pistillate plant dimensions
+     - rachis_diameter                      [quantitative]  [pos=diameter, struct=rachis] — Main inflorescence stalk (rachis) diameter
+     - rachis_length                        [quantitative]  [struct=rachis] — Main inflorescence stalk (rachis) length
+     - staminate_inflorescence_dimensions   [quantitative]  [sex=male, struct=inflorescence] — Male inflorescence dimensions
+     - staminate_pedicel_dimensions         [quantitative]  [sex=male, struct=pedicel] — Individual flower stalk (pedicel) in an inflorescence of male/staminate plant dimensions
+     - staminate_peduncle_dimensions        [quantitative]  [sex=male, struct=peduncle] — Main inflorescence (peduncle) stalk of male/staminate plant dimensions
+     - umbellet_length                      [quantitative]  [struct=umbellet] — Secondary umbel unit length
+
+## inflorescence_specific_morphology
+   Specialised inflorescence parts — head/capitulum, pappus, rays, florets, spathe, spadix. Applies when the passage describes any of these specialised structures. Independent of inflorescence_morphology, which covers the inflorescence as a whole.
+
+   FIELDS (10):
+     - floret_color                         [text]  [struct=floret] — Color of florets (must specify florets vs flower/petal color)
+     - florets_length                       [quantitative]  [struct=florets] — Length of small flowers that compose a flower head (capitulum)
+     - head_diameter                        [quantitative]  [pos=diameter, struct=head] — Capitulum diameter
+     - head_length                          [quantitative]  [struct=head] — Capitulum length
+     - pappus_length                        [quantitative]  [struct=pappus] — Pappus length.
+     - ray_color                            [text]  [struct=ray] — Ray floret color
+     - ray_dimensions                       [quantitative]  [struct=ray] — Describes dimensions of rays or ray florets.
+     - spadix_length                        [quantitative]  [struct=spadix] — Length of spadix
+     - spathe_color                         [text]  [struct=spathe] — Color of spathe
+     - spathe_dimensions                    [quantitative]  [struct=spathe] — Dimensions of spathe
+
+## bract_involucre_morphology
+   Bract, bracteole, and involucre morphology. Applies when the passage describes bracts or involucre. Independent of inflorescence_morphology.
+
+   FIELDS (7):
+     - bract_dimensions                     [quantitative]  [struct=bract] — Bract dimensions.
+     - bract_lower_length                   [quantitative]  [pos=lower, struct=bract] — Lower/basal bract length
+     - bract_outer_length                   [quantitative]  [pos=outer, struct=bract] — Outer bract length
+     - bracteoles_dimensions                [quantitative]  [struct=bracteoles] — Dimensions of bracteoles
+     - involucre_dimensions                 [quantitative]  [struct=involucre] — Involucre dimensions
+     - pistillate_involucre_length          [quantitative]  [sex=female, struct=involucre] — Length of involucre of pistillate/female heads.
+     - staminate_involucre_length           [quantitative]  [sex=male, struct=involucre] — Length of involucre of staminate/male heads.
+
+## outer_flower_morphology
+   Outer flower envelope — corolla (petals), calyx (sepals), perianth (tepals), labellum — including type/colour and the many length/width fields.
+
+
+   CATEGORICAL TRAITS (1):
+     - corolla_type                         (13 values) — The shape/description of petals (e.g., oblong, obovate, lanceolate)
+
+   FIELDS (50):
+     - calyx_dimensions                     [quantitative]  [struct=calyx] — Dimensions of flower sepals.
+     - calyx_lobe_dimensions                [quantitative]  [pos=lobe, struct=calyx] — Dimensions of calyx lobes in flowers with fused sepals.
+     - calyx_teeth_dimensions               [quantitative]  [pos=teeth, struct=calyx] — Dimensions of the lobes of the calyx margin.
+     - calyx_tube_dimensions                [quantitative]  [pos=tube, struct=calyx] — Dimensions of the tubular, fused base of sepals (calyx tube).
+     - corolla_color                        [text]  [struct=corolla] — Color of petals (corolla)
+     - corolla_dimensions                   [quantitative]  [struct=corolla] — Dimensions of flower petals.
+     - corolla_lip_length                   [quantitative]  [pos=lip, struct=corolla] — Length of the corolla lip or labellum which is a specialized lobe of flowers with fused petals.
+     - corolla_lobe_dimensions              [quantitative]  [pos=lobe, struct=corolla] — Dimensions of the free parts of fused petals (corolla lobe).
+     - corolla_tube_dimensions              [quantitative]  [pos=tube, struct=corolla] — Dimensions of the tubular, fused structure of the petals (corolla tube).
+     - female_calyx_dimensions              [quantitative]  [sex=female, struct=calyx] — Dimensions of the female (pistillate) flower calyx specifically.
+     - female_calyx_inner_lobe_dimensions   [quantitative]  [sex=female, pos=inner,lobe, struct=calyx] — Dimensions of the inner lobes of female (pistillate) flower calyx.
+     - female_calyx_lobe_dimensions         [quantitative]  [sex=female, pos=lobe, struct=calyx] — Dimensions of the lobes of female (pistillate) flower calyx.
+     - female_calyx_outer_lobe_dimensions   [quantitative]  [sex=female, pos=outer,lobe, struct=calyx] — Dimensions of the outer lobes of female (pistillate) flower calyx.
+     - female_corolla_lobe_dimensions       [quantitative]  [sex=female, pos=lobe, struct=corolla] — Dimensions of the free parts of fused petals (corolla lobe) of female (pistillate) flowers.
+     - flower_dimensions                    [quantitative]  [pos=lower, struct=flower] — Dimensions given for the overall flower.
+     - inner_calyx_length                   [quantitative]  [pos=inner, struct=calyx] — Length of inner flower sepals specifically.
+     - inner_calyx_lobes_dimensions         [quantitative]  [pos=inner,lobe,lobes, struct=calyx] — Dimensions of inner calyx lobes when flowers sepals are joined together.
+     - labellum_color                       [text]  [struct=labellum] — Color of labellum/lip (modified orchid petal)
+     - labellum_dimensions                  [quantitative]  [struct=labellum] — Dimensions of labellum/lip.
+     - lower_calyx_length                   [quantitative]  [pos=lower, struct=calyx] — Length of lower flower sepals specifically.
+     - lower_corolla_length                 [quantitative]  [pos=lower, struct=corolla] — Length of lower flower petals (corolla) specifically.
+     - lower_corolla_lobes_length           [quantitative]  [pos=lower,lobe,lobes, struct=corolla] — Length of lower lobes or lip of the fused petals (corolla).
+     - male_calyx_dimensions                [quantitative]  [sex=male, struct=calyx] — Dimensions of the male (staminate) flower calyx specifically.
+     - male_calyx_inner_lobe_length         [quantitative]  [sex=male, pos=inner,lobe, struct=calyx] — Length of the inner lobes of male (staminate) flower calyx.
+     - male_calyx_lobe_dimensions           [quantitative]  [sex=male, pos=lobe, struct=calyx] — Dimensions of the lobes of male (staminate) flower calyx.
+     - male_calyx_outer_lobe_dimensions     [quantitative]  [sex=male, pos=outer,lobe, struct=calyx] — Dimensions of the outer lobes of male (staminate) flower calyx.
+     - male_calyx_tube_length               [quantitative]  [sex=male, pos=tube, struct=calyx] — Length of the tubular, fused base of sepals (calyx tube) on male (staminate) flowers.
+     - male_corolla_lobe_dimensions         [quantitative]  [sex=male, pos=lobe, struct=corolla] — Dimensions of the free parts of fused petals (corolla lobe) of male (staminate) flowers.
+     - outer_calyx_length                   [quantitative]  [pos=outer, struct=calyx] — Length of outer flower sepals specifically.
+     - outer_calyx_lobes_dimensions         [quantitative]  [pos=outer,lobe,lobes, struct=calyx] — Dimensions of outer calyx lobes when flowers sepals are joined together.
+     - perianth_color                       [text]  [struct=perianth] — Color of perianth (undifferentiated tepals)
+     - perianth_dimensions                  [quantitative]  [struct=perianth] — Dimensions of collective outer envelope (must include petals, calyx, sepals) of flower.
+     - perianth_inner_color                 [text]  [pos=inner, struct=perianth] — Color of inner perianth specifically.
+     - perianth_inner_dimensions            [quantitative]  [pos=inner, struct=perianth] — Dimensions of the inner collective of the outer outer envelope of flower (must include corolla, calyx, sepals)
+     - perianth_lobes_dimensions            [quantitative]  [pos=lobe,lobes, struct=perianth] — Length of the lobes formed by the fusion of perianth segments.
+     - perianth_outer_color                 [text]  [pos=outer, struct=perianth] — Color of outer perianth specifically.
+     - perianth_outer_dimensions            [quantitative]  [pos=outer, struct=perianth] — Dimensions of the outer collective of the outer outer envelope of flower (must include corolla, calyx, sepals)
+     - perianth_tube_length                 [quantitative]  [pos=tube, struct=perianth] — Length of the tubular structure formed by the perianth when tepals are fused.
+     - pistillate_corolla_length            [quantitative]  [sex=female, struct=corolla] — Length of pistillate flower petals (corolla) specifically.
+     - pistillate_corolla_tube_dimensions   [quantitative]  [sex=female, pos=tube, struct=corolla] — Dimensions of the tubular, fused structure of the petals (corolla tube) of female (pistillate) flowers.
+     - pistillate_perianth_tube_length      [quantitative]  [sex=female, pos=tube, struct=perianth] — Length of the tubular structure formed by the perianth when tepals are fused on pistillate/female flowers.
+     - pistillate_tepal_length              [quantitative]  [sex=female, struct=tepal] — Length of tepals of female/pistillate plants
+     - staminate_corolla_length             [quantitative]  [sex=male, struct=corolla] — Length of staminate flower petals (corolla) specifically.
+     - staminate_corolla_tube_dimensions    [quantitative]  [sex=male, pos=tube, struct=corolla] — Dimensions of the tubular, fused structure of the petals (corolla tube) of male (staminate) flowers.
+     - staminate_perianth_tube_length       [quantitative]  [sex=male, pos=tube, struct=perianth] — Length of the tubular structure formed by the perianth when tepals are fused on staminate/male flowers.
+     - staminate_tepal_length               [quantitative]  [sex=male, struct=tepal] — Length of tepals of male/staminate plants
+     - tepal_length                         [quantitative]  [struct=tepal] — Length of tepals when petals and sepals are not differentiated.
+     - upper_calyx_length                   [quantitative]  [pos=upper, struct=calyx] — Length of upper flower sepals specifically.
+     - upper_corolla_length                 [quantitative]  [pos=upper, struct=corolla] — Length of upper flower petals (corolla) specifically.
+     - upper_corolla_lobes_length           [quantitative]  [pos=upper,lobe,lobes, struct=corolla] — Length of upper lobes or lip of the fused petals (corolla).
+
+## fruit_morphology
+   Fruit type and fruit/seed dimensions.
+
+   CATEGORICAL TRAITS (1):
+     - fruit_type                           (7 values) — Type of  mature, ripened ovary of a flowering plant or fruit described.
+
+   FIELDS (8):
+     - bur_length                           [quantitative]  [struct=bur] — Bur (spiny fruit covering) length
+     - fruit_diameter                       [quantitative]  [pos=diameter, struct=fruit] — Fruit diameter
+     - fruit_length                         [quantitative]  [struct=fruit] — Fruit length
+     - fruit_width                          [quantitative]  [struct=fruit] — Fruit width
+     - seed_diameter                        [quantitative]  [pos=diameter, struct=seed] — Seed diameter
+     - seed_length                          [quantitative]  [struct=seed] — Seed length.
+     - seed_width                           [quantitative]  [struct=seed] — Seed width
+     - seeds_perfruit                       [quantitative]  [struct=fruit] — Number of seeds per fruit

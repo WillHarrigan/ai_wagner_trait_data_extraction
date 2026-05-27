@@ -1,0 +1,59 @@
+name: corolla_type
+group: outer_flower_morphology
+multi: true
+description: The shape/description of petals (e.g., oblong, obovate, lanceolate)
+
+values:
+  - name: TUBULAR
+    label: Tubular
+    definition: Corolla forming a narrow tube with little or no flared limb.
+    synonyms: [tube-shaped, tube]
+  - name: CAMPANULATE
+    label: Campanulate
+    definition: Bell-shaped; a tube widening gradually upward like a bell.
+    synonyms: [bell-shaped]
+  - name: FUNNELFORM
+    label: Funnelform
+    definition: Funnel-shaped; gradually widening from base to mouth.
+    synonyms: [funnel-shaped, infundibular, infundibuliform]
+  - name: ROTATE
+    label: Rotate
+    definition: Wheel-shaped; flat and spreading with a very short tube.
+    synonyms: [wheel-shaped, flat-spreading]
+  - name: SALVERFORM
+    label: Salverform
+    definition: A slender tube abruptly expanding into a flat, spreading limb.
+    synonyms: [salver-shaped, trumpet-shaped, hypocrateriform]
+  - name: BILABIATE
+    label: Bilabiate
+    definition: Two-lipped; corolla divided into an upper and a lower lip.
+    synonyms: [two-lipped, 2-lipped, labiate]
+  - name: ZYGOMORPHIC
+    label: Zygomorphic
+    definition: Bilaterally symmetrical (divisible into mirror halves along one plane only).
+    synonyms: [bilaterally symmetrical, irregular, monosymmetric]
+  - name: URCEOLATE
+    label: Urceolate
+    definition: Urn-shaped; swollen below and contracted at the mouth.
+    synonyms: [urn-shaped]
+  - name: CUP
+    label: Cup
+    definition: Cup-shaped corolla.
+    synonyms: [cup-shaped, cupular, cupulate]
+  - name: OBOVATE
+    label: Obovate
+    definition: Petals egg-shaped with the broadest part above the middle.
+    synonyms: [inversely ovate, obovate petals]
+  - name: ELLIPTIC
+    label: Elliptic
+    definition: Petals oval, widest at the middle.
+    synonyms: [elliptical, eliptic, ELIPTIC]
+    notes: Canonical value is ELLIPTIC; ELIPTIC is a common misspelling (kept as a synonym).
+  - name: OBLONG
+    label: Oblong
+    definition: Petals longer than wide with nearly parallel sides.
+    synonyms: [oblong petals]
+  - name: ORBICULAR
+    label: Orbicular
+    definition: Petals circular or nearly circular.
+    synonyms: [circular, rounded petals]

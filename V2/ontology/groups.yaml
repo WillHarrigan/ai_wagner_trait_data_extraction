@@ -1,0 +1,57 @@
+# Trait groups. Each group bundles related traits.
+#
+# Group MEMBERSHIP is NOT listed here — each trait declares its own `group`
+# (categorical traits in categorical/*.yaml, fields in measurements.yaml), so
+# membership is derived automatically.
+#
+# All groups are top-level. The `parent` field on TraitGroup is supported by
+# the loader (`trait_ontology/models.py`) but is not used here. The biological
+# "applies when" condition for each group is recorded inline in its description.
+
+groups:
+  taxon_identity:
+    description: Identity of the organism — names and major-group classification (the actual taxon info, not document metadata).
+
+  source_document:
+    description: Non-trait document / provenance metadata — page number and paths to the species' images in the parsed source file.
+
+  life_form:
+    description: Growth habit / life form and reproductive (breeding) class.
+
+  reproductive_morphology:
+    description: Cytology — ploidy level and chromosome number.
+
+  distribution:
+    description: Where the plant occurs (Hawaiian islands), its origin, and conservation status.
+
+  stem_morphology:
+    description: Stem / overall plant height and stem indumentum (hair type).
+
+  leaf_morphology:
+    description: Leaf structure, shape, margin, phyllotaxy, and leaf/petiole dimensions. Covers WHOLE-LEAF traits (use leaflet_morphology for individual leaflets of compound leaves, and leaf_indumentum for leaf-surface hair detail).
+
+  leaf_indumentum:
+    description: Hair type on leaf surfaces (overall, upper, lower). Applies when the passage describes leaf-surface indumentum/pubescence — independent of leaf_morphology, which covers shape/margin/dimensions.
+
+  leaflet_morphology:
+    description: Morphology of individual leaflets in compound leaves. Applies when the passage explicitly describes LEAFLETS (use leaf_morphology for whole-leaf descriptions, including leaves described as "lobed" or "dissected" — those are NOT leaflets).
+
+  juvenile_leaf_morphology:
+    description: Morphology of juvenile (early-stage) leaves. Applies when the passage explicitly describes juvenile or seedling leaves — independent of leaf_morphology, which covers adult leaves.
+
+  inflorescence_morphology:
+    description: Inflorescence type and the dimensions of its parts (peduncle, pedicel, rachis, hypanthium, umbellet).
+
+  inflorescence_specific_morphology:
+    description: Specialised inflorescence parts — head/capitulum, pappus, rays, florets, spathe, spadix. Applies when the passage describes any of these specialised structures. Independent of inflorescence_morphology, which covers the inflorescence as a whole.
+
+  bract_involucre_morphology:
+    description: Bract, bracteole, and involucre morphology. Applies when the passage describes bracts or involucre. Independent of inflorescence_morphology.
+
+  outer_flower_morphology:
+    description: >
+      Outer flower envelope — corolla (petals), calyx (sepals), perianth (tepals),
+      labellum — including type/colour and the many length/width fields.
+
+  fruit_morphology:
+    description: Fruit type and fruit/seed dimensions.

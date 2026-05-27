@@ -1,0 +1,42 @@
+name: island_type
+group: distribution
+multi: true
+description: Hawaiian island(s) on which the plant is found.
+
+values:
+  - name: HAWAII
+    label: Hawai‘i
+    definition: The island of Hawai‘i (the Big Island).
+    synonyms: [hawaii, "hawai‘i", big island]
+  - name: MAUI
+    label: Maui
+    definition: The island of Maui.
+    synonyms: [maui]
+  - name: KAHOOLAWE
+    label: Kaho‘olawe
+    definition: The island of Kaho‘olawe.
+    synonyms: [kahoolawe, "kaho‘olawe"]
+  - name: MOLOKAI
+    label: Moloka‘i
+    definition: The island of Moloka‘i.
+    synonyms: [molokai, "moloka‘i"]
+  - name: LANAI
+    label: Lāna‘i
+    definition: The island of Lāna‘i.
+    synonyms: [lanai, "lāna‘i"]
+  - name: OAHU
+    label: O‘ahu
+    definition: The island of O‘ahu.
+    synonyms: [oahu, "o‘ahu"]
+  - name: KAUAI
+    label: Kaua‘i
+    definition: The island of Kaua‘i.
+    synonyms: [kauai, "kaua‘i"]
+  - name: NIIHAU
+    label: Ni‘ihau
+    definition: The island of Ni‘ihau.
+    synonyms: [niihau, "ni‘ihau"]
+  - name: ALL_ISLANDS
+    label: All islands
+    definition: Present on all of the main Hawaiian Islands.
+    synonyms: [all islands, all main islands]

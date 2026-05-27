@@ -1,0 +1,5 @@
+name: leaflets_leaf_margin_type
+group: leaflet_morphology
+multi: true
+description: Margin type of leaflets
+same_values_as: leaf_margin_type

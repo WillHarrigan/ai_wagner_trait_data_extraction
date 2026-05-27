@@ -1,0 +1,22 @@
+name: description
+group: taxon_identity
+multi: false
+description: Major plant group classification (infer from taxonomy)
+
+values:
+  - name: DICOTS
+    label: Dicots
+    definition: Dicotyledonous flowering plants (two seed leaves).
+    synonyms: [dicots, dicotyledons, eudicots]
+  - name: MONOCOTS
+    label: Monocots
+    definition: Monocotyledonous flowering plants (one seed leaf).
+    synonyms: [monocots, monocotyledons]
+  - name: CONIFERS
+    label: Conifers
+    definition: Cone-bearing seed plants (gymnosperms).
+    synonyms: [conifers, gymnosperms]
+  - name: FERNS
+    label: Ferns and fern allies
+    definition: Spore-bearing vascular plants (pteridophytes).
+    synonyms: [ferns, fern allies, pteridophytes]

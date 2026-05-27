@@ -1,0 +1,22 @@
+name: origin
+group: distribution
+multi: true
+description: Origin abbreviated at the beginning of the passage (end/endemic, nat/naturalized, PC/paleotropical cosmopoltian.)
+
+values:
+  - name: ENDEMIC
+    label: Endemic
+    definition: Native and restricted to the Hawaiian Islands; found nowhere else naturally.
+    synonyms: [endemic, end, "end."]
+  - name: INDIGENOUS
+    label: Indigenous
+    definition: Native to Hawai‘i but also occurring naturally elsewhere.
+    synonyms: [indigenous, native]
+  - name: NATURALIZED
+    label: Naturalized
+    definition: Introduced by humans and now reproducing and persisting in the wild.
+    synonyms: [naturalized, nat, "nat.", "nat?"]
+  - name: PC
+    label: Paleotropical cosmopolitan
+    definition: Originating from the paleotropics; widely distributed across the Old World tropics.
+    synonyms: [paleotropical cosmopolitan, "PC", paleotropical]

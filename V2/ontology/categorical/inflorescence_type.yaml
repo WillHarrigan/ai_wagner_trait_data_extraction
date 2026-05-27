@@ -1,0 +1,77 @@
+name: inflorescence_type
+group: inflorescence_morphology
+multi: true
+description: Type of inflorescence
+
+values:
+  - name: SOLITARY
+    label: Solitary
+    definition: Flowers borne singly, not in a cluster.
+    synonyms: [solitary, single, single-flowered]
+  - name: AXILLARY
+    label: Axillary
+    definition: Inflorescence arising from a leaf axil.
+    synonyms: [axillary]
+  - name: SPIKE
+    label: Spike
+    definition: Unbranched axis bearing sessile (stalkless) flowers.
+    synonyms: [spike, spicate]
+  - name: RACEME
+    label: Raceme
+    definition: Unbranched axis bearing stalked (pedicellate) flowers.
+    synonyms: [raceme, racemose]
+  - name: PANICLE
+    label: Panicle
+    definition: A branched raceme; a compound, indeterminate inflorescence.
+    synonyms: [panicle, paniculate]
+  - name: CYME
+    label: Cyme
+    definition: A branched, determinate inflorescence in which the central flower opens first.
+    synonyms: [cyme, cymose]
+  - name: DICHASIUM
+    label: Dichasium
+    definition: A cyme with two lateral branches below each terminal flower.
+    synonyms: [dichasium, dichasial cyme]
+    parents: [CYME]
+  - name: THYRSE
+    label: Thyrse
+    definition: A compact, branched inflorescence with an indeterminate main axis and cymose branches.
+    synonyms: [thyrse, thyrsoid]
+  - name: UMBEL
+    label: Umbel
+    definition: Flowers on stalks of about equal length arising from a common point.
+    synonyms: [umbel, umbellate]
+  - name: HEAD
+    label: Head
+    definition: A dense cluster of sessile flowers on a common receptacle (capitulum).
+    synonyms: [head, capitulum, capitate]
+  - name: CATKIN
+    label: Catkin
+    definition: A pendulous spike of unisexual, apetalous flowers (ament).
+    synonyms: [catkin, ament]
+    parents: [SPIKE]
+  - name: SPADIX
+    label: Spadix
+    definition: A fleshy spike of flowers, usually enclosed by a spathe.
+    synonyms: [spadix]
+    parents: [SPIKE]
+  - name: SPATHE_SPADIX
+    label: Spathe and spadix
+    definition: An inflorescence consisting of a spadix subtended by a spathe (bract).
+    synonyms: [spathe and spadix, spathe-spadix]
+  - name: FASCICLE
+    label: Fascicle
+    definition: A compact, tight cluster of flowers.
+    synonyms: [fascicle, fascicled, fasciculate]
+  - name: GLOMERATE
+    label: Glomerate
+    definition: Flowers in a compact, head-like cluster (glomerule).
+    synonyms: [glomerate, glomerule]
+  - name: CLUSTERS
+    label: Clusters
+    definition: Flowers grouped in clusters (general, unspecified arrangement).
+    synonyms: [clusters, clustered, in clusters]
+  - name: VERTISCILLATE
+    label: Verticillate
+    definition: Flowers arranged in whorls around the axis.
+    synonyms: [verticillate, whorled]

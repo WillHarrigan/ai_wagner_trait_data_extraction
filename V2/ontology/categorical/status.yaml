@@ -1,0 +1,28 @@
+name: status
+group: distribution
+multi: true
+description: Conservation or rarity status
+
+values:
+  - name: SECURE
+    label: Secure
+    definition: Not at risk; populations stable and widespread.
+    synonyms: [secure, stable]
+  - name: VULNERABLE
+    label: Vulnerable
+    definition: At moderate risk of decline or extinction.
+    synonyms: [vulnerable]
+  - name: RARE
+    label: Rare
+    definition: Occurring in small numbers or few localities.
+    synonyms: [rare, uncommon]
+  - name: ENDEMIC
+    label: Endemic
+    definition: Restricted to the Hawaiian Islands (used here as a status descriptor).
+    synonyms: [endemic]
+    notes: Overlaps with origin.ENDEMIC; kept because the source StatusType enum lists it.
+  - name: NATURALIZED
+    label: Naturalized
+    definition: Introduced and established in the wild (used here as a status descriptor).
+    synonyms: [naturalized]
+    notes: Overlaps with origin.NATURALIZED; kept because the source StatusType enum lists it.

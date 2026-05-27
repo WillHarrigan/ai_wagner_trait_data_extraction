@@ -1,0 +1,5 @@
+name: juvenile_leaf_margin_type
+group: juvenile_leaf_morphology
+multi: true
+description: Margin type of juvenile leaves
+same_values_as: leaf_margin_type
