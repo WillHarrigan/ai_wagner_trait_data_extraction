@@ -97,9 +97,11 @@ def _value_node(v) -> dict:
 
 
 def _field_node(f, with_tags: bool = False) -> dict:
-    """Tree node for a field: DESCRIPTION (+ optional sex/position tags) as
-    labeled child branches."""
+    """Tree node for a field: DESCRIPTION + optional SYNONYMS (+ sex/position
+    tags when requested) as labeled child branches."""
     attrs = [node(f"DESCRIPTION: {f.description}")] if f.description else []
+    if f.synonyms:
+        attrs.append(node(f"SYNONYMS: {', '.join(f.synonyms)}"))
     if with_tags:
         if f.sex != "neutral":
             attrs.append(node(f"SEX: {f.sex}"))
@@ -108,9 +110,18 @@ def _field_node(f, with_tags: bool = False) -> dict:
     return node(f"{f.name}  [{f.datatype}]", attrs)
 
 
-def _trait_node(t) -> dict:
-    """Tree node for a categorical trait header (DESCRIPTION branch)."""
+def _trait_node(t, with_values: bool = False) -> dict:
+    """Tree node for a categorical trait header.
+
+    By default shows just DESCRIPTION. When `with_values=True`, also includes
+    every value with its definition + synonyms inline — so a single
+    `list <group>` call is enough for the extractor to map phrases to codes
+    without needing follow-up `list <trait>` calls.
+    """
     attrs = [node(f"DESCRIPTION: {t.description}")] if t.description else []
+    if with_values:
+        attrs.append(node(f"VALUES ({len(t.values)})",
+                          [_value_node(v) for v in t.values]))
     return node(f"{t.name}  [categorical]", attrs)
 
 
@@ -233,6 +244,8 @@ def cmd_list(onto, args):
             return
 
         def group_node(g, depth=0) -> dict:
+            # Bare `list` is a DIRECTORY: group name + one-line description.
+            # Use `list <group>` to see traits/fields/values for one group.
             children = []
             if g.description:
                 children.append(node(f"DESCRIPTION: {g.description}"))
@@ -330,7 +343,7 @@ def cmd_list(onto, args):
                 if s_cats:
                     s_children.append(node(
                         f"CATEGORICAL TRAITS ({len(s_cats)})",
-                        [_trait_node(c) for c in s_cats]))
+                        [_trait_node(c, with_values=True) for c in s_cats]))
                 if s_meas:
                     s_children.append(node(
                         f"FIELDS ({len(s_meas)})",
@@ -339,7 +352,7 @@ def cmd_list(onto, args):
             root_children.append(node(f"SUBGROUPS ({len(subs)})", sub_nodes))
         if cats:
             root_children.append(node(f"CATEGORICAL TRAITS ({len(cats)})",
-                                      [_trait_node(c) for c in cats]))
+                                      [_trait_node(c, with_values=True) for c in cats]))
         if meas:
             root_children.append(node(f"FIELDS ({len(meas)})",
                                       [_field_node(m) for m in meas]))
@@ -369,6 +382,8 @@ def cmd_list(onto, args):
         attrs = []
         if f.description:
             attrs.append(node(f"DESCRIPTION: {f.description}"))
+        if f.synonyms:
+            attrs.append(node(f"SYNONYMS: {', '.join(f.synonyms)}"))
         attrs.append(node(f"GROUP: {f.group}"))
         if f.unit_hint:
             attrs.append(node(f"TYPICAL UNIT: {f.unit_hint}"))

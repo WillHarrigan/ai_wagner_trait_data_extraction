@@ -1,7 +1,74 @@
 name: breeding_type
-group: life_form
+group: reproductive_morphology
 multi: true
-description: Plant reproductive class (infer from taxonomy)
+description: >
+  Breeding system — whether male and female reproductive function are on the
+  same plant or on separate plants.
+
+
+  HOW TO DERIVE THIS FROM THE PASSAGE
+
+
+  The passage rarely needs to contain the literal word "monoecious" or
+  "dioecious" for this trait to be assignable. What you need is enough
+  description of the plant's flower or floret arrangement that the
+  reproductive system can be READ OFF DIRECTLY from the text — without having
+  to assume anything based on family or genus alone.
+
+
+  Two kinds of evidence both count:
+
+
+  1. A direct labelled statement. The passage uses the technical term:
+
+      "plants dioecious"                              -> DIOECIOUS
+      "monoecious"                                    -> MONOECIOUS
+      "polygamous" / "polygamodioecious"              -> POLYGAMOUS
+      "andromonoecious"                               -> ANDROMONOECIOUS
+      "gynodioecious"                                 -> GYNODIOECIOUS
+
+  2. A descriptive statement of which flowers/florets are male vs female
+     and where they sit. You synthesise the system from the description.
+     Examples (typical of Asteraceae, but the rule is general):
+
+      "ray florets pistillate" AND "disk florets staminate"
+        on the same head                              -> MONOECIOUS
+        (both unisexual flower types co-occur on one plant)
+
+      "staminate and pistillate flowers on separate plants"
+                                                      -> DIOECIOUS
+
+      "flowers perfect and pistillate on the same plant"
+      (or "mixed with perfect/bisexual flowers")      -> POLYGAMOUS variant
+
+
+  Synthesising across multiple non-adjacent quotes is encouraged — that's
+  exactly what the passage-level Finding shape is designed for. Bundle the
+  evidence quotes together in one Finding and explain the inference in the
+  reason.
+
+
+  DO NOT
+
+
+  * Do NOT assign a value just because the family or genus is "usually X".
+    Many families contain a mix of breeding systems. The evidence must come
+    from the passage describing THIS plant.
+
+  * Do NOT confuse "flowers perfect" or "perfect flowers" alone with a
+    breeding-system statement — perfect-only species are hermaphroditic but
+    do NOT fit the monoecy/dioecy axis at all. Leave the trait unset in
+    that case.
+
+
+  NOTE ON CLEISTOGAMY
+
+
+  Cleistogamy ("cleistogamous flowers", "self-pollinating in unopened
+  flowers") is currently captured here as CLEISTOGAMOUS, but it describes
+  flower opening / pollination rather than the monoecy/dioecy axis. Use it
+  only when the passage explicitly describes cleistogamous flowers. (A
+  separate flower-opening categorical may be split out later.)
 
 values:
   - name: MONOECIOUS

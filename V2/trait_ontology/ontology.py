@@ -329,7 +329,12 @@ class TraitOntology:
 
         # non-categorical fields
         for f in self.fields.values():
-            m = where(q in f.name.lower(), False, False, q in (f.description or "").lower())
+            m = where(
+                q in f.name.lower(),
+                any(q in s.lower() for s in f.synonyms),
+                False,
+                q in (f.description or "").lower(),
+            )
             if m:
                 results.append({
                     "type": "field", "name": f.name, "group": f.group,
@@ -427,6 +432,7 @@ def load_ontology(ontology_dir: Optional[os.PathLike] = None) -> TraitOntology:
                 structure=collapse(_clean(data.get("structure"))),
                 sex=data.get("sex", "neutral"),
                 position=data.get("position", []) or [],
+                synonyms=data.get("synonyms", []) or [],
             )
 
     # categorical traits (one file per trait). Two passes so a trait can borrow

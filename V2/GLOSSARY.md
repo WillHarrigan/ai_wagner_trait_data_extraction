@@ -28,7 +28,7 @@ ONTOLOGY
 ├── GROUP  (15, all top-level)
 │     e.g. leaf_morphology, leaf_indumentum, leaflet_morphology,
 │          juvenile_leaf_morphology, inflorescence_morphology,
-│          bract_involucre_morphology, inflorescence_specific_morphology, ...
+│          bract_involucre_morphology, inflorescence_morphology, ...
 │
 │   each group contains TRAITS, of two kinds:
 │

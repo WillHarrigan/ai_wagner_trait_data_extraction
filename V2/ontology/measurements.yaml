@@ -47,14 +47,26 @@ measurements:
   ploidy:
     group: reproductive_morphology
     kind: list
-    description: "Ploidy level for the specific species expressed as a function of n (e.g., 1n, 2n or 3n, etc..)"
+    description: >
+      Ploidy designation. In Wagner, cytology is written as `[2n = N, M, ...]`
+      — the part BEFORE the `=` is the ploidy (typically `2n`, meaning the
+      diploid/somatic chromosome count is being reported); the number(s)
+      AFTER the `=` go in `chromosome_number`. The same bracketed
+      expression fills BOTH fields. Leave ploidy unset only when the passage
+      has no cytology information including missing bracket for described here.
     structure: ploidy
     sex: neutral
     position: []
   chromosome_number:
     group: reproductive_morphology
     kind: list
-    description: "Species specific chromosome count (integer number)"
+    description: >
+      Chromosome count(s) reported by Wagner in the `[2n = N, M, ...]` bracket.
+      The number(s) AFTER the `=` are the counts; the `2n` part goes in
+      `ploidy`. Multiple values in the bracket mean different cytotypes have
+      been counted — record them all as a list. Approximate values like
+      `ca. 48` and asterisked counts like `18*` should also be included as
+      best-guess integers.
     structure: chromosome
     sex: neutral
     position: []
@@ -195,72 +207,72 @@ measurements:
     sex: female
     position: []
 
-  # --- inflorescence_specific_morphology ---
+  # --- inflorescence_morphology ---
   head_length:
-    group: inflorescence_specific_morphology
+    group: inflorescence_morphology
     kind: measurement
-    description: "Capitulum length"
+    description: "Head (capitulum) length"
     structure: head
     sex: neutral
     position: []
   head_diameter:
-    group: inflorescence_specific_morphology
+    group: inflorescence_morphology
     kind: measurement
-    description: "Capitulum diameter"
+    description: "Head (capitulum) diameter"
     structure: head
     sex: neutral
     position: [diameter]
   pappus_length:
-    group: inflorescence_specific_morphology
+    group: inflorescence_morphology
     kind: measurement
     description: "Pappus length."
     structure: pappus
     sex: neutral
     position: []
   ray_dimensions:
-    group: inflorescence_specific_morphology
+    group: inflorescence_morphology
     kind: dimensions
     description: "Describes dimensions of rays or ray florets."
     structure: ray
     sex: neutral
     position: []
   ray_color:
-    group: inflorescence_specific_morphology
+    group: inflorescence_morphology
     kind: text
     description: "Ray floret color"
     structure: ray
     sex: neutral
     position: []
   floret_color:
-    group: inflorescence_specific_morphology
+    group: inflorescence_morphology
     kind: text
     description: "Color of florets (must specify florets vs flower/petal color)"
     structure: floret
     sex: neutral
     position: []
   florets_length:
-    group: inflorescence_specific_morphology
+    group: inflorescence_morphology
     kind: measurement
     description: "Length of small flowers that compose a flower head (capitulum)"
     structure: florets
     sex: neutral
     position: []
   spathe_color:
-    group: inflorescence_specific_morphology
+    group: inflorescence_morphology
     kind: text
     description: "Color of spathe"
     structure: spathe
     sex: neutral
     position: []
   spathe_dimensions:
-    group: inflorescence_specific_morphology
+    group: inflorescence_morphology
     kind: dimensions
     description: "Dimensions of spathe"
     structure: spathe
     sex: neutral
     position: []
   spadix_length:
-    group: inflorescence_specific_morphology
+    group: inflorescence_morphology
     kind: measurement
     description: "Length of spadix"
     structure: spadix

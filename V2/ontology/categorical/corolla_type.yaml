@@ -1,7 +1,13 @@
 name: corolla_type
 group: outer_flower_morphology
 multi: true
-description: The shape/description of petals (e.g., oblong, obovate, lanceolate)
+description: >
+  Shape and/or role of the corolla. Most values describe shape geometry
+  (TUBULAR, CAMPANULATE, FUNNELFORM, etc.) and apply to any flowering plant.
+  Two values (DISK_FLORET, RAY_FLORET) describe the role of an Asteraceae
+  floret in a head — they may co-occur with shape values. A discoid head of
+  Asteraceae typically yields ["TUBULAR", "DISK_FLORET"]; a radiate head
+  yields ["TUBULAR", "DISK_FLORET", "ZYGOMORPHIC", "RAY_FLORET"].
 
 values:
   - name: TUBULAR
@@ -57,3 +63,21 @@ values:
     label: Orbicular
     definition: Petals circular or nearly circular.
     synonyms: [circular, rounded petals]
+  - name: DISK_FLORET
+    label: Disk floret
+    definition: >
+      An Asteraceae floret occurring in the central (disk) portion of a head,
+      typically with a tubular, actinomorphic, perfect corolla. Applies when
+      the passage names "disk corollas", "disk florets", or describes the head
+      as "discoid" or "radiate". This is a ROLE tag — usually co-occurs with a
+      shape tag (e.g., TUBULAR) on the same head.
+    synonyms: [disk corolla, disk florets, disk floret, disc floret, central floret]
+  - name: RAY_FLORET
+    label: Ray floret
+    definition: >
+      An Asteraceae floret occurring in the marginal (ray) portion of a head,
+      typically with a zygomorphic, strap-shaped corolla. Applies when the
+      passage names "ray florets", "rays", "ligulate florets", or describes the
+      head as "radiate" or "ligulate". This is a ROLE tag — usually co-occurs
+      with a shape tag (e.g., ZYGOMORPHIC) on the same head.
+    synonyms: [ray corolla, ray florets, ray floret, ligulate floret, ligule, ray]

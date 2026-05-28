@@ -109,6 +109,8 @@ class FieldTrait:
     structure: Optional[str] = None  # body part, e.g. "calyx", "corolla"
     sex: str = "neutral"  # "neutral" | "male" | "female"
     position: List[str] = field(default_factory=list)  # inner/outer/upper/lower/tube/lobe...
+    synonyms: List[str] = field(default_factory=list)  # alt terms seen in source text
+                                                      # (e.g. "leaf-stalk" -> petiole_length)
 
     @property
     def datatype(self) -> str:
