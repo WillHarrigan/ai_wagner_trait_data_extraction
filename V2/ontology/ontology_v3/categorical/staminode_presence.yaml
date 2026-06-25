@@ -1,0 +1,14 @@
+name: staminode_presence
+group: androecium_morphology
+multi: true
+# NEW group. From Wagner glossary (p.1653: staminode = sterile/modified stamen).
+description: Presence of sterile or modified stamens.
+values:
+  - name: STAMINODE
+    label: Staminode
+    definition: A modified, non-pollen-producing stamen (sometimes petaloid/showy).
+    synonyms: [staminode, staminodium]
+  - name: PSEUDOSTAMINODE
+    label: Pseudostaminode
+    definition: A staminode-like structure not derived from a true stamen.
+    synonyms: [pseudostaminode]

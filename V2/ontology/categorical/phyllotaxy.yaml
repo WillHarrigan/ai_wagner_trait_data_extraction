@@ -26,23 +26,15 @@ values:
     definition: Leaves arranged in two vertical ranks (two-ranked) on opposite sides of the stem.
     synonyms: [distichous, two-ranked, 2-ranked]
     parents: [ALTERNATE]
-
-  # Proposed terms — defined but not yet in active use.
   - name: EQUITANT
     label: Equitant
     definition: Leaves folded lengthwise and overlapping in two ranks (as in iris).
     synonyms: [equitant]
-    status: proposed
-    notes: Proposed term; not yet in active use.
   - name: TERNATE
     label: Ternate
     definition: Three leaves or leaflets arising from one node or point.
     synonyms: [ternate, in threes]
-    status: proposed
-    notes: Proposed term; not yet in active use.
   - name: CAULINE
     label: Cauline
     definition: Leaves borne on the aerial stem (as opposed to basal).
     synonyms: [cauline, stem leaves]
-    status: proposed
-    notes: Proposed term; not yet in active use.

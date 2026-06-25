@@ -24,5 +24,18 @@ values:
   - name: NATURALIZED
     label: Naturalized
     definition: Introduced and established in the wild (used here as a status descriptor).
-    synonyms: [naturalized]
+    synonyms: [naturalized, natu]
     notes: Overlaps with origin.NATURALIZED; kept because the source StatusType enum lists it.
+  - name: INDIGENOUS
+    label: Indigenous
+    definition: Native to Hawai‘i but also occurring naturally elsewhere (used here as a status descriptor).
+    synonyms: [indigenous, ind, native]
+    notes: Overlaps with origin.INDIGENOUS; kept because the Wagner code list includes it under status.
+  - name: POLYNESIAN_INTRODUCTION
+    label: Polynesian introduction
+    definition: Brought to Hawai‘i by early Polynesian settlers before European contact (a canoe plant).
+    synonyms: [polynesian introduction, pi, canoe plant]
+  - name: SPECIES_OF_CONCERN
+    label: Species of concern
+    definition: A species considered to warrant conservation attention but not formally listed.
+    synonyms: [species of concern, soc]

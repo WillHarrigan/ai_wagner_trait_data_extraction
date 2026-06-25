@@ -1,7 +1,7 @@
 name: origin
 group: distribution
 multi: true
-description: Origin abbreviated at the beginning of the passage (end/endemic, nat/naturalized, PC/paleotropical cosmopoltian.)
+description: Origin abbreviated at the beginning of the passage (end/endemic, nat/naturalized, ind/indigenous, PI/Polynesian introduction, PC/predominant cultivar).
 
 values:
   - name: ENDEMIC
@@ -16,7 +16,11 @@ values:
     label: Naturalized
     definition: Introduced by humans and now reproducing and persisting in the wild.
     synonyms: [naturalized, nat, "nat.", "nat?"]
+  - name: POLYNESIAN_INTRODUCTION
+    label: Polynesian introduction
+    definition: Brought to Hawai‘i by early Polynesian settlers before European contact (a canoe plant).
+    synonyms: [polynesian introduction, "PI", canoe plant]
   - name: PC
-    label: Paleotropical cosmopolitan
-    definition: Originating from the paleotropics; widely distributed across the Old World tropics.
-    synonyms: [paleotropical cosmopolitan, "PC", paleotropical]
+    label: Predominant cultivar
+    definition: A cultivated plant that is the predominant or dominant cultivated form for the taxon.
+    synonyms: [predominant cultivar, "PC", cultivar]

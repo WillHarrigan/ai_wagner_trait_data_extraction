@@ -1,0 +1,21 @@
+name: status
+group: distribution
+multi: false
+description: "Federal conservation status. (Email: ensure Endangered and Threatened present.)"
+values:
+  - name: NO_STATUS
+    label: No status
+    definition: No federal conservation status.
+    synonyms: [no status, none]
+  - name: SP_OF_CONCERN
+    label: Species of concern
+    definition: A species of conservation concern (not formally listed).
+    synonyms: [sp. of concern, species of concern]
+  - name: THREATENED
+    label: Threatened
+    definition: Federally listed as threatened.
+    synonyms: [threatened]
+  - name: ENDANGERED
+    label: Endangered
+    definition: Federally listed as endangered.
+    synonyms: [endangered]

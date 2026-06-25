@@ -44,3 +44,7 @@ values:
     label: Sedge
     definition: A grass-like plant of the sedge family (Cyperaceae) habit.
     synonyms: [sedge, sedges]
+  - name: MONOCOTS
+    label: Monocots
+    definition: A general monocotyledonous herbaceous habit, used where a more specific life form (grass, sedge, etc.) does not apply.
+    synonyms: [monocots, monocot, monocotyledonous herb]

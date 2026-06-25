@@ -1,0 +1,14 @@
+name: mating_system
+group: reproductive_morphology
+multi: true
+# NEW (expert email): the selfing/outcrossing axis to sit alongside pollination_mode.
+description: Whether reproduction is by self-pollination or cross-pollination.
+values:
+  - name: SELFING
+    label: Selfing
+    definition: Reproduction predominantly by self-pollination (autogamy).
+    synonyms: [selfing, self-pollinating, autogamous, self-compatible]
+  - name: OUTCROSSING
+    label: Outcrossing
+    definition: Reproduction predominantly by cross-pollination between plants.
+    synonyms: [outcrossing, cross-pollinating, allogamous, self-incompatible]

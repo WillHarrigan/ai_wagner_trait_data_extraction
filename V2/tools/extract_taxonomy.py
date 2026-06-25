@@ -45,7 +45,7 @@ EMPH_RE = re.compile(r"[*_]")
 # Leading "N." or "N(M)." numbering like "1.", "12.", "3(1)."
 LEADING_NUM_RE = re.compile(r"^\s*\d+(?:\([^)]*\))?\.\s*")
 
-FAMILY_RE = re.compile(r"^[A-Z][A-Z\-]{3,}ACEAE\b")
+FAMILY_RE = re.compile(r"^[A-Z][A-Z\-]+ACEAE\b")
 GENUS_TOKEN_RE = re.compile(r"^[A-Z][A-Z\-]{2,}$")
 SPECIES_RE = re.compile(r"^([A-Z][a-z\-]+)\s+([a-z][a-z\-]+)\b")
 

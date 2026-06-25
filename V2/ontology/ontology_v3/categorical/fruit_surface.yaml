@@ -1,0 +1,14 @@
+name: fruit_surface
+group: fruit_morphology
+multi: true
+# NEW (expert email): fruit "Surface".
+description: Surface texture of the fruit.
+values:
+  - { name: SMOOTH, label: Smooth, definition: Without projections or hairs., synonyms: [smooth, glabrous] }
+  - { name: PUBESCENT, label: Pubescent, definition: Covered with hairs., synonyms: [pubescent, hairy] }
+  - { name: SPINY, label: Spiny, definition: Bearing spines or prickles., synonyms: [spiny, prickly, echinate] }
+  - { name: WARTY, label: Warty, definition: With wart-like projections., synonyms: [warty, tuberculate, verrucose] }
+  - { name: RIBBED, label: Ribbed, definition: With longitudinal ridges., synonyms: [ribbed, costate, ridged] }
+  - { name: WINGED, label: Winged, definition: With wing-like flanges., synonyms: [winged, alate] }
+  - { name: GLAUCOUS, label: Glaucous, definition: With a waxy bloom., synonyms: [glaucous] }
+  - { name: GLANDULAR, label: Glandular, definition: Bearing glands., synonyms: [glandular] }

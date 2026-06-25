@@ -1,0 +1,18 @@
+name: anther_attachment
+group: androecium_morphology
+multi: false
+# NEW group (expert email "Androecium"). Vocabulary from Wagner glossary (p.1627).
+description: How the anther is attached to the filament.
+values:
+  - name: BASIFIXED
+    label: Basifixed
+    definition: Anther attached at its base to the filament.
+    synonyms: [basifixed, innate]
+  - name: DORSIFIXED
+    label: Dorsifixed
+    definition: Anther attached by its back to the filament.
+    synonyms: [dorsifixed]
+  - name: VERSATILE
+    label: Versatile
+    definition: Anther attached at a single point so that it swings freely.
+    synonyms: [versatile]

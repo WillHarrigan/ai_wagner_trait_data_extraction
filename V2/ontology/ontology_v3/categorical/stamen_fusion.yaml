@@ -1,0 +1,34 @@
+name: stamen_fusion
+group: androecium_morphology
+multi: true
+# NEW group. Vocabulary from Wagner glossary (pp.1648,1654).
+description: Degree and pattern of fusion among stamens / their arrangement.
+values:
+  - name: DISTINCT
+    label: Distinct
+    definition: Stamens free, not fused to one another.
+    synonyms: [distinct, free]
+  - name: MONADELPHOUS
+    label: Monadelphous
+    definition: Stamens united by their filaments into a single group/tube.
+    synonyms: [monadelphous, one bundle]
+  - name: DIADELPHOUS
+    label: Diadelphous
+    definition: Stamens united into two groups.
+    synonyms: [diadelphous, two bundles]
+  - name: POLYADELPHOUS
+    label: Polyadelphous
+    definition: Stamens united into several groups (phalanges).
+    synonyms: [polyadelphous, several bundles, phalanx]
+  - name: SYNANDROUS
+    label: Synandrous
+    definition: Anthers superficially joined (coherent) but filaments not fused.
+    synonyms: [synandrous, synandrium]
+  - name: DIDYNAMOUS
+    label: Didynamous
+    definition: Four stamens in two unequal pairs (two long, two short).
+    synonyms: [didynamous]
+  - name: TETRADYNAMOUS
+    label: Tetradynamous
+    definition: Six stamens, four long and two short (Brassicaceae).
+    synonyms: [tetradynamous]

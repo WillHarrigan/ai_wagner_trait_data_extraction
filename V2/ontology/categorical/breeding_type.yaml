@@ -96,3 +96,26 @@ values:
     label: Cleistogamous
     definition: Self-pollinating within flowers that never open.
     synonyms: [cleistogamous, cleistogamy]
+  - name: CHASMOGAMOUS
+    label: Chasmogamous
+    definition: Pollinating in flowers that open normally (the opposite of cleistogamous).
+    synonyms: [chasmogamous, chasmogamy]
+  - name: POLYGAMO_MONOECIOUS
+    label: Polygamo-monoecious
+    definition: Bisexual and unisexual flowers borne on the same plant (monoecious with some perfect flowers).
+    synonyms: [polygamo-monoecious, polygamomonoecious]
+    parents: [POLYGAMOUS]
+  - name: POLYGAMO_DIOECIOUS
+    label: Polygamo-dioecious
+    definition: Functionally dioecious but with some flowers of the opposite or bisexual type present on each plant.
+    synonyms: [polygamo-dioecious, polygamodioecious]
+    parents: [POLYGAMOUS]
+  - name: GYNOMONOECIOUS
+    label: Gynomonoecious
+    definition: Bearing both bisexual and female (pistillate) flowers on the same plant.
+    synonyms: [gynomonoecious]
+    parents: [MONOECIOUS]
+  - name: STERILE
+    label: Sterile
+    definition: Plant or flowers not producing functional reproductive output (no viable pollen and/or seed).
+    synonyms: [sterile, infertile]

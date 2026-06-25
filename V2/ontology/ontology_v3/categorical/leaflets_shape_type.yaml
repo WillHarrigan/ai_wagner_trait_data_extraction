@@ -1,0 +1,6 @@
+name: leaflets_shape_type
+group: leaflet_morphology
+multi: true
+same_values_as: leaf_shape_type
+description: Shape of individual leaflets of a compound leaf (same vocabulary as leaf_shape_type).
+values: []

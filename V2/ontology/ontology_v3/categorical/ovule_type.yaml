@@ -1,0 +1,22 @@
+name: ovule_type
+group: gynoecium_morphology
+multi: true
+# NEW group. Vocabulary from Wagner glossary (p.1646).
+description: Orientation/type of the ovule within the ovary.
+values:
+  - name: ANATROPOUS
+    label: Anatropous
+    definition: Ovule inverted so the micropyle is near the funicular attachment.
+    synonyms: [anatropous]
+  - name: AMPHITROPOUS
+    label: Amphitropous
+    definition: Ovule half-inverted ("U"-form); micropyle at right angles to the funiculus.
+    synonyms: [amphitropous]
+  - name: CAMPYLOTROPOUS
+    label: Campylotropous
+    definition: Ovule curved by unequal growth; micropyle brought near the funiculus.
+    synonyms: [campylotropous]
+  - name: ORTHOTROPOUS
+    label: Orthotropous
+    definition: Straight (unbent) ovule with the micropyle opposite the funicular attachment.
+    synonyms: [orthotropous, atropous]

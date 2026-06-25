@@ -1,0 +1,35 @@
+name: calyx_type
+group: outer_flower_morphology
+multi: true
+# NEW (expert email: "Calyx characters missing"). Calyx had measurements but no
+# shape/fusion categorical. Vocabulary from Wagner glossary.
+description: Shape / fusion characters of the calyx (sepals collectively).
+values:
+  - name: SYNSEPALOUS
+    label: Synsepalous
+    definition: Sepals fused (connate), at least at the base.
+    synonyms: [synsepalous, gamosepalous, fused sepals]
+  - name: POLYSEPALOUS
+    label: Polysepalous
+    definition: Sepals free (distinct) from one another.
+    synonyms: [polysepalous, aposepalous, free sepals]
+  - name: CALYCULATE
+    label: Calyculate
+    definition: With a set of small bracts around the calyx, suggesting an outer calyx.
+    synonyms: [calyculate, calyculus]
+  - name: CAMPANULATE
+    label: Campanulate
+    definition: Bell-shaped calyx.
+    synonyms: [campanulate, bell-shaped]
+  - name: TUBULAR
+    label: Tubular
+    definition: Calyx forming a narrow tube.
+    synonyms: [tubular, tube-shaped]
+  - name: BILABIATE
+    label: Bilabiate
+    definition: Two-lipped calyx.
+    synonyms: [bilabiate, two-lipped]
+  - name: SPURRED
+    label: Spurred
+    definition: Calyx bearing a hollow spur.
+    synonyms: [spurred, calcarate]

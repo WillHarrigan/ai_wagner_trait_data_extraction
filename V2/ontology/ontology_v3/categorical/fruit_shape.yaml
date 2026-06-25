@@ -1,0 +1,18 @@
+name: fruit_shape
+group: fruit_morphology
+multi: true
+# NEW (expert email): fruit "Shape". (Color/Surface are text/categorical too;
+# exocarp/mesocarp/endocarp are PARTS, handled as the fruit `part:` axis, not values here.)
+description: Overall shape of the fruit.
+values:
+  - { name: GLOBOSE, label: Globose, definition: Spherical or nearly so., synonyms: [globose, spherical, round] }
+  - { name: OVOID, label: Ovoid, definition: Egg-shaped (solid)., synonyms: [ovoid] }
+  - { name: OBOVOID, label: Obovoid, definition: Inversely egg-shaped., synonyms: [obovoid] }
+  - { name: ELLIPSOID, label: Ellipsoid, definition: Oval in solid form., synonyms: [ellipsoid] }
+  - { name: OBLONG, label: Oblong, definition: Longer than wide, sides nearly parallel., synonyms: [oblong] }
+  - { name: CYLINDRICAL, label: Cylindrical, definition: Elongate with uniform diameter., synonyms: [cylindrical, cylindric] }
+  - { name: FUSIFORM, label: Fusiform, definition: Spindle-shaped; tapering at both ends., synonyms: [fusiform, spindle-shaped] }
+  - { name: RENIFORM, label: Reniform, definition: Kidney-shaped., synonyms: [reniform, kidney-shaped] }
+  - { name: WINGED, label: Winged, definition: Bearing wing-like extensions., synonyms: [winged, alate] }
+  - { name: ANGULAR, label: Angular, definition: With distinct angles or ridges., synonyms: [angular, angled] }
+  - { name: FLATTENED, label: Flattened, definition: Compressed / laterally flattened., synonyms: [flattened, compressed] }

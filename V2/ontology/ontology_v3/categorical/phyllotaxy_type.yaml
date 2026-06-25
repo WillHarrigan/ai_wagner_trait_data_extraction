@@ -1,0 +1,37 @@
+name: phyllotaxy_type
+group: leaf_morphology
+multi: true
+description: Arrangement of leaves on the stem (phyllotaxy).
+values:
+  - name: ALTERNATE
+    label: Alternate
+    definition: One leaf per node, arranged singly along the stem.
+    synonyms: [alternate]
+  - name: OPPOSITE
+    label: Opposite
+    definition: Two leaves per node, directly across from each other.
+    synonyms: [opposite]
+  - name: WHORLED
+    label: Whorled
+    definition: Three or more leaves per node in a ring.
+    synonyms: [whorled, verticillate]
+  - name: DECUSSATE
+    label: Decussate
+    definition: Opposite leaves with successive pairs at right angles.
+    synonyms: [decussate]
+  - name: DISTICHOUS
+    label: Distichous
+    definition: Leaves in two vertical ranks on opposite sides of the stem.
+    synonyms: [distichous, two-ranked]
+  - name: EQUITANT
+    label: Equitant
+    definition: Leaves folded and overlapping at the base in two ranks (e.g., iris).
+    synonyms: [equitant]
+  - name: TERNATE
+    label: Ternate
+    definition: Arranged in threes.
+    synonyms: [ternate]
+  - name: CAULINE
+    label: Cauline
+    definition: Borne on the stem (as opposed to basal).
+    synonyms: [cauline]

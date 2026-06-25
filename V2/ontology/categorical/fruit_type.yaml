@@ -32,3 +32,53 @@ values:
     label: Mericarp
     definition: One of the segments into which a schizocarp splits at maturity.
     synonyms: [mericarp, mericarps]
+  - name: AGGREGATE
+    label: Aggregate
+    definition: A fruit formed from several separate carpels of a single flower (e.g., raspberry).
+    synonyms: [aggregate, aggregate fruit, etaerio]
+  - name: ARTICLE
+    label: Article
+    definition: A one-seeded segment of a loment (a legume that breaks transversely into single-seeded joints).
+    synonyms: [article, loment segment, loment]
+  - name: CARYOPSIS
+    label: Caryopsis
+    definition: A dry, one-seeded fruit (grain) in which the seed coat is fused to the fruit wall; characteristic of grasses.
+    synonyms: [caryopsis, grain]
+  - name: FOLLICLE
+    label: Follicle
+    definition: A dry fruit from a single carpel that splits along one suture only.
+    synonyms: [follicle, follicular]
+  - name: MULTIPLE
+    label: Multiple
+    definition: A fruit formed from the ovaries of several flowers fused together (e.g., pineapple, fig).
+    synonyms: [multiple, multiple fruit]
+  - name: PEPO
+    label: Pepo
+    definition: A fleshy, many-seeded berry with a hard or leathery rind (e.g., gourds, melons).
+    synonyms: [pepo]
+    parents: [BERRY]
+  - name: POME
+    label: Pome
+    definition: A fleshy fruit with a core, formed largely from the receptacle surrounding the ovary (e.g., apple).
+    synonyms: [pome]
+  - name: SCHIZOCARP
+    label: Schizocarp
+    definition: A dry fruit that splits at maturity into two or more one-seeded segments (mericarps).
+    synonyms: [schizocarp, schizocarpic]
+  - name: SILICLE
+    label: Silicle
+    definition: A short, broad capsule of the mustard family (Brassicaceae), no more than about twice as long as wide.
+    synonyms: [silicle, silicula]
+  - name: SILIQUE
+    label: Silique
+    definition: An elongate capsule of the mustard family (Brassicaceae), much longer than wide, splitting along two valves.
+    synonyms: [silique, siliqua]
+  - name: SYCONIUM
+    label: Syconium
+    definition: A multiple fruit formed from a hollow, fleshy receptacle enclosing many tiny flowers (the fig).
+    synonyms: [syconium, fig]
+    parents: [MULTIPLE]
+  - name: UNKNOWN
+    label: Unknown
+    definition: Fruit type not stated or not determinable from the passage.
+    synonyms: [unknown, indeterminate, not stated]

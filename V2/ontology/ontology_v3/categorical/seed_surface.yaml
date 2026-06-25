@@ -1,0 +1,14 @@
+name: seed_surface
+group: fruit_morphology
+multi: true
+# NEW (expert email): seed "Surface".
+description: Surface texture of the seed.
+values:
+  - { name: SMOOTH, label: Smooth, definition: Without projections or hairs., synonyms: [smooth, glabrous] }
+  - { name: PUBESCENT, label: Pubescent, definition: Covered with hairs., synonyms: [pubescent, hairy, pilose] }
+  - { name: RETICULATE, label: Reticulate, definition: With a net-like pattern., synonyms: [reticulate, net-like] }
+  - { name: TUBERCULATE, label: Tuberculate, definition: With wart-like projections., synonyms: [tuberculate, warty] }
+  - { name: RIBBED, label: Ribbed, definition: With longitudinal ridges., synonyms: [ribbed, costate, ridged] }
+  - { name: WINGED, label: Winged, definition: With a wing-like flange., synonyms: [winged, alate] }
+  - { name: SHINY, label: Shiny, definition: Glossy / lustrous., synonyms: [shiny, glossy, lustrous] }
+  - { name: ARILLATE, label: Arillate, definition: Bearing an aril (fleshy covering)., synonyms: [arillate] }

@@ -1,0 +1,15 @@
+name: seed_shape
+group: fruit_morphology
+multi: true
+# NEW (expert email): seed "Shape". (aril/hilum are seed PARTS, not shape values.)
+description: Overall shape of the seed.
+values:
+  - { name: GLOBOSE, label: Globose, definition: Spherical or nearly so., synonyms: [globose, spherical, round] }
+  - { name: OVOID, label: Ovoid, definition: Egg-shaped., synonyms: [ovoid] }
+  - { name: ELLIPSOID, label: Ellipsoid, definition: Oval in solid form., synonyms: [ellipsoid] }
+  - { name: OBLONG, label: Oblong, definition: Longer than wide., synonyms: [oblong] }
+  - { name: RENIFORM, label: Reniform, definition: Kidney-shaped., synonyms: [reniform, kidney-shaped] }
+  - { name: ANGULAR, label: Angular, definition: With distinct angles., synonyms: [angular, angled] }
+  - { name: FLATTENED, label: Flattened, definition: Compressed., synonyms: [flattened, compressed] }
+  - { name: WINGED, label: Winged, definition: Bearing a wing., synonyms: [winged, alate] }
+  - { name: DISCOID, label: Discoid, definition: Disk-shaped., synonyms: [discoid, disk-shaped] }

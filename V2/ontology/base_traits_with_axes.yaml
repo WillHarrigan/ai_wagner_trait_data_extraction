@@ -1,0 +1,353 @@
+# =============================================================================
+# Strong-A base-trait spec, derived exhaustively from cols.txt (492 columns).
+# This is an AUTHORING SPEC only — nothing loads it yet; the live pipeline
+# (measurements.yaml / categorical/*.yaml) is unchanged.
+#
+# ─────────────────────────────────────────────────────────────────────────────
+# THE READING RULES (learn these once; they apply to every structure)
+# ─────────────────────────────────────────────────────────────────────────────
+# 1. STRUCTURE — each `- structure:` is one plant part we record data about
+#    (stem, leaf, corolla, calyx, fruit ...). `unit:` is its measurement unit
+#    (stem in m, vegetative parts in cm, floral parts in mm).
+#
+# 2. TRAITS — under a structure, every trait is written `name: { ... }`:
+#      • measures (numbers)      live under `measures:` and carry `bounds:`
+#      • categoricals (vocab)    live under `categorical:`
+#      • `{}` means "no variation".
+#
+# 3. BOUNDS — a measure maps to the bounds it is recorded at:
+#      min/max     = the normal range
+#      ex_min/ex_max = the extreme/rare range  ("petals 3-5(-7) mm": 7 is ex_max)
+#    e.g. length: [ex_min, min, max, ex_max] -> *_length_ex_min ... *_length_ex_max
+#
+# 4. VARIANTS vs AXES — this is the one distinction that changes the data:
+#      • `variants: [a, b]`  → FLAT. a and b are alternative PREFIXES that do NOT
+#        combine. They share the trait's single vocabulary. Each adds ONE column.
+#        e.g. leaf_hair_type variants [upper, lower, juvenile] -> 3 extra columns,
+#        and there is NO "juvenile_upper" column.
+#      • a structure-level `axes:` block → CROSSING. The listed axes MULTIPLY
+#        (full cartesian product) across every measure in the structure.
+#        e.g. calyx sex×position×part -> staminate_calyx_lobe_inner_length, etc.
+#    Only four structures genuinely cross: inflorescence, perianth, calyx, corolla.
+#    Everything else is flat (a `variants:` list or nothing).
+#
+# 5. NEUTRAL / bare — the unqualified column (no prefix) is the implicit default
+#    on every axis and is NEVER written. Only non-bare values are listed. So an
+#    axis whose only value would be "bare" is omitted entirely.
+#
+# AXIS VOCABULARY
+#   sex:      [staminate, pistillate]   (male / female; bare = unsexed/both)
+#   position: spatial slice [upper, lower, inner, outer, ray]
+#   stage:    developmental [juvenile]  (bare = adult)
+#   part:     sub-part of a fused organ [tube, lobe, teeth, lip]  (bare = whole)
+#
+# SEX NOTE: the sheet writes calyx sex as Male_/Female_ but inflorescence/involucre/
+# corolla as Staminate_/Pistillate_; both normalize to staminate/pistillate here.
+# RAY/DISK NOTE: ray and disk florets are their OWN structures (`ray`, `floret`),
+# not a value or axis — a plant may fill both (radiate head). Sex, by contrast, is
+# an axis because it cross-cuts many structures. (See memory: ray-disk-sex-modeling.)
+# =============================================================================
+
+base_traits:
+
+  # ---------------------------------------------------------------- identity
+  - structure: taxon_identity
+    note: "Family, Genus, Species, Common_Name, Hawaiian_name (x4), Wagner_Book_#, Pg_#, Description, Subspecies/Epithet. Text/categorical, no measures/axes."
+
+  # ---------------------------------------------------------------- stem
+  - structure: stem
+    unit: m
+    # height -> stem_height_{ex_min,min,max,ex_max}
+    measures:
+      height: { bounds: [ex_min, min, max, ex_max] }
+    categorical:
+      stem_hair_type: {}
+
+  # ---------------------------------------------------------------- leaf
+  - structure: leaf
+    unit: cm
+    # length/width, each also recorded for juvenile (J_Length / J_Width):
+    #   leaf_length_*, juvenile_leaf_length_*, leaf_width_*, juvenile_leaf_width_*
+    measures:
+      length: { bounds: [ex_min, min, max, ex_max], variants: [juvenile] }
+      width:  { bounds: [ex_min, min, max, ex_max], variants: [juvenile] }
+    categorical:
+      phyllotaxy_type:  {}
+      leaf_type:        {}
+      leaf_margin_type: {}
+      leaf_shape_type:  { variants: [juvenile] }                  # + juvenile_leaf_shape_type
+      leaf_hair_type:   { variants: [upper, lower, juvenile] }    # flat: 3 extra columns, no crossing
+
+  - structure: leaflet
+    unit: cm
+    # leaflet_length_*, leaflet_width_*
+    measures:
+      length: { bounds: [ex_min, min, max, ex_max] }
+      width:  { bounds: [ex_min, min, max, ex_max] }
+    categorical:
+      leaflets_shape_type: {}
+
+  - structure: petioles            # sheet column is "Petioles" (plural)
+    unit: cm
+    # petioles_length_*
+    measures:
+      length: { bounds: [ex_min, min, max, ex_max] }
+
+  # ---------------------------------------------------------------- reproduction (categorical/list)
+  - structure: reproductive
+    note: "Breeding_Type (categorical), Ploidy, Chromosome_#, Average_Chromosome_# (list)."
+    categorical:
+      breeding_type: {}
+
+  # ---------------------------------------------------------------- inflorescence (CROSSES)
+  - structure: inflorescence
+    unit: mm
+    # length/width CROSS sex × part ->
+    #   inflorescence_length_*, staminate_inflorescence_length_*,
+    #   pistillate_inflorescence_width_*, inflorescence_flower_length_*
+    measures:
+      length: { bounds: [ex_min, min, max, ex_max] }
+      width:  { bounds: [ex_min, min, max, ex_max] }
+    categorical:
+      inflorescence_type: {}
+    axes:                          # CROSS-PRODUCT across the measures above
+      sex:  [staminate, pistillate]
+      part: [flower]               # Inflorescence_Flower_Length
+    # NOTE: the overall "Flower_Length / Flower_Width" is its own `flower` structure.
+
+  - structure: flower
+    unit: cm
+    # flower_length_*, flower_width_*
+    measures:
+      length: { bounds: [ex_min, min, max, ex_max] }
+      width:  { bounds: [ex_min, min, max, ex_max] }
+
+  - structure: rachis
+    unit: mm
+    # rachis_length_*, rachis_diameter_*
+    measures:
+      length:   { bounds: [ex_min, min, max, ex_max] }
+      diameter: { bounds: [ex_min, min, max, ex_max] }
+
+  - structure: head                # capitulum (Asteraceae)
+    unit: mm
+    # head_length_*, head_diameter_*
+    measures:
+      length:   { bounds: [ex_min, min, max, ex_max] }
+      diameter: { bounds: [ex_min, min, max, ex_max] }
+
+  - structure: ray                 # Asteraceae ray (outer, strap) florets — own structure
+    unit: mm
+    # ray_length_*, ray_width_*
+    measures:
+      length: { bounds: [ex_min, min, max, ex_max] }
+      width:  { bounds: [ex_min, min, max, ex_max] }
+    categorical:
+      ray_color: {}                # Ray Color (text)
+
+  - structure: floret              # Asteraceae disk (central) florets — own structure
+    unit: mm                       #   recorded UNQUALIFIED in sheet ("Florets_Length")
+    # floret_length_*
+    measures:
+      length: { bounds: [ex_min, min, max, ex_max] }
+    categorical:
+      floret_color: {}             # Floret Color (text)
+
+  - structure: pappus
+    unit: mm
+    # pappus_length_*
+    measures:
+      length: { bounds: [ex_min, min, max, ex_max] }
+
+  - structure: umbellet
+    unit: mm
+    # umbellet_length_*
+    measures:
+      length: { bounds: [ex_min, min, max, ex_max] }
+
+  - structure: bur
+    unit: mm
+    # bur_length_*
+    measures:
+      length: { bounds: [ex_min, min, max, ex_max] }
+
+  # ---------------------------------------------------------------- bracts / involucre
+  - structure: involucre
+    unit: mm
+    # length/width CROSS sex ->
+    #   involucre_length_*, staminate_involucre_length_*, pistillate_involucre_length_*
+    measures:
+      length: { bounds: [ex_min, min, max, ex_max] }
+      width:  { bounds: [ex_min, min, max, ex_max] }
+    axes:
+      sex: [staminate, pistillate]
+
+  - structure: bract
+    unit: mm
+    # length/width CROSS sex × position ->
+    #   bract_length_*, bract_lower_length_*, outer_bract_length_*,
+    #   staminate_bract_length_*, pistillate_bract_length_*
+    measures:
+      length: { bounds: [ex_min, min, max, ex_max] }
+      width:  { bounds: [ex_min, min, max, ex_max] }
+    axes:
+      sex:      [staminate, pistillate]
+      position: [lower, outer]
+
+  - structure: bracteole
+    unit: mm
+    # bracteole_length_*, bracteole_width_*
+    measures:
+      length: { bounds: [ex_min, min, max, ex_max] }
+      width:  { bounds: [ex_min, min, max, ex_max] }
+
+  # ---------------------------------------------------------------- stalks / cup
+  - structure: pedicel
+    unit: mm
+    # length/width CROSS sex ->
+    #   pedicel_length_*, staminate_pedicel_length_*, pistillate_pedicel_length_*
+    measures:
+      length: { bounds: [ex_min, min, max, ex_max] }
+      width:  { bounds: [ex_min, min, max, ex_max] }
+    axes:
+      sex: [staminate, pistillate]
+
+  - structure: peduncle
+    unit: mm
+    # length/width CROSS sex ->
+    #   peduncle_length_*, staminate_peduncle_length_*, pistillate_peduncle_length_*
+    measures:
+      length: { bounds: [ex_min, min, max, ex_max] }
+      width:  { bounds: [ex_min, min, max, ex_max] }
+    axes:
+      sex: [staminate, pistillate]
+
+  - structure: hypanthium
+    unit: mm
+    # hypanthium_length_*, hypanthium_width_*
+    measures:
+      length: { bounds: [ex_min, min, max, ex_max] }
+      width:  { bounds: [ex_min, min, max, ex_max] }
+
+  # ---------------------------------------------------------------- spathe / spadix (Araceae)
+  - structure: spathe
+    unit: mm
+    # spathe_length_*, spathe_width_*
+    measures:
+      length: { bounds: [ex_min, min, max, ex_max] }
+      width:  { bounds: [ex_min, min, max, ex_max] }
+    categorical:
+      spathe_color: {}
+
+  - structure: spadix
+    unit: mm
+    # spadix_length_*
+    measures:
+      length: { bounds: [ex_min, min, max, ex_max] }
+
+  # ---------------------------------------------------------------- perianth (CROSSES)
+  - structure: perianth
+    unit: mm
+    # length/width CROSS sex × position × part ->
+    #   perianth_length_*, perianth_outer_width_*, perianth_inner_length_*,
+    #   perianth_tube_length_*, perianth_lobe_length_*,
+    #   staminate_perianth_tube_length_*, pistillate_perianth_lobe_length_*
+    measures:
+      length: { bounds: [ex_min, min, max, ex_max] }
+      width:  { bounds: [ex_min, min, max, ex_max] }
+    categorical:
+      perianth_color: { variants: [outer, inner] }   # Perianth Color / Outer / Inner
+    axes:
+      sex:      [staminate, pistillate]
+      position: [outer, inner]
+      part:     [tube, lobe]
+
+  - structure: tepal
+    unit: mm
+    # length CROSS sex ->
+    #   tepal_length_*, staminate_tepal_length_*, pistillate_tepal_length_*
+    measures:
+      length: { bounds: [ex_min, min, max, ex_max] }
+    axes:
+      sex: [staminate, pistillate]
+
+  # ---------------------------------------------------------------- calyx (CROSSES — biggest)
+  - structure: calyx
+    unit: mm
+    # length/width CROSS sex × position × part ->
+    #   calyx_length_*, calyx_tube_length_*, calyx_teeth_length_*,
+    #   upper_calyx_length_*, inner_calyx_length_*, calyx_lobe_outer_width_*,
+    #   staminate_calyx_length_*, pistillate_calyx_tube_length_*,
+    #   staminate_calyx_lobe_inner_length_*  (sheet writes sex as Male_/Female_; ~70 columns)
+    measures:
+      length: { bounds: [ex_min, min, max, ex_max] }
+      width:  { bounds: [ex_min, min, max, ex_max] }
+    axes:
+      sex:      [staminate, pistillate]
+      position: [upper, lower, inner, outer]
+      part:     [tube, lobe, teeth]
+    note: >
+      Lobe sub-slices carry their own inner/outer (Male_Calyx_Lobes_Length_Inner),
+      so the position axis applies at the lobe level too.
+
+  # ---------------------------------------------------------------- corolla (CROSSES)
+  - structure: corolla
+    unit: mm
+    # length/width CROSS sex × position × part ->
+    #   corolla_length_*, corolla_tube_length_*, corolla_lobe_length_*, corolla_lip_length_*,
+    #   upper_corolla_length_*, lower_corolla_lobe_length_*,
+    #   staminate_corolla_tube_length_*, pistillate_corolla_length_*,
+    #   staminate_corolla_lobe_width_*, pistillate_corolla_lobe_length_*
+    measures:
+      length: { bounds: [ex_min, min, max, ex_max] }
+      width:  { bounds: [ex_min, min, max, ex_max] }
+    categorical:
+      corolla_type:  { variants: [staminate, pistillate] }   # Staminate/Pistillate_Corolla_Type
+      corolla_color: {}
+    axes:
+      sex:      [staminate, pistillate]
+      position: [upper, lower]
+      part:     [tube, lobe, lip]
+    note: >
+      Corolla Lip has its own Upper/Lower (Upper/Lower Corolla Lip Length) ->
+      lip is a `part` that also takes the upper/lower position slice.
+
+  - structure: labellum
+    unit: mm
+    # labellum_length_*, labellum_width_*
+    measures:
+      length: { bounds: [ex_min, min, max, ex_max] }
+      width:  { bounds: [ex_min, min, max, ex_max] }
+    categorical:
+      labellum_color: {}
+
+  # ---------------------------------------------------------------- fruit / seed
+  - structure: fruit
+    unit: mm
+    # fruit_length_*, fruit_width_*, fruit_diameter_*
+    # seeds_per_fruit -> seeds_per_fruit_{min,max}  (count: no extremes)
+    measures:
+      length:          { bounds: [ex_min, min, max, ex_max] }
+      width:           { bounds: [ex_min, min, max, ex_max] }
+      diameter:        { bounds: [ex_min, min, max, ex_max] }
+      seeds_per_fruit: { bounds: [min, max] }
+    categorical:
+      fruit_type: {}
+
+  - structure: seed
+    unit: cm
+    # seed_length_*, seed_width_*, seed_diameter_*
+    measures:
+      length:   { bounds: [ex_min, min, max, ex_max] }
+      width:    { bounds: [ex_min, min, max, ex_max] }
+      diameter: { bounds: [ex_min, min, max, ex_max] }
+
+  # ---------------------------------------------------------------- distribution / status
+  - structure: distribution
+    note: >
+      Origin_t1 (categorical), Island_H/MA/KAH/MO/L/O/KAU/NI/A (boolean presence
+      per island), FedStatus_t1, Status (categorical). No measures/axes.
+    categorical:
+      origin: {}
+      island: {}
+      status: {}

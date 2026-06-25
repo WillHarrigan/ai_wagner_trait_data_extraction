@@ -1,0 +1,30 @@
+name: root_type
+group: root_morphology
+multi: true
+# NEW group (expert email "Roots"). Vocabulary from Wagner glossary (pp.1627-1655).
+description: Type / habit of the root system.
+values:
+  - name: TAPROOT
+    label: Taproot
+    definition: A main root growing downward, from which smaller branch roots arise.
+    synonyms: [taproot, tap root]
+  - name: FIBROUS
+    label: Fibrous
+    definition: A system of many fine roots of similar size, without a dominant main root.
+    synonyms: [fibrous, fibrous roots]
+  - name: ADVENTITIOUS
+    label: Adventitious
+    definition: Roots arising from stem or leaf tissue rather than from the primary root.
+    synonyms: [adventitious]
+  - name: AERIAL
+    label: Aerial
+    definition: Roots borne above ground.
+    synonyms: [aerial, aerial roots]
+  - name: BUTTRESS
+    label: Buttress
+    definition: Plank-like prop roots flaring from the lower trunk.
+    synonyms: [buttress, buttress roots]
+  - name: TUBEROUS
+    label: Tuberous
+    definition: Thickened, storage roots.
+    synonyms: [tuberous, tuberous roots]

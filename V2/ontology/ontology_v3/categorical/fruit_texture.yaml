@@ -1,0 +1,17 @@
+name: fruit_texture
+group: fruit_morphology
+multi: true
+# NEW. Split out of fruit_type (FLESHY/DRY were properties, not kinds).
+# Optional descriptor — set ONLY when the passage states texture, e.g.
+# "drupe with a fleshy mesocarp", "fruit dry and indurate with age".
+# Do NOT infer from the fruit type (a berry need not be tagged FLESHY).
+description: Texture of the fruit/pericarp at maturity, when stated in the passage.
+values:
+  - name: FLESHY
+    label: Fleshy
+    definition: Having a soft, succulent, or pulpy pericarp or fruiting tissue at maturity.
+    synonyms: [fleshy, succulent, pulpy, carnose]
+  - name: DRY
+    label: Dry
+    definition: Having a non-fleshy pericarp or fruiting tissue at maturity.
+    synonyms: [dry, non-fleshy, exsucculent]

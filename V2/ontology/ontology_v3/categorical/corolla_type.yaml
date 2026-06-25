@@ -1,0 +1,232 @@
+name: corolla_type
+group: outer_flower_morphology
+multi: true
+# CLEANED: contamination removed per expert email.
+#   DISK, RAY        -> moved to ray/floret structures (ray_color/floret_color + dimensions)
+#   SUBPANICULATE    -> moved to inflorescence_type
+#   LABELLUM         -> moved to labellum structure
+# ADDED: ACTINOMORPHIC (radially symmetric) — the counterpart to ZYGOMORPHIC.
+description: >
+  Shape and symmetry of the corolla (petals collectively). Pure shape/symmetry
+  only — positional floret roles (ray/disk) and inflorescence shapes do NOT
+  belong here.
+values:
+  - name: ACTINOMORPHIC
+    label: Actinomorphic
+    definition: Radially symmetrical; divisible into mirror halves along several planes.
+    synonyms: [actinomorphic, radially symmetric, regular]
+  - name: ZYGOMORPHIC
+    label: Zygomorphic
+    definition: Bilaterally symmetrical (divisible into mirror halves along one plane only).
+    synonyms: [bilaterally symmetrical, monosymmetric]
+  - name: ADNATE
+    label: Adnate
+    definition: Corolla or its parts fused to an unlike organ (e.g., petals fused to stamens or ovary).
+    synonyms: [adnate, fused to, attached to]
+  - name: BILABIATE
+    label: Bilabiate
+    definition: Two-lipped; corolla divided into an upper and a lower lip.
+    synonyms: [two-lipped, 2-lipped]
+  - name: CAMPANULATE
+    label: Campanulate
+    definition: Bell-shaped; a tube widening gradually upward like a bell.
+    synonyms: [bell-shaped]
+  - name: CORYMBOSE
+    label: Corymbose
+    definition: Corolla parts arranged in a flat-topped, corymb-like manner.
+    synonyms: [corymbose, corymb-like]
+  - name: CONVOLUTE
+    label: Convolute
+    definition: Corolla lobes rolled or twisted together in bud, each overlapping the next on one side.
+    synonyms: [convolute, contorted, twisted]
+  - name: CORONA
+    label: Corona
+    definition: A crown-like outgrowth between the corolla and stamens (e.g., milkweeds, daffodils).
+    synonyms: [corona, crown, cup-like appendage]
+  - name: CUNEATE
+    label: Cuneate
+    definition: Petals wedge-shaped; triangular with the narrow end at the base.
+    synonyms: [cuneate, wedge-shaped]
+  - name: CYLINDRICAL
+    label: Cylindrical
+    definition: Corolla forming an elongate cylinder of nearly uniform width.
+    synonyms: [cylindrical, cylindric, tube-like]
+  - name: DELTATE
+    label: Deltate
+    definition: Petals triangular, shaped like the Greek letter delta.
+    synonyms: [deltate, deltoid]
+  - name: ELLIPTIC
+    label: Elliptic
+    definition: Petals oval, widest at the middle.
+    synonyms: [elliptical, eliptic]
+  - name: FUNNELFORM
+    label: Funnelform
+    definition: Funnel-shaped; gradually widening from base to mouth.
+    synonyms: [funnel-shaped, infundibular, infundibuliform]
+  - name: FLABELLATE
+    label: Flabellate
+    definition: Petals fan-shaped.
+    synonyms: [flabellate, fan-shaped]
+  - name: FILIFORM
+    label: Filiform
+    definition: Corolla or its parts thread-like; long and very slender.
+    synonyms: [filiform, thread-like, threadlike]
+  - name: HOOD
+    label: Hood
+    definition: A hood-shaped petal or corolla part arching over the reproductive organs.
+    synonyms: [hood, hooded, cucullate]
+  - name: IRREGULAR
+    label: Irregular
+    definition: Corolla not radially symmetrical; parts of unequal size or shape.
+    synonyms: [irregular, asymmetric]
+  - name: KEEL
+    label: Keel
+    definition: The two fused lower petals of a papilionaceous (pea) flower, boat-shaped.
+    synonyms: [keel, carina]
+  - name: LANCEOLATE
+    label: Lanceolate
+    definition: Petals lance-shaped; much longer than wide and tapering, widest below the middle.
+    synonyms: [lanceolate, lance-shaped]
+  - name: LINEAR
+    label: Linear
+    definition: Petals long and narrow with nearly parallel sides.
+    synonyms: [linear, narrow]
+  - name: LIPPED
+    label: Lipped
+    definition: Corolla bearing one or more lip-like lobes.
+    synonyms: [lipped, labiate]
+  - name: LOBED
+    label: Lobed
+    definition: Corolla divided into lobes separated by sinuses.
+    synonyms: [lobed, lobbed, cleft]
+  - name: OVATE
+    label: Ovate
+    definition: Petals egg-shaped, with the broadest part below the middle.
+    synonyms: [ovate, egg-shaped]
+  - name: OBLONG
+    label: Oblong
+    definition: Petals longer than wide with nearly parallel sides.
+    synonyms: [oblong petals]
+  - name: OBCORDATE
+    label: Obcordate
+    definition: Petals inversely heart-shaped; heart-shaped with the notch at the apex.
+    synonyms: [obcordate, inversely heart-shaped]
+  - name: OBOVATE
+    label: Obovate
+    definition: Petals egg-shaped with the broadest part above the middle.
+    synonyms: [inversely ovate, obovate petals]
+  - name: OBLANCEOLATE
+    label: Oblanceolate
+    definition: Petals inversely lanceolate; broadest near the apex, tapering to the base.
+    synonyms: [oblanceolate, inversely lanceolate]
+  - name: ORBICULAR
+    label: Orbicular
+    definition: Petals circular or nearly circular.
+    synonyms: [circular, rounded petals]
+  - name: PALATE
+    label: Palate
+    definition: A raised, often hairy projection on the lower lip of a bilabiate corolla that closes the throat.
+    synonyms: [palate]
+  - name: PSEUDORACEMES
+    label: Pseudoraceme
+    definition: A raceme-like corolla arrangement that is not a true raceme.
+    synonyms: [pseudoraceme, pseudoracemes, pseudoracemose]
+  - name: ROTATE
+    label: Rotate
+    definition: Wheel-shaped; flat and spreading with a very short tube.
+    synonyms: [wheel-shaped, flat-spreading]
+  - name: REFLEXED
+    label: Reflexed
+    definition: Corolla lobes or petals bent abruptly backward or downward.
+    synonyms: [reflexed, recurved, bent back]
+  - name: RHOMBIC
+    label: Rhombic
+    definition: Petals diamond-shaped; widest at the middle with angled sides.
+    synonyms: [rhombic, diamond-shaped, rhomboid]
+  - name: RENIFORM
+    label: Reniform
+    definition: Petals kidney-shaped; broader than long with a basal notch.
+    synonyms: [reniform, kidney-shaped]
+  - name: SALVERFORM
+    label: Salverform
+    definition: A slender tube abruptly expanding into a flat, spreading limb.
+    synonyms: [salver-shaped, trumpet-shaped, hypocrateriform]
+  - name: SUBORBICULAR
+    label: Suborbicular
+    definition: Petals nearly circular in outline.
+    synonyms: [suborbicular, nearly circular]
+    parents: [ORBICULAR]
+  - name: SUBRHOMBIC
+    label: Subrhombic
+    definition: Petals nearly diamond-shaped.
+    synonyms: [subrhombic, nearly rhombic]
+    parents: [RHOMBIC]
+  - name: SPUR
+    label: Spur
+    definition: A hollow, slender, tubular projection of the corolla, usually nectar-bearing.
+    synonyms: [spur, spurred, calcarate]
+  - name: SPATULATE
+    label: Spatulate
+    definition: Petals spoon-shaped; rounded at the apex and tapering to the base.
+    synonyms: [spatulate, spathulate, spoon-shaped]
+  - name: SPICATE
+    label: Spicate
+    definition: Corolla parts arranged in a spike-like manner.
+    synonyms: [spicate, spike-like]
+  - name: SUBROTATE
+    label: Subrotate
+    definition: Corolla nearly rotate; almost flat and spreading with a very short tube.
+    synonyms: [subrotate, nearly rotate]
+    parents: [ROTATE]
+  - name: STANDARD
+    label: Standard
+    definition: The large, usually erect upper petal of a papilionaceous (pea) flower.
+    synonyms: [standard, banner, vexillum]
+  - name: TUBULAR
+    label: Tubular
+    definition: Corolla forming a narrow tube with little or no flared limb.
+    synonyms: [tube-shaped, tube]
+  - name: TRIANGULAR
+    label: Triangular
+    definition: Petals triangular in outline.
+    synonyms: [triangular, three-angled]
+  - name: URCEOLATE
+    label: Urceolate
+    definition: Urn-shaped; swollen below and contracted at the mouth.
+    synonyms: [urn-shaped]
+  - name: UNILABIATE
+    label: Unilabiate
+    definition: One-lipped; corolla bearing a single lip.
+    synonyms: [unilabiate, one-lipped, 1-lipped]
+  - name: VALVATE
+    label: Valvate
+    definition: Corolla lobes meeting edge to edge in bud without overlapping.
+    synonyms: [valvate, edge-to-edge]
+  - name: VERTICIL
+    label: Verticil
+    definition: Corolla parts arranged in a whorl.
+    synonyms: [verticil, whorled, verticillate]
+  - name: CUP
+    label: Cup
+    definition: Cup-shaped corolla.
+    synonyms: [cup-shaped, cupular, cupulate]
+  - name: UNGUICULATE
+    label: Unguiculate
+    definition: Petals bearing a distinct claw (narrowed, stalk-like base).
+    synonyms: [unguiculate, clawed]
+  - name: CLAW
+    label: Claw
+    definition: The narrow, stalk-like basal portion of a petal (unguis).
+    synonyms: [claw, unguis]
+  - name: FASCICLE
+    label: Fascicle
+    definition: Corolla parts borne in a compact, tight cluster.
+    synonyms: [fascicle, fasicle, fascicled, fasciculate]
+  - name: STELLATE
+    label: Stellate
+    definition: Corolla star-shaped, with lobes radiating from a central point.
+    synonyms: [stellate, star-shaped, star-like]
+  - name: PENTAGONAL
+    label: Pentagonal
+    definition: Corolla five-angled in outline (pentagon-shaped).
+    synonyms: [pentagonal, five-angled, 5-angled]

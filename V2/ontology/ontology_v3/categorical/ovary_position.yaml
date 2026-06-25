@@ -1,0 +1,18 @@
+name: ovary_position
+group: gynoecium_morphology
+multi: false
+# NEW group (expert email "Gynoecium"). Vocabulary from Wagner glossary (pp.1647,1654).
+description: Position of the ovary relative to the attachment of the other floral parts.
+values:
+  - name: SUPERIOR
+    label: Superior
+    definition: Ovary attached to the receptacle above (distinct from) the other floral parts (hypogynous).
+    synonyms: [superior, superior ovary, hypogynous]
+  - name: INFERIOR
+    label: Inferior
+    definition: Ovary positioned below the attachment of the other floral parts (epigynous).
+    synonyms: [inferior, inferior ovary, epigynous]
+  - name: HALF_INFERIOR
+    label: Half-inferior
+    definition: Ovary partly inferior; floral parts attached around its middle (perigynous).
+    synonyms: [half-inferior, perigynous, partly inferior]

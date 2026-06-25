@@ -1,0 +1,17 @@
+name: leaf_margin_type
+group: leaf_morphology
+multi: true
+description: The margin (edge) of the leaf. Reused for juvenile and leaflet variants.
+values:
+  - name: ENTIRE
+    label: Entire
+    definition: Smooth margin without teeth or lobes.
+    synonyms: [entire, smooth]
+  - name: TEETH
+    label: Toothed
+    definition: Margin bearing teeth (serrate, dentate, crenate).
+    synonyms: [teeth, toothed, serrate, dentate, crenate]
+  - name: LOBED
+    label: Lobed
+    definition: Margin divided into rounded or pointed lobes.
+    synonyms: [lobed, lobate]

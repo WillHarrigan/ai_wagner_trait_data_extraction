@@ -140,17 +140,11 @@ values:
     definition: Wedge-shaped; triangular with the narrow end at the base.
     synonyms: [wedge-shaped]
 
-  # Proposed terms — defined but not yet in active use; activate by changing
-  # `status: proposed` to `status: active` when ready.
   - name: LANCEOLATE
     label: Lanceolate
     definition: Lance-shaped; much longer than wide and tapering to a point, widest below the middle.
     synonyms: [lance-shaped, lanceolate]
-    status: proposed
-    notes: Proposed term; not yet in active use.
   - name: LINEAR
     label: Linear
     definition: Long and narrow with parallel sides.
     synonyms: [linear, narrow]
-    status: proposed
-    notes: Proposed term; not yet in active use.

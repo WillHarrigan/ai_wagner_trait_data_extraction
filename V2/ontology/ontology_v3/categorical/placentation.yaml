@@ -1,0 +1,30 @@
+name: placentation
+group: gynoecium_morphology
+multi: false
+# NEW group. Vocabulary enumerated in Wagner glossary (p.1648).
+description: Arrangement of the placentas (where ovules attach) within the ovary.
+values:
+  - name: APICAL
+    label: Apical
+    definition: Ovules attached near the apex of the ovary.
+    synonyms: [apical, apical placentation]
+  - name: AXILE
+    label: Axile
+    definition: Ovules borne on the central axis of a partitioned (compound) ovary.
+    synonyms: [axile, axile placentation]
+  - name: BASAL
+    label: Basal
+    definition: Ovules attached at the base of the ovary.
+    synonyms: [basal, basal placentation]
+  - name: FREE_CENTRAL
+    label: Free-central
+    definition: Ovules on a free central column in a one-chambered ovary.
+    synonyms: [free-central, free central placentation]
+  - name: MARGINAL
+    label: Marginal
+    definition: Ovules along the margin of a single carpel.
+    synonyms: [marginal, marginal placentation]
+  - name: PARIETAL
+    label: Parietal
+    definition: Ovules on the walls of a one-chambered (compound) ovary.
+    synonyms: [parietal, parietal placentation]
