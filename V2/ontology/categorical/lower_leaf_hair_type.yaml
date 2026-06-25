@@ -1,5 +1,0 @@
-name: lower_leaf_hair_type
-group: leaf_indumentum
-multi: true
-description: Specific description of lower leaf surface indumentum.
-same_values_as: stem_hair_type

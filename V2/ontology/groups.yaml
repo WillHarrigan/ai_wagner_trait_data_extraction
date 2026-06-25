@@ -1,96 +1,50 @@
-# Trait groups. Each group bundles related traits.
-#
-# Group MEMBERSHIP is NOT listed here — each trait declares its own `group`
-# (categorical traits in categorical/*.yaml, fields in measurements.yaml), so
-# membership is derived automatically.
-#
-# All groups are top-level. The `parent` field on TraitGroup is supported by
-# the loader (`trait_ontology/models.py`) but is not used here. The biological
-# "applies when" condition for each group is recorded inline in its description.
-
+# Trait groups for ontology_v3. Membership is derived from each trait's own
+# `group:`. NEW groups (per expert email) marked below.
 groups:
   taxon_identity:
-    description: Names of the organism (common, Hawaiian, infraspecific epithet) and its major plant group (Dicots / Monocots / Conifers / Ferns).
-
+    description: Names of the organism and its major plant group (Dicots / Monocots / Conifers / Ferns).
   source_document:
-    description: Provenance metadata — Wagner page number and plate references for this species. Not biological traits.
-
+    description: Provenance metadata — Wagner page number and plate references. Not biological traits.
   life_form:
-    description: Habit (life-form) — the general appearance or manner of growth (annual herb, perennial herb, shrub, tree, vine, etc.).
-
+    description: Habit (life-form) — general appearance or manner of growth.
   reproductive_morphology:
     description: >
-      Reproductive biology — breeding system (monoecious / dioecious / polygamous / etc.)
-      and cytology (ploidy level, chromosome number). The breeding system can be derived
-      EITHER from a direct labelled statement in the passage ("plants dioecious",
-      "monoecious", etc.) OR by synthesising from descriptive evidence about which
-      flowers/florets are male vs female and where they sit on the plant.
-      Do NOT assign breeding system based on family or genus alone.
-
+      Reproductive biology — breeding system, pollination mode (cleistogamous/
+      chasmogamous), mating system (selfing/outcrossing), and cytology.
   distribution:
-    description: Where the plant occurs in Hawai'i — island(s) of occurrence, origin (endemic / indigenous / naturalized / Polynesian introduction), and conservation status.
+    description: Where the plant occurs in Hawaii — island(s), origin, conservation status.
+
+  root_morphology:                     # NEW (expert email: "Roots")
+    description: The root system — root type/habit and root dimensions.
 
   stem_morphology:
-    description: The above-ground axis of the plant — stem / overall plant height, and stem pubescence (surface hair type).
-
+    description: The above-ground axis — stem/plant height and stem pubescence.
   leaf_morphology:
-    description: >
-      Whole-leaf morphology: structure (simple vs compound), shape, margin,
-      phyllotaxy (the arrangement of leaves on the stem), and leaf-blade plus
-      petiole (leaf-stalk) dimensions. Whole-leaf only — use `leaflet_morphology`
-      for individual leaflets of compound leaves, and `leaf_indumentum` for
-      leaf-surface pubescence.
-
+    description: Whole-leaf morphology — structure, shape, margin, phyllotaxy, dimensions.
   leaf_indumentum:
-    description: >
-      Pubescence (surface hair) on leaves: overall, upper (adaxial), and lower
-      (abaxial) surfaces. Use when the passage describes leaf surface texture —
-      glabrous, pubescent, tomentose, strigose, hirsute, etc.
-
+    description: Pubescence (surface hair) on leaves — overall, upper, lower (and juvenile).
   leaflet_morphology:
-    description: >
-      The ultimate unit of a compound leaf — leaflet structure, shape, margin,
-      and dimensions. Use only when the passage explicitly describes LEAFLETS;
-      leaves merely described as "lobed", "cleft", or "dissected" are NOT
-      leaflets and belong in `leaf_morphology`.
-
+    description: The ultimate unit of a compound leaf — leaflet structure, shape, margin, dimensions.
   juvenile_leaf_morphology:
-    description: >
-      Leaves at the juvenile (early) stage of growth, where they differ
-      noticeably from adult leaves (heteroblasty). Use only when the passage
-      explicitly describes juvenile or seedling foliage.
-
+    description: Leaves at the juvenile stage where they differ from adult leaves (heteroblasty).
   inflorescence_morphology:
-    description: >
-      The arrangement of the flowers on the axis. Covers:
-      (1) inflorescence type (raceme, panicle, cyme, umbel, spike, etc.);
-      (2) dimensions of its supporting parts — peduncle (stalk of the
-      inflorescence), pedicel (stalk of an individual flower), rachis (main
-      axis), hypanthium (floral cup), and umbellet (secondary umbel unit);
-      (3) family-specific compound inflorescences: the HEAD (capitulum) of
-      the Asteraceae with its component parts (florets, rays, pappus), and
-      the SPADIX of the Araceae with its enclosing SPATHE.
-      All inflorescence content lives in this single group — there is no
-      separate group for family-specific structures.
-
+    description: Arrangement of flowers on the axis — type and dimensions of supporting parts; heads, spadices.
   bract_involucre_morphology:
-    description: >
-      Specialised leaves associated with the inflorescence: bracts (leaves
-      from whose axils flowers arise), bracteoles (diminutive bracts borne
-      on the pedicel), and the involucre (a set of bracts beneath the
-      inflorescence, or any set of structures surrounding the base of another).
-
+    description: Specialised leaves of the inflorescence — bracts, bracteoles, involucre.
   outer_flower_morphology:
+    description: Outer floral envelope — calyx (incl. calyx_type), corolla, perianth, labellum.
+
+  androecium_morphology:               # NEW (expert email: "Androecium")
     description: >
-      The outer floral envelope — the sterile parts of a flower. Includes the
-      CALYX (collective term for the sepals), the COROLLA (collective term
-      for the petals), the PERIANTH (the combined sepals + petals, used when
-      undifferentiated — its members are then TEPALS), and the LABELLUM (the
-      modified lower lip in Orchidaceae). Captures type, colour, and
-      dimensions of each.
+      The male organs collectively — stamens, anthers (attachment), filaments,
+      pollen, staminodes/pseudostaminodes, and associated structures.
+  gynoecium_morphology:                # NEW (expert email: "Gynoecium")
+    description: >
+      The female organs collectively — stigma, style, ovary, ovary position,
+      placentation, ovules, and associated structures. Kept SEPARATE from fruit.
 
   fruit_morphology:
     description: >
-      The structure that develops from the ripened ovary, plus the seed(s) it
-      contains. Covers fruit type (achene, berry, capsule, drupe, legume, nut,
-      mericarp, etc.) and fruit/seed dimensions.
+      The ripened ovary and the seed(s) — fruit type/shape/surface, pericarp
+      layers (exocarp/mesocarp/endocarp as parts), seed shape/surface, aril/hilum
+      (as parts), and fruit/seed dimensions.

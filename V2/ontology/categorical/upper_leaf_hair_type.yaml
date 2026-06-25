@@ -1,5 +1,0 @@
-name: upper_leaf_hair_type
-group: leaf_indumentum
-multi: true
-description: Specific description of upper leaf surface indumentum.
-same_values_as: stem_hair_type

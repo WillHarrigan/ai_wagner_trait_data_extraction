@@ -1,14 +1,13 @@
 name: leaf_type
 group: leaf_morphology
-multi: true
-description: Leaf structure type (simple or compound)
-
+multi: false
+description: Whether the leaf is simple or compound. Reused for juvenile and leaflet variants.
 values:
   - name: SIMPLE
     label: Simple
-    definition: A single, undivided leaf blade.
-    synonyms: [simple, undivided]
+    definition: A leaf with a single, undivided blade (though it may be lobed or cleft).
+    synonyms: [simple]
   - name: COMPOUND
     label: Compound
-    definition: A leaf whose blade is divided into two or more distinct leaflets.
-    synonyms: [compound, pinnate, palmate, divided, decompound]
+    definition: A leaf divided into two or more distinct leaflets.
+    synonyms: [compound]

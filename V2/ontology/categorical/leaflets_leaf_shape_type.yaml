@@ -1,5 +1,0 @@
-name: leaflets_leaf_shape_type
-group: leaflet_morphology
-multi: true
-description: Shape of individual leaflets
-same_values_as: leaf_shape_type

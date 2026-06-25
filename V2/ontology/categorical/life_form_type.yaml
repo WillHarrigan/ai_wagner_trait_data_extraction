@@ -1,8 +1,12 @@
 name: life_form_type
 group: life_form
 multi: true
-description: Growth habit or life form (annual herb, perennial herb, shrub, tree, vine, etc.)
-
+# EDITS per expert email:
+#   - VINE redefined as herbaceous; LIANA added as the woody counterpart.
+#   - SUBSHRUB added.
+#   - GRASS/SEDGE/MONOCOTS retained (appearance-based tags); see note. Expert says
+#     these are technically herbs and woody bamboo may warrant its own category.
+description: Growth habit or life form (annual herb, perennial herb, shrub, tree, vine, liana, etc.)
 values:
   - name: ANNUAL_HERB
     label: Annual herb
@@ -15,7 +19,13 @@ values:
   - name: PERENNIAL_HERB
     label: Perennial herb
     definition: A non-woody plant living for more than two years.
-    synonyms: [perennial herb, perennial herbs, perennial]
+    synonyms: [perennial herb, perennial herbs, perennial, perrenial herb]
+  - name: SUBSHRUB
+    label: Subshrub
+    definition: >
+      A perennial plant that is woody at the base but has herbaceous or weakly
+      woody upper stems that may die back seasonally.
+    synonyms: [subshrub, suffrutescent, suffruticose, suffrutex]
   - name: SHRUB
     label: Shrub
     definition: A woody plant smaller than a tree, usually with several stems from the base.
@@ -30,21 +40,29 @@ values:
     synonyms: [shrub or tree, small tree, shrub/tree]
   - name: VINE
     label: Vine
-    definition: A climbing or trailing plant.
-    synonyms: [vine, climber, liana, scandent]
+    definition: >
+      Herbaceous or weakly woody plant with elongate, non-self-supporting stems
+      that climb, twine, trail, or scramble over other plants or substrate.
+    synonyms: [vine, climber, climbing plant, scandent plant, scandent]
+  - name: LIANA
+    label: Liana
+    definition: >
+      Woody plant with elongate, non-self-supporting stems that climb, twine, or
+      scramble over other plants or structural supports.
+    synonyms: [liana, liane, woody vine, woody climber]
   - name: EPIPHYTE
     label: Epiphyte
     definition: A plant growing on another plant, not rooted in soil.
     synonyms: [epiphyte, epiphytic]
   - name: GRASS
     label: Grass
-    definition: A member of the grass family (Poaceae) habit.
+    definition: A member of the grass family (Poaceae) habit. Technically a herb (see note).
     synonyms: [grass, grasses, graminoid]
   - name: SEDGE
     label: Sedge
-    definition: A grass-like plant of the sedge family (Cyperaceae) habit.
+    definition: A grass-like plant of the sedge family (Cyperaceae) habit. Technically a herb.
     synonyms: [sedge, sedges]
-  - name: MONOCOTS
-    label: Monocots
-    definition: A general monocotyledonous herbaceous habit, used where a more specific life form (grass, sedge, etc.) does not apply.
-    synonyms: [monocots, monocot, monocotyledonous herb]
+  - name: MONOCOTS_NON_GRASS
+    label: Monocots (non-grass)
+    definition: A general monocotyledonous herbaceous habit where grass/sedge does not apply.
+    synonyms: [monocots, monocot, monocotyledonous herb, monocots (non-grass)]

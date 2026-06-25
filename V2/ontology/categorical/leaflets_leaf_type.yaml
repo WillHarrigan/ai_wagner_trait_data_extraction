@@ -1,5 +1,0 @@
-name: leaflets_leaf_type
-group: leaflet_morphology
-multi: true
-description: Leaflet leaf structure type in compound leaves
-same_values_as: leaf_type

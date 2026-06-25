@@ -1,8 +1,8 @@
 name: inflorescence_type
 group: inflorescence_morphology
 multi: true
-description: Type of inflorescence
-
+# EDIT: SUBPANICULATE moved IN from corolla_type (it is an inflorescence character).
+description: Type / arrangement of the inflorescence (the flower cluster).
 values:
   - name: SOLITARY
     label: Solitary
@@ -12,10 +12,24 @@ values:
     label: Axillary
     definition: Inflorescence arising from a leaf axil.
     synonyms: [axillary]
+  - name: TERMINAL
+    label: Terminal
+    definition: Inflorescence borne at the apex of a stem or branch.
+    synonyms: [terminal]
   - name: SPIKE
     label: Spike
     definition: Unbranched axis bearing sessile (stalkless) flowers.
     synonyms: [spike, spicate]
+  - name: SPICIFORM
+    label: Spiciform
+    definition: Spike-like in form, though not a true spike.
+    synonyms: [spiciform, spike-like]
+    parents: [SPIKE]
+  - name: CATKIN
+    label: Catkin
+    definition: A pendulous spike of unisexual, apetalous flowers (ament).
+    synonyms: [catkin, ament]
+    parents: [SPIKE]
   - name: RACEME
     label: Raceme
     definition: Unbranched axis bearing stalked (pedicellate) flowers.
@@ -24,6 +38,15 @@ values:
     label: Panicle
     definition: A branched raceme; a compound, indeterminate inflorescence.
     synonyms: [panicle, paniculate]
+  - name: SUBPANICULATE
+    label: Subpaniculate
+    definition: Nearly paniculate; loosely branched but not a true panicle.
+    synonyms: [subpaniculate, nearly paniculate]
+    parents: [PANICLE]
+  - name: CORYMB
+    label: Corymb
+    definition: A flat-topped or convex inflorescence in which the lower flowers have longer stalks.
+    synonyms: [corymb, corymbose, corymbiform]
   - name: CYME
     label: Cyme
     definition: A branched, determinate inflorescence in which the central flower opens first.
@@ -33,9 +56,13 @@ values:
     definition: A cyme with two lateral branches below each terminal flower.
     synonyms: [dichasium, dichasial cyme]
     parents: [CYME]
+  - name: SCORPIOID
+    label: Scorpioid
+    definition: A coiled cyme uncoiling as flowers open (scorpioid cyme).
+    synonyms: [scorpioid, scorpioid cyme, helicoid]
   - name: THYRSE
     label: Thyrse
-    definition: A compact, branched inflorescence with an indeterminate main axis and cymose branches.
+    definition: A compact, branched inflorescence with an indeterminate axis and cymose branches.
     synonyms: [thyrse, thyrsoid]
   - name: UMBEL
     label: Umbel
@@ -45,11 +72,6 @@ values:
     label: Head
     definition: A dense cluster of sessile flowers on a common receptacle (capitulum).
     synonyms: [head, capitulum, capitate]
-  - name: CATKIN
-    label: Catkin
-    definition: A pendulous spike of unisexual, apetalous flowers (ament).
-    synonyms: [catkin, ament]
-    parents: [SPIKE]
   - name: SPADIX
     label: Spadix
     definition: A fleshy spike of flowers, usually enclosed by a spathe.
@@ -58,7 +80,7 @@ values:
   - name: SPATHE_SPADIX
     label: Spathe and spadix
     definition: An inflorescence consisting of a spadix subtended by a spathe (bract).
-    synonyms: [spathe and spadix, spathe-spadix]
+    synonyms: [spathe and spadix, spathe/spadix, spathe-spadix]
   - name: FASCICLE
     label: Fascicle
     definition: A compact, tight cluster of flowers.
@@ -71,35 +93,22 @@ values:
     label: Clusters
     definition: Flowers grouped in clusters (general, unspecified arrangement).
     synonyms: [clusters, clustered, in clusters]
-  - name: VERTISCILLATE
+  - name: VERTICILLASTER
     label: Verticillaster
-    definition: A false whorl of flowers formed by a pair of opposite, sessile or subsessile cymes (verticillaster).
-    synonyms: [verticillaster, verticillastrate]
+    definition: A false whorl formed by a pair of opposite, sessile or subsessile cymes.
+    synonyms: [verticillaster, verticillastrate, vertiscillaster]
   - name: VERTICIL
     label: Verticil
-    definition: Flowers arranged in a whorl (a single ring of flowers around the axis at one node).
+    definition: Flowers arranged in a whorl around the axis at one node.
     synonyms: [verticil, verticillate, whorled]
-  - name: CORYMB
-    label: Corymb
-    definition: A flat-topped or convex inflorescence in which the lower (outer) flowers have longer stalks reaching the level of the upper ones.
-    synonyms: [corymb, corymbose, corymbiform]
+  - name: ANTHELATE
+    label: Anthelate
+    definition: An anthela; a loose inflorescence in which the lateral branches exceed the central axis.
+    synonyms: [anthela, anthelate]
   - name: ELONGATE
     label: Elongate
     definition: An inflorescence drawn out and lengthened along its axis.
     synonyms: [elongate, elongated]
-  - name: TERMINAL
-    label: Terminal
-    definition: Inflorescence borne at the apex (tip) of a stem or branch.
-    synonyms: [terminal]
-  - name: SCORPIOID
-    label: Scorpioid
-    definition: A coiled cyme in which flowers develop alternately on opposite sides, uncoiling as they open (scorpioid cyme).
-    synonyms: [scorpioid, scorpioid cyme, helicoid]
-  - name: SPICIFORM
-    label: Spiciform
-    definition: Spike-like in form, though not a true spike.
-    synonyms: [spiciform, spike-like]
-    parents: [SPIKE]
   - name: LAX
     label: Lax
     definition: A loose, open, or sparse inflorescence with widely spaced flowers.
@@ -108,10 +117,6 @@ values:
     label: Pedunculate
     definition: Inflorescence borne on a distinct peduncle (stalk).
     synonyms: [pedunculate, peduncled, stalked]
-  - name: ANTHELATE
-    label: Anthelate
-    definition: An anthela; a loose, open inflorescence in which the lateral branches exceed the central axis.
-    synonyms: [anthela, anthelate]
   - name: STELLATE
     label: Stellate
     definition: Flowers or branches radiating in a star-like arrangement.

@@ -1,5 +1,0 @@
-name: juvenile_leaf_type
-group: juvenile_leaf_morphology
-multi: true
-description: Leaf structure type in juvenile plants
-same_values_as: leaf_type

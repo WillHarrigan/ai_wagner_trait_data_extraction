@@ -1,6 +1,55 @@
 name: leaf_hair_type
 group: leaf_indumentum
 multi: true
-description: Type of leaf surface indumentum.
-# Same controlled vocabulary as stem_hair_type — borrowed to avoid duplication.
-same_values_as: stem_hair_type
+# ONE vocabulary, shared by all variants: leaf_hair_type, upper_/lower_/juvenile_.
+# (The old empty upper_/lower_/juvenile_ files are NOT needed — same vocab reused.)
+description: Surface hair (indumentum) type of the leaf. Reused for upper, lower, and juvenile variants.
+values:
+  - name: GLABROUS
+    label: Glabrous
+    definition: Smooth; without hairs.
+    synonyms: [glabrous, smooth, glabrous (smooth), hairless]
+  - name: DENDRITIC
+    label: Dendritic
+    definition: With branched, tree-like hairs.
+    synonyms: [dendritic]
+  - name: HIRSUTE
+    label: Hirsute
+    definition: With rather coarse, stiff hairs.
+    synonyms: [hirsute]
+  - name: HISPID
+    label: Hispid
+    definition: With stiff or bristly hairs.
+    synonyms: [hispid]
+  - name: LEPIDOTE
+    label: Lepidote
+    definition: Covered with small scurfy scales.
+    synonyms: [lepidote, scurfy]
+  - name: PILOSE
+    label: Pilose
+    definition: With soft, slender, spreading hairs.
+    synonyms: [pilose]
+  - name: PUBERULENT
+    label: Puberulent
+    definition: Minutely pubescent; with very short, fine hairs.
+    synonyms: [puberulent]
+  - name: STRIGOSE
+    label: Strigose
+    definition: With straight, stiff, appressed hairs.
+    synonyms: [strigose]
+  - name: STELLATE
+    label: Stellate
+    definition: With star-shaped hairs.
+    synonyms: [stellate, star-shaped hairs]
+  - name: TOMENTOSE
+    label: Tomentose
+    definition: With dense, matted, woolly hairs.
+    synonyms: [tomentose, woolly]
+  - name: VILLOUS
+    label: Villous
+    definition: With long, soft, shaggy but not matted hairs.
+    synonyms: [villous, villose]
+  - name: GLAUCOUS
+    label: Glaucous
+    definition: Covered with a whitish or bluish waxy bloom.
+    synonyms: [glaucous]

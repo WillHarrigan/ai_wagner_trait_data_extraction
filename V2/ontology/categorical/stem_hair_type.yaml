@@ -1,62 +1,53 @@
 name: stem_hair_type
 group: stem_morphology
 multi: true
-description: Describes the stem hair type of the main stem (NOT penduncle) (e.g., glabrous, hirsute, tomentose, etc.)
-
+description: Surface hair (indumentum) type of the stem.
 values:
   - name: GLABROUS
     label: Glabrous
-    definition: Surface smooth and hairless.
-    synonyms: [glabrous, hairless, smooth, glabrate]
-  - name: GLAUCOUS
-    label: Glaucous
-    definition: Covered with a whitish or bluish waxy bloom that rubs off.
-    synonyms: [glaucous, waxy bloom]
-  - name: PUBERULENT
-    label: Puberulent
-    definition: Minutely pubescent; covered with very short, fine hairs.
-    synonyms: [puberulent, minutely hairy, finely pubescent]
-  - name: PUBESCENT
-    label: Pubescent
-    definition: Covered with short, soft hairs.
-    synonyms: [pubescent, downy, softly hairy]
-    status: proposed
-    notes: Common Wagner term; added as a parent for finer hair types.
-  - name: PILOSE
-    label: Pilose
-    definition: Covered with long, soft, straight, spreading hairs.
-    synonyms: [pilose, softly long-hairy]
-    parents: [PUBESCENT]
-  - name: VILLOUS
-    label: Villous
-    definition: Covered with long, soft, often shaggy or wavy hairs.
-    synonyms: [villous, shaggy, woolly-haired]
-    parents: [PUBESCENT]
-  - name: TOMENTOSE
-    label: Tomentose
-    definition: Densely covered with short, matted, woolly hairs.
-    synonyms: [tomentose, woolly, felted, matted-hairy]
-  - name: HIRSUTE
-    label: Hirsute
-    definition: Covered with coarse, rough, fairly long hairs.
-    synonyms: [hirsute, coarsely hairy, rough-hairy, reflexed-hirsute]
-  - name: HISPID
-    label: Hispid
-    definition: Covered with stiff, rigid, bristly hairs.
-    synonyms: [hispid, bristly, hispidulous, papillate-hispid]
-  - name: STRIGOSE
-    label: Strigose
-    definition: Covered with stiff, appressed (flat-lying) straight hairs, often pointing one way.
-    synonyms: [strigose, appressed-hairy]
-  - name: STELLATE
-    label: Stellate
-    definition: Bearing star-shaped hairs that radiate from a central point.
-    synonyms: [stellate, star-shaped hairs]
+    definition: Smooth; without hairs.
+    synonyms: [glabrous, smooth, hairless]
   - name: DENDRITIC
     label: Dendritic
-    definition: Bearing branched, tree-like hairs.
-    synonyms: [dendritic, branched hairs, tree-like hairs]
+    definition: With branched, tree-like hairs.
+    synonyms: [dendritic]
+  - name: HIRSUTE
+    label: Hirsute
+    definition: With rather coarse, stiff hairs.
+    synonyms: [hirsute]
+  - name: HISPID
+    label: Hispid
+    definition: With stiff or bristly hairs.
+    synonyms: [hispid]
   - name: LEPIDOTE
     label: Lepidote
-    definition: Covered with small, flat, scurfy scales.
-    synonyms: [lepidote, scaly, scurfy]
+    definition: Covered with small scurfy scales.
+    synonyms: [lepidote, scurfy]
+  - name: PILOSE
+    label: Pilose
+    definition: With soft, slender, spreading hairs.
+    synonyms: [pilose]
+  - name: PUBERULENT
+    label: Puberulent
+    definition: Minutely pubescent; with very short, fine hairs.
+    synonyms: [puberulent]
+  - name: STRIGOSE
+    label: Strigose
+    definition: With straight, stiff, appressed hairs.
+    synonyms: [strigose]
+  - name: STELLATE
+    label: Stellate
+    definition: With star-shaped (branched from a point) hairs.
+    synonyms: [stellate, star-shaped hairs]
+  - name: TOMENTOSE
+    label: Tomentose
+    definition: With dense, matted, woolly hairs.
+    synonyms: [tomentose, woolly]
+  - name: VILLOUS
+    label: Villous
+    definition: With long, soft, shaggy but not matted hairs.
+    synonyms: [villous, villose]
+  - name: GLAUCOUS
+    label: Glaucous
+    definition: Covered with a whitish or bluish waxy bloom.
+    synonyms: [glaucous]

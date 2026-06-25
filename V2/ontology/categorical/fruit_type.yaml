@@ -1,13 +1,28 @@
 name: fruit_type
 group: fruit_morphology
 multi: true
-description: Type of  mature, ripened ovary of a flowering plant or fruit described.
-
+# KINDS ONLY. Cross-cutting properties were moved out (decided from test_data:
+# ~60% of Wagner fruit descriptions don't name a type, and "fleshy/dry" appear as
+# modifiers of a type, never as standalone tags):
+#   FLESHY / DRY                 -> moved to fruit_texture (optional descriptor)
+#   SINGLE_SEEDED / MULTI_SEEDED -> DROPPED; subsumed by the numeric seeds_per_fruit
+#                                   field. (Expert explicitly asked for these — flag
+#                                   back: the count field is richer than a binary.)
+#   SIMPLE, SAMARA, SAMAROID, UTRICLE, PYXIS, LOMENT, HESPERIDIUM -> kept (fruit kinds).
+description: Type of mature, ripened ovary (the kind of fruit). Texture lives in fruit_texture; seed count in seeds_per_fruit.
 values:
   - name: ACHENE
     label: Achene
     definition: A small, dry, one-seeded fruit that does not split open at maturity.
     synonyms: [achene]
+  - name: AGGREGATE
+    label: Aggregate
+    definition: A fruit formed from several separate carpels of a single flower (e.g., raspberry).
+    synonyms: [aggregate, aggregate fruit, etaerio]
+  - name: ARTICLE
+    label: Article
+    definition: A one-seeded segment of a loment.
+    synonyms: [article, loment segment]
   - name: BERRY
     label: Berry
     definition: A fleshy fruit with seeds embedded in the pulp, developed from a single ovary.
@@ -16,42 +31,44 @@ values:
     label: Capsule
     definition: A dry fruit from a compound ovary that splits open to release seeds.
     synonyms: [capsule, capsular]
+  - name: CARYOPSIS
+    label: Caryopsis
+    definition: A dry, one-seeded grain in which the seed coat is fused to the fruit wall (grasses).
+    synonyms: [caryopsis, grain]
   - name: DRUPE
     label: Drupe
     definition: A fleshy fruit with a single hard stone (pit) enclosing the seed.
     synonyms: [drupe, stone fruit, drupaceous]
-  - name: LEGUME
-    label: Legume
-    definition: A dry fruit (pod) from a single carpel that splits along two sutures.
-    synonyms: [legume, pod]
-  - name: NUT
-    label: Nut
-    definition: A dry, one-seeded fruit with a hard woody wall that does not split open.
-    synonyms: [nut]
-  - name: MERICARP
-    label: Mericarp
-    definition: One of the segments into which a schizocarp splits at maturity.
-    synonyms: [mericarp, mericarps]
-  - name: AGGREGATE
-    label: Aggregate
-    definition: A fruit formed from several separate carpels of a single flower (e.g., raspberry).
-    synonyms: [aggregate, aggregate fruit, etaerio]
-  - name: ARTICLE
-    label: Article
-    definition: A one-seeded segment of a loment (a legume that breaks transversely into single-seeded joints).
-    synonyms: [article, loment segment, loment]
-  - name: CARYOPSIS
-    label: Caryopsis
-    definition: A dry, one-seeded fruit (grain) in which the seed coat is fused to the fruit wall; characteristic of grasses.
-    synonyms: [caryopsis, grain]
   - name: FOLLICLE
     label: Follicle
     definition: A dry fruit from a single carpel that splits along one suture only.
     synonyms: [follicle, follicular]
+  - name: HESPERIDIUM
+    label: Hesperidium
+    definition: A leathery-rinded berry with a segmented, juicy interior, characteristic of citrus.
+    synonyms: [hesperidium]
+    parents: [BERRY]
+  - name: LEGUME
+    label: Legume
+    definition: A dry fruit (pod) from a single carpel that splits along two sutures.
+    synonyms: [legume, pod]
+  - name: LOMENT
+    label: Loment
+    definition: A dry, legume-like fruit that breaks transversely into one-seeded segments at maturity.
+    synonyms: [loment, lomentum, lomento]
+    parents: [LEGUME]
+  - name: MERICARP
+    label: Mericarp
+    definition: One of the segments into which a schizocarp splits at maturity.
+    synonyms: [mericarp, mericarps]
   - name: MULTIPLE
     label: Multiple
     definition: A fruit formed from the ovaries of several flowers fused together (e.g., pineapple, fig).
     synonyms: [multiple, multiple fruit]
+  - name: NUT
+    label: Nut
+    definition: A dry, one-seeded fruit with a hard woody wall that does not split open.
+    synonyms: [nut]
   - name: PEPO
     label: Pepo
     definition: A fleshy, many-seeded berry with a hard or leathery rind (e.g., gourds, melons).
@@ -59,26 +76,44 @@ values:
     parents: [BERRY]
   - name: POME
     label: Pome
-    definition: A fleshy fruit with a core, formed largely from the receptacle surrounding the ovary (e.g., apple).
+    definition: A fleshy fruit with a core, formed largely from the receptacle (e.g., apple).
     synonyms: [pome]
+  - name: PYXIS
+    label: Pyxis
+    definition: A dry capsule that opens transversely by a lid.
+    synonyms: [pyxis, pyxidium, circumscissile capsule]
+    parents: [CAPSULE]
+  - name: SAMARA
+    label: Samara
+    definition: A dry, indehiscent, usually one-seeded fruit with a wing-like extension of the fruit wall.
+    synonyms: [samara, winged fruit]
+  - name: SAMAROID
+    label: Samaroid
+    definition: A dry, indehiscent, winged fruit resembling a samara.
+    synonyms: [samaroid]
+    parents: [SAMARA]
   - name: SCHIZOCARP
     label: Schizocarp
     definition: A dry fruit that splits at maturity into two or more one-seeded segments (mericarps).
     synonyms: [schizocarp, schizocarpic]
   - name: SILICLE
     label: Silicle
-    definition: A short, broad capsule of the mustard family (Brassicaceae), no more than about twice as long as wide.
+    definition: A short, broad capsule of the mustard family, no more than about twice as long as wide.
     synonyms: [silicle, silicula]
   - name: SILIQUE
     label: Silique
-    definition: An elongate capsule of the mustard family (Brassicaceae), much longer than wide, splitting along two valves.
+    definition: An elongate capsule of the mustard family, much longer than wide, splitting along two valves.
     synonyms: [silique, siliqua]
+  - name: SIMPLE
+    label: Simple
+    definition: Developing from a single ovary of one flower.
+    synonyms: [simple, simple fruit]
   - name: SYCONIUM
     label: Syconium
     definition: A multiple fruit formed from a hollow, fleshy receptacle enclosing many tiny flowers (the fig).
     synonyms: [syconium, fig]
     parents: [MULTIPLE]
-  - name: UNKNOWN
-    label: Unknown
-    definition: Fruit type not stated or not determinable from the passage.
-    synonyms: [unknown, indeterminate, not stated]
+  - name: UTRICLE
+    label: Utricle
+    definition: A small, dry, one-seeded fruit with a thin, loose, bladder-like pericarp that does not split.
+    synonyms: [utricle, utricular]

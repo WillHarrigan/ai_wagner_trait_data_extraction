@@ -1,41 +1,21 @@
 name: status
 group: distribution
-multi: true
-description: Conservation or rarity status
-
+multi: false
+description: "Federal conservation status. (Email: ensure Endangered and Threatened present.)"
 values:
-  - name: SECURE
-    label: Secure
-    definition: Not at risk; populations stable and widespread.
-    synonyms: [secure, stable]
-  - name: VULNERABLE
-    label: Vulnerable
-    definition: At moderate risk of decline or extinction.
-    synonyms: [vulnerable]
-  - name: RARE
-    label: Rare
-    definition: Occurring in small numbers or few localities.
-    synonyms: [rare, uncommon]
-  - name: ENDEMIC
-    label: Endemic
-    definition: Restricted to the Hawaiian Islands (used here as a status descriptor).
-    synonyms: [endemic]
-    notes: Overlaps with origin.ENDEMIC; kept because the source StatusType enum lists it.
-  - name: NATURALIZED
-    label: Naturalized
-    definition: Introduced and established in the wild (used here as a status descriptor).
-    synonyms: [naturalized, natu]
-    notes: Overlaps with origin.NATURALIZED; kept because the source StatusType enum lists it.
-  - name: INDIGENOUS
-    label: Indigenous
-    definition: Native to Hawai‘i but also occurring naturally elsewhere (used here as a status descriptor).
-    synonyms: [indigenous, ind, native]
-    notes: Overlaps with origin.INDIGENOUS; kept because the Wagner code list includes it under status.
-  - name: POLYNESIAN_INTRODUCTION
-    label: Polynesian introduction
-    definition: Brought to Hawai‘i by early Polynesian settlers before European contact (a canoe plant).
-    synonyms: [polynesian introduction, pi, canoe plant]
-  - name: SPECIES_OF_CONCERN
+  - name: NO_STATUS
+    label: No status
+    definition: No federal conservation status.
+    synonyms: [no status, none]
+  - name: SP_OF_CONCERN
     label: Species of concern
-    definition: A species considered to warrant conservation attention but not formally listed.
-    synonyms: [species of concern, soc]
+    definition: A species of conservation concern (not formally listed).
+    synonyms: [sp. of concern, species of concern]
+  - name: THREATENED
+    label: Threatened
+    definition: Federally listed as threatened.
+    synonyms: [threatened]
+  - name: ENDANGERED
+    label: Endangered
+    definition: Federally listed as endangered.
+    synonyms: [endangered]

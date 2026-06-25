@@ -1,14 +1,21 @@
-# ontology_v3 — regenerated categorical vocabularies
+# ontology — categorical vocabularies + axes spec
 
-Generated from three sources:
+This is the project's single ontology. It replaced an earlier flat-field ontology
+(removed; recoverable from git history on the `ontology-v3` branch).
 
-1. **`codes_cleaned.tsv`** — the 15 existing trait dropdown lists (the real values).
+Layout:
+- `categorical/` — one file per categorical trait (its controlled dropdown values).
+- `groups.yaml` — trait groups.
+- `base_traits_with_axes.yaml` — the axes-based authoring spec (structures, measures,
+  bounds, variants vs. cross-product axes, the universal `stage` qualifier).
+- `codes_cleaned.tsv` — source vocabulary the categorical files were built from.
+
+The categorical vocabularies were generated from three sources:
+
+1. **`codes_cleaned.tsv`** — the existing trait dropdown lists (the real values).
 2. **Expert email** — adds/removes/new groups (see per-file header comments).
 3. **`Wagner_glossary.pdf`** — controlled vocabulary for the new groups the email
    named but left value-less (gynoecium, androecium, roots, pollination, calyx).
-
-This folder is **new and standalone** — the live ontology (`../measurements.yaml`,
-`../categorical/`, `../groups.yaml`) is unchanged. Nothing loads these yet.
 
 ## What changed vs. the old vocabularies
 

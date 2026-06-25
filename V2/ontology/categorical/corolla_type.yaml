@@ -1,90 +1,36 @@
 name: corolla_type
 group: outer_flower_morphology
 multi: true
+# CLEANED: contamination removed per expert email.
+#   DISK, RAY        -> moved to ray/floret structures (ray_color/floret_color + dimensions)
+#   SUBPANICULATE    -> moved to inflorescence_type
+#   LABELLUM         -> moved to labellum structure
+# ADDED: ACTINOMORPHIC (radially symmetric) — the counterpart to ZYGOMORPHIC.
 description: >
-  Shape and/or role of the corolla. Most values describe shape geometry
-  (TUBULAR, CAMPANULATE, FUNNELFORM, etc.) and apply to any flowering plant.
-  Two values (DISK_FLORET, RAY_FLORET) describe the role of an Asteraceae
-  floret in a head — they may co-occur with shape values. A discoid head of
-  Asteraceae typically yields ["TUBULAR", "DISK_FLORET"]; a radiate head
-  yields ["TUBULAR", "DISK_FLORET", "ZYGOMORPHIC", "RAY_FLORET"].
-
+  Shape and symmetry of the corolla (petals collectively). Pure shape/symmetry
+  only — positional floret roles (ray/disk) and inflorescence shapes do NOT
+  belong here.
 values:
-  - name: TUBULAR
-    label: Tubular
-    definition: Corolla forming a narrow tube with little or no flared limb.
-    synonyms: [tube-shaped, tube]
+  - name: ACTINOMORPHIC
+    label: Actinomorphic
+    definition: Radially symmetrical; divisible into mirror halves along several planes.
+    synonyms: [actinomorphic, radially symmetric, regular]
+  - name: ZYGOMORPHIC
+    label: Zygomorphic
+    definition: Bilaterally symmetrical (divisible into mirror halves along one plane only).
+    synonyms: [bilaterally symmetrical, monosymmetric]
+  - name: ADNATE
+    label: Adnate
+    definition: Corolla or its parts fused to an unlike organ (e.g., petals fused to stamens or ovary).
+    synonyms: [adnate, fused to, attached to]
+  - name: BILABIATE
+    label: Bilabiate
+    definition: Two-lipped; corolla divided into an upper and a lower lip.
+    synonyms: [two-lipped, 2-lipped]
   - name: CAMPANULATE
     label: Campanulate
     definition: Bell-shaped; a tube widening gradually upward like a bell.
     synonyms: [bell-shaped]
-  - name: FUNNELFORM
-    label: Funnelform
-    definition: Funnel-shaped; gradually widening from base to mouth.
-    synonyms: [funnel-shaped, infundibular, infundibuliform]
-  - name: ROTATE
-    label: Rotate
-    definition: Wheel-shaped; flat and spreading with a very short tube.
-    synonyms: [wheel-shaped, flat-spreading]
-  - name: SALVERFORM
-    label: Salverform
-    definition: A slender tube abruptly expanding into a flat, spreading limb.
-    synonyms: [salver-shaped, trumpet-shaped, hypocrateriform]
-  - name: BILABIATE
-    label: Bilabiate
-    definition: Two-lipped; corolla divided into an upper and a lower lip.
-    synonyms: [two-lipped, 2-lipped, labiate]
-  - name: ZYGOMORPHIC
-    label: Zygomorphic
-    definition: Bilaterally symmetrical (divisible into mirror halves along one plane only).
-    synonyms: [bilaterally symmetrical, irregular, monosymmetric]
-  - name: URCEOLATE
-    label: Urceolate
-    definition: Urn-shaped; swollen below and contracted at the mouth.
-    synonyms: [urn-shaped]
-  - name: CUP
-    label: Cup
-    definition: Cup-shaped corolla.
-    synonyms: [cup-shaped, cupular, cupulate]
-  - name: OBOVATE
-    label: Obovate
-    definition: Petals egg-shaped with the broadest part above the middle.
-    synonyms: [inversely ovate, obovate petals]
-  - name: ELLIPTIC
-    label: Elliptic
-    definition: Petals oval, widest at the middle.
-    synonyms: [elliptical, eliptic, ELIPTIC]
-    notes: Canonical value is ELLIPTIC; ELIPTIC is a common misspelling (kept as a synonym).
-  - name: OBLONG
-    label: Oblong
-    definition: Petals longer than wide with nearly parallel sides.
-    synonyms: [oblong petals]
-  - name: ORBICULAR
-    label: Orbicular
-    definition: Petals circular or nearly circular.
-    synonyms: [circular, rounded petals]
-  - name: DISK_FLORET
-    label: Disk floret
-    definition: >
-      An Asteraceae floret occurring in the central (disk) portion of a head,
-      typically with a tubular, actinomorphic, perfect corolla. Applies when
-      the passage names "disk corollas", "disk florets", or describes the head
-      as "discoid" or "radiate". This is a ROLE tag — usually co-occurs with a
-      shape tag (e.g., TUBULAR) on the same head.
-    synonyms: [disk corolla, disk florets, disk floret, disc floret, central floret]
-  - name: RAY_FLORET
-    label: Ray floret
-    definition: >
-      An Asteraceae floret occurring in the marginal (ray) portion of a head,
-      typically with a zygomorphic, strap-shaped corolla. Applies when the
-      passage names "ray florets", "rays", "ligulate florets", or describes the
-      head as "radiate" or "ligulate". This is a ROLE tag — usually co-occurs
-      with a shape tag (e.g., ZYGOMORPHIC) on the same head.
-    synonyms: [ray corolla, ray florets, ray floret, ligulate floret, ligule, ray]
-  - name: ADNATE
-    label: Adnate
-    definition: Corolla or its parts fused to an unlike organ (e.g., petals fused to the stamens or ovary).
-    synonyms: [adnate, fused to, attached to]
   - name: CORYMBOSE
     label: Corymbose
     definition: Corolla parts arranged in a flat-topped, corymb-like manner.
@@ -95,7 +41,7 @@ values:
     synonyms: [convolute, contorted, twisted]
   - name: CORONA
     label: Corona
-    definition: A crown-like outgrowth or appendage between the corolla and stamens (e.g., in milkweeds, daffodils).
+    definition: A crown-like outgrowth between the corolla and stamens (e.g., milkweeds, daffodils).
     synonyms: [corona, crown, cup-like appendage]
   - name: CUNEATE
     label: Cuneate
@@ -108,7 +54,19 @@ values:
   - name: DELTATE
     label: Deltate
     definition: Petals triangular, shaped like the Greek letter delta.
-    synonyms: [deltate, deltoid, triangular]
+    synonyms: [deltate, deltoid]
+  - name: ELLIPTIC
+    label: Elliptic
+    definition: Petals oval, widest at the middle.
+    synonyms: [elliptical, eliptic]
+  - name: FUNNELFORM
+    label: Funnelform
+    definition: Funnel-shaped; gradually widening from base to mouth.
+    synonyms: [funnel-shaped, infundibular, infundibuliform]
+  - name: FLABELLATE
+    label: Flabellate
+    definition: Petals fan-shaped.
+    synonyms: [flabellate, fan-shaped]
   - name: FILIFORM
     label: Filiform
     definition: Corolla or its parts thread-like; long and very slender.
@@ -123,12 +81,8 @@ values:
     synonyms: [irregular, asymmetric]
   - name: KEEL
     label: Keel
-    definition: The two fused lower petals of a papilionaceous (pea) flower, boat-shaped and enclosing the stamens.
+    definition: The two fused lower petals of a papilionaceous (pea) flower, boat-shaped.
     synonyms: [keel, carina]
-  - name: LABELLUM
-    label: Labellum
-    definition: The modified, often enlarged lower petal (lip) of an orchid or similar flower.
-    synonyms: [labellum, lip]
   - name: LANCEOLATE
     label: Lanceolate
     definition: Petals lance-shaped; much longer than wide and tapering, widest below the middle.
@@ -145,30 +99,58 @@ values:
     label: Lobed
     definition: Corolla divided into lobes separated by sinuses.
     synonyms: [lobed, lobbed, cleft]
+  - name: OVATE
+    label: Ovate
+    definition: Petals egg-shaped, with the broadest part below the middle.
+    synonyms: [ovate, egg-shaped]
+  - name: OBLONG
+    label: Oblong
+    definition: Petals longer than wide with nearly parallel sides.
+    synonyms: [oblong petals]
+  - name: OBCORDATE
+    label: Obcordate
+    definition: Petals inversely heart-shaped; heart-shaped with the notch at the apex.
+    synonyms: [obcordate, inversely heart-shaped]
+  - name: OBOVATE
+    label: Obovate
+    definition: Petals egg-shaped with the broadest part above the middle.
+    synonyms: [inversely ovate, obovate petals]
   - name: OBLANCEOLATE
     label: Oblanceolate
     definition: Petals inversely lanceolate; broadest near the apex, tapering to the base.
     synonyms: [oblanceolate, inversely lanceolate]
+  - name: ORBICULAR
+    label: Orbicular
+    definition: Petals circular or nearly circular.
+    synonyms: [circular, rounded petals]
   - name: PALATE
     label: Palate
-    definition: A raised, often hairy projection on the lower lip of a bilabiate corolla that closes the throat (as in snapdragon).
+    definition: A raised, often hairy projection on the lower lip of a bilabiate corolla that closes the throat.
     synonyms: [palate]
   - name: PSEUDORACEMES
     label: Pseudoraceme
     definition: A raceme-like corolla arrangement that is not a true raceme.
     synonyms: [pseudoraceme, pseudoracemes, pseudoracemose]
+  - name: ROTATE
+    label: Rotate
+    definition: Wheel-shaped; flat and spreading with a very short tube.
+    synonyms: [wheel-shaped, flat-spreading]
   - name: REFLEXED
     label: Reflexed
     definition: Corolla lobes or petals bent abruptly backward or downward.
     synonyms: [reflexed, recurved, bent back]
-  - name: RENIFORM
-    label: Reniform
-    definition: Petals kidney-shaped; broader than long with a basal notch.
-    synonyms: [reniform, kidney-shaped]
   - name: RHOMBIC
     label: Rhombic
     definition: Petals diamond-shaped; widest at the middle with angled sides.
     synonyms: [rhombic, diamond-shaped, rhomboid]
+  - name: RENIFORM
+    label: Reniform
+    definition: Petals kidney-shaped; broader than long with a basal notch.
+    synonyms: [reniform, kidney-shaped]
+  - name: SALVERFORM
+    label: Salverform
+    definition: A slender tube abruptly expanding into a flat, spreading limb.
+    synonyms: [salver-shaped, trumpet-shaped, hypocrateriform]
   - name: SUBORBICULAR
     label: Suborbicular
     definition: Petals nearly circular in outline.
@@ -200,10 +182,18 @@ values:
     label: Standard
     definition: The large, usually erect upper petal of a papilionaceous (pea) flower.
     synonyms: [standard, banner, vexillum]
+  - name: TUBULAR
+    label: Tubular
+    definition: Corolla forming a narrow tube with little or no flared limb.
+    synonyms: [tube-shaped, tube]
   - name: TRIANGULAR
     label: Triangular
     definition: Petals triangular in outline.
     synonyms: [triangular, three-angled]
+  - name: URCEOLATE
+    label: Urceolate
+    definition: Urn-shaped; swollen below and contracted at the mouth.
+    synonyms: [urn-shaped]
   - name: UNILABIATE
     label: Unilabiate
     definition: One-lipped; corolla bearing a single lip.
@@ -216,14 +206,18 @@ values:
     label: Verticil
     definition: Corolla parts arranged in a whorl.
     synonyms: [verticil, whorled, verticillate]
-  - name: CLAW
-    label: Claw
-    definition: The narrow, stalk-like basal portion of a petal (unguis).
-    synonyms: [claw, unguis]
+  - name: CUP
+    label: Cup
+    definition: Cup-shaped corolla.
+    synonyms: [cup-shaped, cupular, cupulate]
   - name: UNGUICULATE
     label: Unguiculate
     definition: Petals bearing a distinct claw (narrowed, stalk-like base).
     synonyms: [unguiculate, clawed]
+  - name: CLAW
+    label: Claw
+    definition: The narrow, stalk-like basal portion of a petal (unguis).
+    synonyms: [claw, unguis]
   - name: FASCICLE
     label: Fascicle
     definition: Corolla parts borne in a compact, tight cluster.
@@ -232,35 +226,7 @@ values:
     label: Stellate
     definition: Corolla star-shaped, with lobes radiating from a central point.
     synonyms: [stellate, star-shaped, star-like]
-  - name: SUBPANICULATE
-    label: Subpaniculate
-    definition: Corolla parts arranged in a nearly paniculate (loosely branched) manner.
-    synonyms: [subpaniculate, nearly paniculate]
   - name: PENTAGONAL
     label: Pentagonal
     definition: Corolla five-angled in outline (pentagon-shaped).
     synonyms: [pentagonal, five-angled, 5-angled]
-  - name: ABSENT
-    label: Absent
-    definition: Corolla lacking (flower apetalous; no corolla present).
-    synonyms: [absent, none, apetalous, lacking]
-  - name: FLABELLATE
-    label: Flabellate
-    definition: Petals fan-shaped.
-    synonyms: [flabellate, fan-shaped]
-  - name: OVATE
-    label: Ovate
-    definition: Petals egg-shaped, with the broadest part below the middle.
-    synonyms: [ovate, egg-shaped]
-  - name: OBCORDATE
-    label: Obcordate
-    definition: Petals inversely heart-shaped; heart-shaped with the notch at the apex.
-    synonyms: [obcordate, inversely heart-shaped]
-  - name: DISK
-    label: Disk
-    definition: Disk corolla of an Asteraceae head (the central, usually tubular florets).
-    synonyms: [disk, disc]
-  - name: RAY
-    label: Ray
-    definition: Ray corolla of an Asteraceae head (the marginal, usually strap-shaped florets).
-    synonyms: [ray, rays]

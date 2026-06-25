@@ -1,26 +1,21 @@
 name: origin
 group: distribution
-multi: true
-description: Origin abbreviated at the beginning of the passage (end/endemic, nat/naturalized, ind/indigenous, PI/Polynesian introduction, PC/predominant cultivar).
-
+multi: false
+description: Biogeographic origin / status of the plant in Hawaii.
 values:
   - name: ENDEMIC
     label: Endemic
-    definition: Native and restricted to the Hawaiian Islands; found nowhere else naturally.
-    synonyms: [endemic, end, "end."]
+    definition: Native and found only in Hawaii.
+    synonyms: [endemic]
   - name: INDIGENOUS
     label: Indigenous
-    definition: Native to Hawai‘i but also occurring naturally elsewhere.
+    definition: Native to Hawaii but also occurring naturally elsewhere.
     synonyms: [indigenous, native]
-  - name: NATURALIZED
-    label: Naturalized
-    definition: Introduced by humans and now reproducing and persisting in the wild.
-    synonyms: [naturalized, nat, "nat.", "nat?"]
   - name: POLYNESIAN_INTRODUCTION
     label: Polynesian introduction
-    definition: Brought to Hawai‘i by early Polynesian settlers before European contact (a canoe plant).
-    synonyms: [polynesian introduction, "PI", canoe plant]
-  - name: PC
-    label: Predominant cultivar
-    definition: A cultivated plant that is the predominant or dominant cultivated form for the taxon.
-    synonyms: [predominant cultivar, "PC", cultivar]
+    definition: Brought to Hawaii by Polynesians before European contact.
+    synonyms: [polynesian introduction, canoe plant]
+  - name: NATURALIZED
+    label: Naturalized
+    definition: Introduced after European contact and now reproducing on its own.
+    synonyms: [naturalized, naturalised]
