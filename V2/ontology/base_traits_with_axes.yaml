@@ -38,8 +38,29 @@
 # AXIS VOCABULARY
 #   sex:      [staminate, pistillate]   (male / female; bare = unsexed/both)
 #   position: spatial slice [upper, lower, inner, outer, ray]
-#   stage:    developmental [juvenile]  (bare = adult)
 #   part:     sub-part of a fused organ [tube, lobe, teeth, lip]  (bare = whole)
+#   stage:    when the observation holds — see STAGE NOTE below.
+#
+# STAGE NOTE (universal optional qualifier)
+#   `stage` is NOT a per-trait axis like the others — it is a UNIVERSAL optional
+#   tag any finding may carry, recording WHEN an observation holds. It is never
+#   pre-listed on a structure; the tagging extractor attaches it only when the
+#   passage states a time/condition. Because tags materialise only when seen,
+#   making it universal costs zero phantom fields.
+#     age:   [juvenile, mature]      (Wagner: "when young" / "at maturity", "with age")
+#     water: [fresh, dry]            (Wagner: "when fresh" / "when dry")
+#   bare = no temporal qualifier stated (the default; most findings).
+#
+#   TWO-STATES-OVER-TIME RULE. A phrase giving two states across time is TWO
+#   findings, each tagged with its stage — for ANY trait (color, texture,
+#   pubescence, ...), no special cases:
+#     "green becoming yellow"          -> {color: green, stage: juvenile}
+#                                         {color: yellow, stage: mature}
+#     "fleshy when young, dry with age"-> {texture: fleshy, stage: juvenile}
+#                                         {texture: dry,    stage: mature}
+#   The leaf `variants: [juvenile]` entries below are the one place stage is
+#   pre-materialised as columns (J_Length etc. exist in the sheet); everywhere
+#   else stage is emitted dynamically by the extractor.
 #
 # SEX NOTE: the sheet writes calyx sex as Male_/Female_ but inflorescence/involucre/
 # corolla as Staminate_/Pistillate_; both normalize to staminate/pistillate here.

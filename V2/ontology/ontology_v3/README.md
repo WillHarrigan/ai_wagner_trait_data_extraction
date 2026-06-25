@@ -41,6 +41,14 @@ This folder is **new and standalone** — the live ontology (`../measurements.ya
 - **Parts are NOT vocabulary values.** Fruit pericarp layers (exocarp/mesocarp/
   endocarp) and seed aril/hilum are PARTS — they belong on the fruit/seed `part:`
   axis in `base_traits_with_axes.yaml`, not as dropdown values here.
+- **`stage` is a universal optional qualifier**, not a per-trait axis. Any finding
+  may carry it to record WHEN an observation holds: `age` [juvenile, mature] and
+  `water` [fresh, dry]. Wagner states this ~250x ("at maturity", "becoming",
+  "when young", "with age", "when fresh/dry"). A two-states-over-time phrase
+  becomes TWO findings, each stage-tagged — for any trait, no special cases
+  (e.g. "green becoming yellow" -> {green, juvenile} + {yellow, mature}). The
+  tagging extractor emits it dynamically; it is never pre-listed on a structure.
+  See the STAGE NOTE in `base_traits_with_axes.yaml`.
 
 ## Resolved (decided from data / design)
 
