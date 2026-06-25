@@ -1,5 +1,4 @@
 name: inflorescence_type
-group: inflorescence_morphology
 multi: true
 # EDIT: SUBPANICULATE moved IN from corolla_type (it is an inflorescence character).
 description: Type / arrangement of the inflorescence (the flower cluster).

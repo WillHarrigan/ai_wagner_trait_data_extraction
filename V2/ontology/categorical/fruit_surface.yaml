@@ -1,5 +1,4 @@
 name: fruit_surface
-group: fruit_morphology
 multi: true
 # NEW (expert email): fruit "Surface".
 description: Surface texture of the fruit.

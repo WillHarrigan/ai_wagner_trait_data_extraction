@@ -1,5 +1,4 @@
 name: seed_shape
-group: fruit_morphology
 multi: true
 # NEW (expert email): seed "Shape". (aril/hilum are seed PARTS, not shape values.)
 description: Overall shape of the seed.

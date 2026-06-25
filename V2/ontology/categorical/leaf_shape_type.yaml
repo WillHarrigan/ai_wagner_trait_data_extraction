@@ -1,5 +1,4 @@
 name: leaf_shape_type
-group: leaf_morphology
 multi: true
 description: Overall shape of the leaf blade. Reused for the juvenile and leaflet variants.
 values:

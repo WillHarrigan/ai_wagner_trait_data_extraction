@@ -1,5 +1,4 @@
 name: ovary_position
-group: gynoecium_morphology
 multi: false
 # NEW group (expert email "Gynoecium"). Vocabulary from Wagner glossary (pp.1647,1654).
 description: Position of the ovary relative to the attachment of the other floral parts.

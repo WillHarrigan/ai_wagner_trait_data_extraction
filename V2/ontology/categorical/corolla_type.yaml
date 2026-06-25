@@ -1,5 +1,4 @@
 name: corolla_type
-group: outer_flower_morphology
 multi: true
 # CLEANED: contamination removed per expert email.
 #   DISK, RAY        -> moved to ray/floret structures (ray_color/floret_color + dimensions)

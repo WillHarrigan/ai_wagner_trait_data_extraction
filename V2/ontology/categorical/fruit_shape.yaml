@@ -1,5 +1,4 @@
 name: fruit_shape
-group: fruit_morphology
 multi: true
 # NEW (expert email): fruit "Shape". (Color/Surface are text/categorical too;
 # exocarp/mesocarp/endocarp are PARTS, handled as the fruit `part:` axis, not values here.)

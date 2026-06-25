@@ -1,5 +1,4 @@
 name: description
-group: taxon_identity
 multi: false
 description: Major plant group classification.
 values:

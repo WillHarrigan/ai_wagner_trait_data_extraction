@@ -1,5 +1,4 @@
 name: mating_system
-group: reproductive_morphology
 multi: true
 # NEW (expert email): the selfing/outcrossing axis to sit alongside pollination_mode.
 description: Whether reproduction is by self-pollination or cross-pollination.

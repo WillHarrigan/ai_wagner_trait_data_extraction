@@ -1,5 +1,4 @@
 name: stamen_fusion
-group: androecium_morphology
 multi: true
 # NEW group. Vocabulary from Wagner glossary (pp.1648,1654).
 description: Degree and pattern of fusion among stamens / their arrangement.

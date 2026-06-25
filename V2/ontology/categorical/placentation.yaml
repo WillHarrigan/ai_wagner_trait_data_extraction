@@ -1,5 +1,4 @@
 name: placentation
-group: gynoecium_morphology
 multi: false
 # NEW group. Vocabulary enumerated in Wagner glossary (p.1648).
 description: Arrangement of the placentas (where ovules attach) within the ovary.

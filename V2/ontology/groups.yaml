@@ -1,50 +1,76 @@
-# Trait groups for ontology_v3. Membership is derived from each trait's own
-# `group:`. NEW groups (per expert email) marked below.
+# Trait groups — SELF-CONTAINED. Each group lists the categorical traits it
+# contains directly (name + description + traits). Traits no longer carry a
+# `group:` line; the link lives here, top-down.
+#
+# `traits` names the categorical-trait files in categorical/. Groups with an
+# empty `traits` list held only measurement fields in the old flat ontology and
+# have no categorical vocabulary yet.
+
 groups:
   taxon_identity:
     description: Names of the organism and its major plant group (Dicots / Monocots / Conifers / Ferns).
+    traits: [description]
+
   source_document:
     description: Provenance metadata — Wagner page number and plate references. Not biological traits.
+    traits: []
+
   life_form:
     description: Habit (life-form) — general appearance or manner of growth.
+    traits: [life_form_type]
+
   reproductive_morphology:
-    description: >
-      Reproductive biology — breeding system, pollination mode (cleistogamous/
-      chasmogamous), mating system (selfing/outcrossing), and cytology.
+    description: Reproductive biology — breeding system, pollination mode, mating system, cytology.
+    traits: [breeding_type, pollination_mode, mating_system]
+
   distribution:
     description: Where the plant occurs in Hawaii — island(s), origin, conservation status.
+    traits: [island_type, origin, status]
 
-  root_morphology:                     # NEW (expert email: "Roots")
+  root_morphology:
     description: The root system — root type/habit and root dimensions.
+    traits: [root_type]
 
   stem_morphology:
     description: The above-ground axis — stem/plant height and stem pubescence.
+    traits: [stem_hair_type]
+
   leaf_morphology:
     description: Whole-leaf morphology — structure, shape, margin, phyllotaxy, dimensions.
+    traits: [phyllotaxy_type, leaf_type, leaf_margin_type, leaf_shape_type]
+
   leaf_indumentum:
     description: Pubescence (surface hair) on leaves — overall, upper, lower (and juvenile).
+    traits: [leaf_hair_type]
+
   leaflet_morphology:
     description: The ultimate unit of a compound leaf — leaflet structure, shape, margin, dimensions.
+    traits: [leaflets_shape_type]
+
   juvenile_leaf_morphology:
     description: Leaves at the juvenile stage where they differ from adult leaves (heteroblasty).
+    traits: []
+
   inflorescence_morphology:
     description: Arrangement of flowers on the axis — type and dimensions of supporting parts; heads, spadices.
+    traits: [inflorescence_type]
+
   bract_involucre_morphology:
     description: Specialised leaves of the inflorescence — bracts, bracteoles, involucre.
+    traits: []
+
   outer_flower_morphology:
     description: Outer floral envelope — calyx (incl. calyx_type), corolla, perianth, labellum.
+    traits: [corolla_type, calyx_type]
 
-  androecium_morphology:               # NEW (expert email: "Androecium")
-    description: >
-      The male organs collectively — stamens, anthers (attachment), filaments,
-      pollen, staminodes/pseudostaminodes, and associated structures.
-  gynoecium_morphology:                # NEW (expert email: "Gynoecium")
-    description: >
-      The female organs collectively — stigma, style, ovary, ovary position,
-      placentation, ovules, and associated structures. Kept SEPARATE from fruit.
+  androecium_morphology:
+    description: Male organs collectively — stamens, anthers (attachment), filaments, pollen, staminodes.
+    traits: [anther_attachment, stamen_fusion, staminode_presence]
+
+  gynoecium_morphology:
+    description: Female organs — stigma, style, ovary, ovary position, placentation, ovules. Kept separate from fruit.
+    traits: [ovary_position, placentation, ovule_type]
 
   fruit_morphology:
-    description: >
-      The ripened ovary and the seed(s) — fruit type/shape/surface, pericarp
-      layers (exocarp/mesocarp/endocarp as parts), seed shape/surface, aril/hilum
-      (as parts), and fruit/seed dimensions.
+    description: The ripened ovary and seed(s) — fruit/seed type, shape, surface, texture, and dimensions.
+    traits: [fruit_type, fruit_shape, fruit_surface, fruit_texture, seed_shape, seed_surface]

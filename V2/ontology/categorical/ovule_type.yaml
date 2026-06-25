@@ -1,5 +1,4 @@
 name: ovule_type
-group: gynoecium_morphology
 multi: true
 # NEW group. Vocabulary from Wagner glossary (p.1646).
 description: Orientation/type of the ovule within the ovary.

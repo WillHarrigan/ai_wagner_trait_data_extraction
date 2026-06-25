@@ -1,5 +1,4 @@
 name: island_type
-group: distribution
 multi: true
 description: Hawaiian island(s) of occurrence.
 values:

@@ -1,5 +1,4 @@
 name: anther_attachment
-group: androecium_morphology
 multi: false
 # NEW group (expert email "Androecium"). Vocabulary from Wagner glossary (p.1627).
 description: How the anther is attached to the filament.

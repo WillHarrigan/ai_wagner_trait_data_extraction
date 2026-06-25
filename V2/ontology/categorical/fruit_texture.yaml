@@ -1,5 +1,4 @@
 name: fruit_texture
-group: fruit_morphology
 multi: true
 # NEW. Split out of fruit_type (FLESHY/DRY were properties, not kinds).
 # Optional descriptor — set ONLY when the passage states texture, e.g.

@@ -1,5 +1,4 @@
 name: stem_hair_type
-group: stem_morphology
 multi: true
 description: Surface hair (indumentum) type of the stem.
 values:

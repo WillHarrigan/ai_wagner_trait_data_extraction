@@ -1,5 +1,4 @@
 name: leaf_hair_type
-group: leaf_indumentum
 multi: true
 # ONE vocabulary, shared by all variants: leaf_hair_type, upper_/lower_/juvenile_.
 # (The old empty upper_/lower_/juvenile_ files are NOT needed — same vocab reused.)

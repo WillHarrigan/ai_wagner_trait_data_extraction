@@ -1,5 +1,4 @@
 name: seed_surface
-group: fruit_morphology
 multi: true
 # NEW (expert email): seed "Surface".
 description: Surface texture of the seed.

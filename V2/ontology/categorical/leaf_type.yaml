@@ -1,5 +1,4 @@
 name: leaf_type
-group: leaf_morphology
 multi: false
 description: Whether the leaf is simple or compound. Reused for juvenile and leaflet variants.
 values:

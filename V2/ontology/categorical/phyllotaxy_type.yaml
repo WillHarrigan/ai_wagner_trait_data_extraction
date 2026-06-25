@@ -1,5 +1,4 @@
 name: phyllotaxy_type
-group: leaf_morphology
 multi: true
 description: Arrangement of leaves on the stem (phyllotaxy).
 values:

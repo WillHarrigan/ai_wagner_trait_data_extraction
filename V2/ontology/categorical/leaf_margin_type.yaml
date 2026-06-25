@@ -1,5 +1,4 @@
 name: leaf_margin_type
-group: leaf_morphology
 multi: true
 description: The margin (edge) of the leaf. Reused for juvenile and leaflet variants.
 values:

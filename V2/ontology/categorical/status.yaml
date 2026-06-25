@@ -1,5 +1,4 @@
 name: status
-group: distribution
 multi: false
 description: "Federal conservation status. (Email: ensure Endangered and Threatened present.)"
 values:

@@ -1,5 +1,4 @@
 name: root_type
-group: root_morphology
 multi: true
 # NEW group (expert email "Roots"). Vocabulary from Wagner glossary (pp.1627-1655).
 description: Type / habit of the root system.

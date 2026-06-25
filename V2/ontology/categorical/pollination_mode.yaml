@@ -1,5 +1,4 @@
 name: pollination_mode
-group: reproductive_morphology
 multi: true
 # NEW (expert email): cleistogamous/chasmogamous moved OUT of breeding_type to here —
 # they describe flower opening / pollination, not the monoecy/dioecy axis.

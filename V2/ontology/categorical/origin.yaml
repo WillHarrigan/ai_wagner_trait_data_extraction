@@ -1,5 +1,4 @@
 name: origin
-group: distribution
 multi: false
 description: Biogeographic origin / status of the plant in Hawaii.
 values:

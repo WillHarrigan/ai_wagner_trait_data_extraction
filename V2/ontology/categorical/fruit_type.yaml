@@ -1,5 +1,4 @@
 name: fruit_type
-group: fruit_morphology
 multi: true
 # KINDS ONLY. Cross-cutting properties were moved out (decided from test_data:
 # ~60% of Wagner fruit descriptions don't name a type, and "fleshy/dry" appear as

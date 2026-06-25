@@ -1,5 +1,4 @@
 name: staminode_presence
-group: androecium_morphology
 multi: true
 # NEW group. From Wagner glossary (p.1653: staminode = sterile/modified stamen).
 description: Presence of sterile or modified stamens.
