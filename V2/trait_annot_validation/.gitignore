@@ -1,0 +1,18 @@
+# Generated data — rebuild with build_validation_bundle.py <Family> <model_key>.
+# Large (~11 MB) and derived from extraction/runs/, so it is never source.
+bundle.json
+
+# Superseded React/Vite prototype (the old "naive" interface this tool replaces),
+# plus its SQLite DB, PDFs, spreadsheets, and lockfiles. Kept on disk for
+# reference but intentionally out of version control.
+trait_annot_validation/
+app/
+*.db
+*.db-shm
+*.db-wal
+*.xlsx
+*.pdf
+wagner_passage_inputs.txt
+
+# OS / editor noise
+.DS_Store

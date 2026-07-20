@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wagner Trait Validation</title>
+<style>
+  :root {
+    --bg: #f6f7f5; --panel: #ffffff; --ink: #1c2321; --muted: #6b7770;
+    --line: #e2e6e1; --line2: #eef1ed;
+    --accept: #2e7d4f; --accept-bg: #e7f4ec;
+    --reject: #b3352b; --reject-bg: #fbe9e7;
+    --fix: #b7791f; --fix-bg: #fbf3e0;
+    --accepted: #2e7d4f; --contested: #b7791f; --rejected: #9aa39d;
+    --accent: #2f6f5e; --accent-ink: #ffffff;
+    --note-line: #1f9d55; --note-glow: rgba(31,157,85,.20); --note-bg: #f0fbf4;
+    --chip: #eef1ed;
+    --shadow: 0 1px 2px rgba(0,0,0,.05), 0 4px 14px rgba(0,0,0,.05);
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    color: var(--ink); background: var(--bg);
+    display: grid; grid-template-columns: 270px 1fr 1fr; height: 100vh; overflow: hidden;
+  }
+  .col { height: 100vh; overflow-y: auto; }
+  h1,h2,h3 { margin: 0; font-weight: 650; }
+
+  /* ---- sidebar ---- */
+  #sidebar { background: var(--panel); border-right: 1px solid var(--line); }
+  .sb-head { padding: 14px 16px 10px; border-bottom: 1px solid var(--line); position: sticky; top: 0; background: var(--panel); z-index: 2; }
+  .sb-head h1 { font-size: 15px; letter-spacing: .1px; }
+  .sb-head .sub { color: var(--muted); font-size: 12px; margin-top: 3px; }
+  .reviewer-badge { display: inline-block; margin-top: 7px; font-size: 12px; font-weight: 600; color: var(--accent); background: var(--chip); padding: 3px 10px; border-radius: 20px; cursor: pointer; }
+  .reviewer-badge:hover { background: var(--line2); }
+  .sb-search { width: 100%; margin-top: 10px; padding: 7px 10px; border: 1px solid var(--line); border-radius: 8px; font-size: 13px; background: var(--bg); }
+  .sb-prog { height: 5px; background: var(--line2); border-radius: 4px; margin-top: 10px; overflow: hidden; }
+  .sb-prog > i { display: block; height: 100%; background: var(--accept); width: 0; transition: width .3s; }
+  .sb-count { font-size: 11px; color: var(--muted); margin-top: 5px; }
+  .genus-h { font-size: 11px; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); padding: 12px 16px 4px; font-weight: 650; }
+  .sp {
+    display: flex; align-items: center; gap: 8px; padding: 7px 16px; cursor: pointer;
+    border-left: 3px solid transparent; font-size: 13px;
+  }
+  .sp:hover { background: var(--line2); }
+  .sp.active { background: var(--chip); border-left-color: var(--accent); font-weight: 600; }
+  .sp .nm { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-style: italic; }
+  .sp .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--line); flex: 0 0 auto; }
+  .sp .dot.started { background: var(--fix); }
+  .sp .dot.done { background: var(--accept); }
+
+  /* ---- source text column ---- */
+  #textcol { background: var(--panel); border-left: 1px solid var(--line); }
+  .col-head { padding: 12px 18px; border-bottom: 1px solid var(--line); position: sticky; top: 0; background: var(--panel); z-index: 2; }
+  .hint { color: var(--muted); font-size: 12px; padding: 4px 0 0; }
+
+  /* collapsible source-text sections (Species / Genus / Family) */
+  #textBody { padding: 6px 0 60px; }
+  .textsec { border-bottom: 1px solid var(--line2); }
+  .textsec-h {
+    display: flex; align-items: center; gap: 8px; padding: 11px 18px; cursor: pointer;
+    position: sticky; top: 0; background: var(--panel); user-select: none;
+  }
+  .textsec-h:hover { background: var(--line2); }
+  .textsec-h .chev { color: var(--muted); transition: transform .15s; font-size: 11px; display: inline-block; width: 12px; }
+  .textsec.open .textsec-h .chev { transform: rotate(90deg); }
+  .textsec-h .ts-lbl { font-size: 11px; text-transform: uppercase; letter-spacing: .5px; color: var(--muted); font-weight: 700; }
+  .textsec-h .ts-name { font-size: 13px; font-style: italic; color: var(--ink); }
+  .textsec-body { display: none; padding: 4px 20px 18px 38px; white-space: pre-wrap; word-wrap: break-word; font-size: 13.5px; line-height: 1.65; }
+  .textsec.open .textsec-body { display: block; }
+  .textsec-body em { color: #2f6f5e; font-style: italic; }
+  .ts-empty { color: var(--muted); font-style: italic; }
+
+  /* ---- findings column ---- */
+  #findcol { background: var(--bg); border-right: 1px solid var(--line); }
+  .fc-head { padding: 12px 18px; border-bottom: 1px solid var(--line); position: sticky; top: 0; background: var(--bg); z-index: 3; }
+  .fc-head .title { font-size: 15px; font-style: italic; }
+  .fc-head .meta { color: var(--muted); font-size: 12px; margin-top: 3px; }
+  .toolbar { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; align-items: center; }
+  .filterbtn { font-size: 12px; padding: 4px 10px; border: 1px solid var(--line); border-radius: 20px; background: var(--panel); cursor: pointer; color: var(--muted); }
+  .filterbtn.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .spacer { flex: 1; }
+  .btn { font-size: 12px; padding: 6px 11px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); cursor: pointer; }
+  .btn:hover { background: var(--line2); }
+  .btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+
+  .section { margin: 16px 14px 0; }
+  .section-h { display: flex; align-items: center; gap: 8px; cursor: pointer; user-select: none;
+               font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+               color: var(--muted); padding: 6px 4px; border-bottom: 1px solid var(--line); }
+  .section-h:hover { color: var(--ink); }
+  .section-h:focus-visible { outline: 2px solid var(--accent, #4a7); outline-offset: 2px; border-radius: 3px; }
+  /* disclosure triangle sits at the END of the row; points down when open,
+     rotates to point right when collapsed. Sized to be an obvious hit target,
+     not a dot. */
+  /* The ▾ glyph carries heavy side-bearing, so it renders far smaller than its
+     font-size suggests. Draw the triangle with borders instead: exact size. */
+  .section-h .chev { font-size: 0; margin-left: 10px; display: inline-block; flex: none;
+                     width: 0; height: 0; border-left: 11px solid transparent;
+                     border-right: 11px solid transparent; border-top: 14px solid currentColor;
+                     color: var(--muted); transition: transform .15s ease;
+                     transform-origin: 50% 40%; }
+  .section-h:hover .chev { color: var(--ink); }
+  .section-h.closed .chev { transform: rotate(-90deg); }
+  .section-h .section-t { flex: 1; }
+  .section-b.collapsed { display: none; }
+  .group { margin: 14px 14px 0; }
+  .section .group { margin: 10px 0 0; }
+  .group-h { font-size: 12px; font-weight: 700; text-transform: capitalize; color: var(--ink); padding: 4px 4px 8px; display: flex; align-items: center; gap: 8px; cursor: pointer; user-select: none; }
+  .group-h:hover { color: var(--accent, #2a7); }
+  .group-h:focus-visible { outline: 2px solid var(--accent, #4a7); outline-offset: 2px; border-radius: 3px; }
+  .group-h .g-count { font-weight: 500; color: var(--muted); font-size: 11px; }
+  .group-h .g-name { flex: 1; }
+  /* structure-level triangle: slightly smaller than the section one, same idiom */
+  .group-h .chev { font-size: 0; margin-left: 10px; display: inline-block; flex: none;
+                   width: 0; height: 0; border-left: 9px solid transparent;
+                   border-right: 9px solid transparent; border-top: 12px solid currentColor;
+                   color: var(--muted); transition: transform .15s ease;
+                   transform-origin: 50% 40%; }
+  .group-h:hover .chev { color: var(--accent, #2a7); }
+  .group-h.closed .chev { transform: rotate(-90deg); }
+  .group-b.collapsed { display: none; }
+
+  .card {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+    padding: 10px 12px; margin-bottom: 8px; box-shadow: var(--shadow);
+    border-left: 3px solid var(--line);
+  }
+  .card.tier-accepted { border-left-color: var(--accepted); }
+  .card.tier-contested { border-left-color: var(--contested); }
+  .card.tier-rejected  { border-left-color: var(--rejected); }
+  .card.d-accept { background: var(--accept-bg); }
+  .card.d-reject { background: var(--reject-bg); }
+  .card.d-fix    { background: var(--fix-bg); }
+  /* A reviewer note is flagged on the card OUTLINE (amber), leaving the
+     left border free to keep showing the tier and the background the decision. */
+  .card.has-note { border-color: var(--note-line); box-shadow: 0 0 0 2px var(--note-glow), var(--shadow); }
+
+  .card-top { display: flex; align-items: baseline; gap: 8px; }
+  .trait { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; color: var(--muted); }
+  .val { font-weight: 650; font-size: 14.5px; margin-left: auto; text-align: right; }
+  .val .edited { color: var(--fix); }
+  .val s { color: var(--muted); font-weight: 400; }
+
+  .evidence { margin-top: 7px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .pill { font-size: 11px; padding: 2px 8px; border-radius: 20px; background: var(--chip); color: var(--ink); }
+  .pill.accepted { background: var(--accept-bg); color: var(--accept); }
+  .pill.contested { background: var(--fix-bg); color: var(--fix); }
+  .pill.rejected { background: #eceeec; color: var(--rejected); }
+  .pill.critic { background: #eaf1fb; color: #2c5a9e; }
+  .reason { margin-top: 6px; font-size: 12.5px; color: #3c4a44; background: #f3f6f2; border-left: 3px solid #cdd8d0; padding: 6px 10px; border-radius: 0 6px 6px 0; }
+  .reason b { color: #2c5a9e; }
+
+  .actions { margin-top: 9px; display: flex; gap: 6px; align-items: center; }
+  .act { font-size: 12px; padding: 4px 10px; border-radius: 7px; border: 1px solid var(--line); background: var(--panel); cursor: pointer; }
+  .act:hover { background: var(--line2); }
+  .act.on-accept { background: var(--accept); color:#fff; border-color: var(--accept); }
+  .act.on-reject { background: var(--reject); color:#fff; border-color: var(--reject); }
+  .act.on-fix    { background: var(--fix); color:#fff; border-color: var(--fix); }
+  .act.undo { color: var(--muted); border-style: dashed; }
+  .act.undo:hover { color: var(--ink); border-color: var(--muted); }
+  .notebtn { margin-left: auto; color: var(--muted); }
+  /* when a note exists the whole button goes green — border + tint, not just the
+     label, so the grey chip never reads as "empty". */
+  .notebtn.has { color: var(--note-line); font-weight: 700;
+                 border-color: var(--note-line); background: var(--note-bg); }
+  .notebtn.has:hover { background: var(--note-glow); }
+  .noterow { margin-top: 8px; display: none; }
+  .noterow.open { display: block; }
+  .noterow textarea, .fixrow input {
+    width: 100%; padding: 6px 8px; border: 1px solid var(--line); border-radius: 7px; font: inherit; font-size: 13px; resize: vertical;
+  }
+  /* A note that actually HAS text gets a bold green box, so a written note is
+     obvious at a glance and never reads as an empty field. */
+  .noterow.filled textarea {
+    border: 2px solid var(--note-line); background: var(--note-bg);
+    box-shadow: 0 0 0 3px var(--note-glow);
+  }
+  .fixrow { margin-top: 8px; display: none; gap: 6px; flex-wrap: wrap; }
+  .fixrow.open { display: flex; }
+  .fixsel { flex: 1; min-width: 0; padding: 6px 8px; border: 1px solid var(--line);
+            border-radius: 7px; font: inherit; font-size: 13px; background: var(--panel);
+            color: var(--ink); cursor: pointer; }
+  .fixsel:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .vocabwarn { flex-basis: 100%; font-size: 12px; color: var(--fix); margin-top: 2px; }
+
+  .addbar { margin: 12px 14px; }
+  .addbar input { width: 100%; }
+  .empty { color: var(--muted); text-align: center; padding: 80px 20px; }
+  .empty .ic { font-size: 40px; }
+  .kbd { font-family: ui-monospace, monospace; background: var(--chip); border-radius: 4px; padding: 0 5px; font-size: 11px; }
+  .toast { position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); background: var(--ink); color: #fff; padding: 9px 16px; border-radius: 9px; font-size: 13px; opacity: 0; transition: opacity .25s; pointer-events: none; z-index: 50; }
+  .toast.show { opacity: 1; }
+
+  .modal-overlay { position: fixed; inset: 0; background: rgba(20,24,22,.5); display: none; align-items: center; justify-content: center; z-index: 100; }
+  .modal-overlay.show { display: flex; }
+  .modal { background: var(--panel); border-radius: 14px; padding: 24px 26px; width: 360px; box-shadow: 0 12px 48px rgba(0,0,0,.25); }
+  .modal h3 { font-size: 17px; margin-bottom: 6px; }
+  .modal p { color: var(--muted); font-size: 13px; margin: 0 0 14px; }
+  .modal input { width: 100%; padding: 9px 11px; border: 1px solid var(--line); border-radius: 8px; font: inherit; font-size: 14px; background: var(--bg); }
+  .modal .btn { width: 100%; margin-top: 14px; padding: 9px; font-size: 14px; }
+  .known-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .known-list .k { font-size: 12px; padding: 4px 10px; border-radius: 20px; background: var(--chip); cursor: pointer; }
+  .known-list .k:hover { background: var(--line2); }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:#171a19; --panel:#20241f; --ink:#e7ece7; --muted:#9aa79f;
+      --line:#333a34; --line2:#282d27; --chip:#2a302a;
+      --accept-bg:#1e2f24; --reject-bg:#33221f; --fix-bg:#312a1a;
+      --note-line:#3ecf7f; --note-glow:rgba(62,207,127,.24); --note-bg:#16301f;
+      --reason-bg:#22271f;
+    }
+    .reason { background:#22271f; border-left-color:#3a4438; color:#c8d2c9; }
+    .pill.critic{ background:#1f2a3a; color:#8fb4e6; }
+    .reason b{ color:#8fb4e6; }
+    .textsec-body em{ color:#7fc3ad; }
+    .textsec-h{ background:var(--panel); }
+  }
+</style>
+</head>
+<body>
+  <div id="sidebar" class="col">
+    <div class="sb-head">
+      <h1>🌿 Wagner Trait Validation</h1>
+      <div class="sub" id="sbSub">loading…</div>
+      <div class="reviewer-badge" id="reviewerBadge" title="Click to switch reviewer"></div>
+      <input class="sb-search" id="search" placeholder="Search species…">
+      <div class="sb-prog"><i id="progBar"></i></div>
+      <div class="sb-count" id="progCount"></div>
+    </div>
+    <div id="spList"></div>
+  </div>
+
+  <div id="findcol" class="col">
+    <div id="findContent"></div>
+  </div>
+
+  <div id="textcol" class="col">
+    <div class="col-head">
+      <div style="display:flex;align-items:center;gap:10px">
+        <h2 style="font-size:14px">Source text</h2>
+        <button class="btn" id="textToggleAll" style="margin-left:auto;font-size:11px;padding:3px 9px">Collapse all</button>
+      </div>
+      <div class="hint" id="textHint">Wagner Manual passage. Lower levels inherit unstated traits from higher ones.</div>
+    </div>
+    <div id="textBody"></div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <div class="modal-overlay" id="reviewerModal">
+    <div class="modal">
+      <h3>Who's reviewing?</h3>
+      <p>Your decisions are saved separately per reviewer. Enter your name (or pick a previous one).</p>
+      <input id="reviewerInput" placeholder="e.g. jane" autocomplete="off">
+      <div id="reviewerKnown" class="known-list"></div>
+      <button class="btn primary" id="reviewerGo">Start reviewing</button>
+    </div>
+  </div>
+
+<script>
+"use strict";
+const BUNDLE_URL = "bundle.json";
+const LS_KEY = "wagner_validation_decisions_v1";
+
+let DATA = null;          // the bundle
+let SPECIES = [];         // array of species records
+let curKey = null;        // selected species key
+let filter = "all";       // all | accepted | contested | rejected | undecided
+// decisions[speciesKey][findingId] = {status:'accept'|'reject'|'fix', fixed?:string, note?:string}
+// plus decisions[speciesKey].__added = [{trait,value,note}]
+let decisions = {};
+
+// ---------- persistence ----------
+// Decisions save to the SERVER (one file per reviewer per species, under the run
+// folder) so 3 reviewers work independently and nothing is lost on browser clear.
+// localStorage is kept only as an offline fallback if the server is unreachable.
+let reviewer = "";        // set on load
+
+function loadLocal() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY + "_" + reviewer)) || {}; }
+  catch { return {}; }
+}
+async function loadDecisions() {
+  // prefer the server (authoritative); fall back to localStorage offline.
+  try {
+    const res = await fetch(`/api/decisions?reviewer=${encodeURIComponent(reviewer)}`);
+    if (res.ok) { decisions = await res.json(); return; }
+  } catch {}
+  decisions = loadLocal();
+}
+// save ONE species to the server (called after each action) + a local mirror.
+async function saveDecisions(speciesKey) {
+  localStorage.setItem(LS_KEY + "_" + reviewer, JSON.stringify(decisions));
+  const key = speciesKey || curKey;
+  if (!key) return;
+  try {
+    await fetch("/api/decisions", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ reviewer, species: key, decisions: decisions[key] || {} }),
+    });
+  } catch { /* offline: localStorage mirror above still has it */ }
+}
+function decFor(key) { return decisions[key] || (decisions[key] = {}); }
+
+// stable id for a finding (path + value + tier — unique within a species)
+function fid(f) { return f.tier + "::" + f.path + "::" + f.value; }
+
+// ---------- helpers ----------
+function el(tag, cls, html) { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
+function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+// render Wagner *italic* markdown lightly and keep it safe
+function fmtText(s) { return esc(s).replace(/\*([^*]+)\*/g, "<em>$1</em>"); }
+function shortSp(rec) { // "Bidens_pilosa" -> "B. pilosa"
+  const parts = rec.species.split("_");
+  if (parts.length >= 2) return parts[0][0] + ". " + parts.slice(1).join(" ");
+  return rec.species.replace(/_/g, " ");
+}
+function structOf(path) { return path.split(".")[0]; }
+
+// ---------- controlled vocabulary ----------
+// Categorical traits have a fixed value list; corrections to them should be
+// PICKED, not typed, so a slip like ANNUAL_HERD never reaches the output.
+// A path's last segment is the field, which may carry an axis prefix
+// (juvenile_/upper_/staminate_…), so fall back to a suffix match.
+function vocabFor(path) {
+  const V = (DATA && DATA.vocabulary) || {};
+  const field = path.split(".").pop();
+  if (V[field]) return V[field];
+  let best = null;
+  for (const k in V) {
+    if (field.endsWith("_" + k) && (!best || k.length > best.length)) best = k;
+  }
+  return best ? V[best] : null;
+}
+
+// ---------- botanical organisation ----------
+// Reviewers work through a plant the way it is described: vegetative parts first,
+// then the inflorescence and flower, then fruit/seed, then the non-morphological
+// record data. Within each section, structures are ordered the way a botanist
+// reads them (outside-in / base-to-tip), NOT alphabetically.
+const SECTIONS = [
+  { key: "vegetative",   label: "Vegetative",       structs: ["root","stem","exudate","leaf","petioles","leaflet","stipule","tendril","bud"] },
+  { key: "inflorescence",label: "Inflorescence",    structs: ["inflorescence","peduncle","pedicel","bract","involucre","receptacle","head"] },
+  { key: "flower",       label: "Flower",           structs: ["reproductive","floret","ray","perianth","calyx","sepal","corolla","petal","corona","nectary","gland","stamen","filament","anther","pollen","ovary","style","stigma","ovule","pappus"] },
+  { key: "fruit",        label: "Fruit & Seed",     structs: ["fruit","bur","seed","embryo"] },
+  { key: "record",       label: "Record & Habitat", structs: ["taxon_identity","distribution","phenology","habit"] },
+];
+// struct -> {section index, rank within section}, built once.
+const STRUCT_POS = (() => {
+  const m = {};
+  SECTIONS.forEach((s, si) => s.structs.forEach((st, i) => { m[st] = { si, i }; }));
+  return m;
+})();
+// Anything not in the map still gets a home: it lands in a trailing "Other"
+// section rather than silently disappearing or sorting alphabetically.
+const OTHER_SECTION = { key: "other", label: "Other", structs: [] };
+function sectionOf(struct) {
+  const p = STRUCT_POS[struct];
+  return p ? SECTIONS[p.si] : OTHER_SECTION;
+}
+function structRank(struct) {
+  const p = STRUCT_POS[struct];
+  return p ? p.i : 999;
+}
+function sectionRank(struct) {
+  const p = STRUCT_POS[struct];
+  return p ? p.si : SECTIONS.length;
+}
+function toast(msg) { const t = document.getElementById("toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(t._t); t._t = setTimeout(()=>t.classList.remove("show"), 1400); }
+
+// species completion: how many findings have a decision
+function speciesProgress(rec) {
+  const dec = decisions[rec.key] || {};
+  let decided = 0;
+  for (const f of rec.findings) if (dec[fid(f)] && dec[fid(f)].status) decided++;
+  return { decided, total: rec.findings.length };
+}
+
+// ---------- sidebar ----------
+function renderSidebar() {
+  const q = document.getElementById("search").value.trim().toLowerCase();
+  const list = document.getElementById("spList");
+  list.innerHTML = "";
+  let curGenus = null;
+  let shown = 0;
+  for (const rec of SPECIES) {
+    const label = (rec.genus + " " + rec.species).toLowerCase();
+    if (q && !label.includes(q)) continue;
+    shown++;
+    if (rec.genus !== curGenus) {
+      curGenus = rec.genus;
+      list.appendChild(el("div", "genus-h", esc(curGenus)));
+    }
+    const { decided, total } = speciesProgress(rec);
+    const row = el("div", "sp" + (rec.key === curKey ? " active" : ""));
+    const dotcls = decided === 0 ? "" : (decided >= total ? " done" : " started");
+    row.innerHTML = `<span class="dot${dotcls}"></span><span class="nm">${esc(shortSp(rec))}</span>`;
+    row.onclick = () => selectSpecies(rec.key);
+    list.appendChild(row);
+  }
+  document.getElementById("sbSub").textContent = `${DATA.family} · ${SPECIES.length} species · model ${DATA.model_key}`;
+  // overall progress = species with all findings decided
+  const doneCount = SPECIES.filter(r => { const p = speciesProgress(r); return p.total>0 && p.decided>=p.total; }).length;
+  document.getElementById("progBar").style.width = (100*doneCount/SPECIES.length) + "%";
+  document.getElementById("progCount").textContent = `${doneCount} / ${SPECIES.length} species fully reviewed`;
+}
+
+// ---------- source text ----------
+// which text levels are expanded (persists across species during a session)
+let textOpen = { species: true, genus: false, family: false };
+
+function renderText(rec) {
+  const body = document.getElementById("textBody");
+  body.innerHTML = "";
+  const levels = [
+    ["species", "Species", rec.genus + " " + shortSp(rec).replace(/^.\.\s*/, "")],
+    ["genus",   "Genus",   rec.genus],
+    ["family",  "Family",  rec.family],
+  ];
+  for (const [k, lbl, name] of levels) {
+    const txt = rec.text[k] || "";
+    const open = textOpen[k];
+    const sec = el("div", "textsec" + (open ? " open" : ""));
+    const hdr = el("div", "textsec-h");
+    hdr.innerHTML =
+      `<span class="chev">▸</span>
+       <span class="ts-lbl">${esc(lbl)}</span>
+       <span class="ts-name">${esc(name)}</span>`;
+    hdr.onclick = () => { textOpen[k] = !textOpen[k]; renderText(rec); syncToggleAll(); };
+    const bd = el("div", "textsec-body");
+    bd.innerHTML = fmtText(txt) || '<span class="ts-empty">(no text at this level)</span>';
+    sec.appendChild(hdr); sec.appendChild(bd);
+    body.appendChild(sec);
+  }
+  syncToggleAll();
+}
+
+function syncToggleAll() {
+  const btn = document.getElementById("textToggleAll");
+  if (!btn) return;
+  const allOpen = Object.values(textOpen).every(Boolean);
+  btn.textContent = allOpen ? "Collapse all" : "Expand all";
+  btn.onclick = () => {
+    const target = !Object.values(textOpen).every(Boolean);
+    textOpen = { species: target, genus: target, family: target };
+    const rec = SPECIES.find(r => r.key === curKey);
+    if (rec) renderText(rec);
+  };
+}
+
+// ---------- findings ----------
+const TIER_LABEL = { accepted: "accepted", contested: "contested", rejected: "rejected (minority)" };
+function tierPill(f) {
+  if (f.tier === "accepted") return `<span class="pill accepted">✓ ${f.of}/${f.of} · accepted</span>`;
+  if (f.tier === "contested") return `<span class="pill contested">${f.votes}/${f.of} · contested</span>`;
+  return `<span class="pill rejected">${f.votes}/${f.of} · minority</span>`;
+}
+function criticPill(f) {
+  if (!f.critic) return "";
+  const v = f.critic.verdict;
+  return `<span class="pill critic">critic: ${esc(v)}</span>`;
+}
+function criticReason(f) {
+  if (!f.critic || !f.critic.reason) return "";
+  let r = esc(f.critic.reason);
+  if (f.critic.correct_value != null && String(f.critic.correct_value) !== f.value)
+    r += ` <b>→ suggests: ${esc(f.critic.correct_value)}</b>`;
+  return `<div class="reason">🔎 ${r}</div>`;
+}
+
+function renderFindings(rec) {
+  const c = document.getElementById("findContent");
+  c.innerHTML = "";
+  const dec = decFor(rec.key);
+
+  // header
+  const head = el("div", "fc-head");
+  const m = rec.metrics;
+  head.innerHTML =
+    `<div class="title">${esc(rec.genus)} ${esc(shortSp(rec).replace(/^.\.\s*/,""))}</div>
+     <div class="meta">${esc(rec.key)} · ${m.accepted} accepted · ${m.contested} contested · critic resolved ${m.critic_resolvable}, ambiguous ${m.critic_ambiguous}</div>`;
+  const tb = el("div", "toolbar");
+  for (const [f, lbl] of [["all","All"],["accepted","Accepted"],["contested","Contested"],["rejected","Minority"],["undecided","Undecided"]]) {
+    const b = el("button", "filterbtn" + (filter === f ? " on" : ""), lbl);
+    b.onclick = () => { filter = f; renderFindings(rec); };
+    tb.appendChild(b);
+  }
+  tb.appendChild(el("div", "spacer"));
+  const exp = el("button", "btn", "⬇ Export decisions");
+  exp.onclick = exportDecisions;
+  tb.appendChild(exp);
+  head.appendChild(tb);
+  c.appendChild(head);
+
+  // add-missing bar
+  const addbar = el("div", "addbar");
+  const addInput = el("input", "sb-search");
+  addInput.placeholder = "＋ Add a trait the extractor missed:  path = value  (e.g. leaf.leaf_apex_shape = CAUDATE)";
+  addInput.onkeydown = (e) => {
+    if (e.key === "Enter" && addInput.value.includes("=")) {
+      const [p, ...rest] = addInput.value.split("=");
+      const added = dec.__added || (dec.__added = []);
+      added.push({ trait: p.trim(), value: rest.join("=").trim(), note: "" });
+      addInput.value = ""; saveDecisions(); renderFindings(rec); renderSidebar();
+      toast("Added missing trait");
+    }
+  };
+  addbar.appendChild(addInput);
+  c.appendChild(addbar);
+
+  // group findings by structure
+  const groups = {};
+  for (const f of rec.findings) {
+    const d = dec[fid(f)];
+    if (filter === "undecided" && d && d.status) continue;
+    if (filter !== "all" && filter !== "undecided" && f.tier !== filter) continue;
+    (groups[structOf(f.path)] || (groups[structOf(f.path)] = [])).push(f);
+  }
+
+  if (Object.keys(groups).length === 0) {
+    c.appendChild(el("div", "empty", `<div class="ic">🍃</div><p>No findings match this filter.</p>`));
+  }
+
+  // Arrange the structure groups into botanical sections, each in reading order.
+  const bySection = new Map();
+  for (const struct of Object.keys(groups)) {
+    const sec = sectionOf(struct);
+    if (!bySection.has(sec.key)) bySection.set(sec.key, { sec, structs: [] });
+    bySection.get(sec.key).structs.push(struct);
+  }
+  const orderedSections = [...bySection.values()].sort(
+    (a, b) => sectionRank(a.structs[0]) - sectionRank(b.structs[0])
+  );
+
+  for (const { sec, structs } of orderedSections) {
+    structs.sort((a, b) => structRank(a) - structRank(b) || a.localeCompare(b));
+    const nFind = structs.reduce((n, s) => n + groups[s].length, 0);
+
+    const wrap = el("div", "section");
+    const head = el("div", "section-h");
+    head.innerHTML = `<span class="section-t">${esc(sec.label)}</span>` +
+                     `<span class="g-count">${nFind}</span><span class="chev"></span>`;
+    const body = el("div", "section-b");
+    head.setAttribute("role", "button");
+    head.setAttribute("tabindex", "0");
+    head.setAttribute("aria-expanded", "true");
+    const toggle = () => {
+      const hidden = body.classList.toggle("collapsed");
+      head.classList.toggle("closed", hidden);
+      head.setAttribute("aria-expanded", hidden ? "false" : "true");
+    };
+    head.onclick = toggle;
+    head.onkeydown = (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); }
+    };
+    wrap.appendChild(head);
+
+    for (const struct of structs) {
+      const g = el("div", "group");
+      const gh = el("div", "group-h",
+        `<span class="g-name">${esc(struct.replace(/_/g, " "))}</span>` +
+        `<span class="g-count">${groups[struct].length}</span><span class="chev"></span>`);
+      const gb = el("div", "group-b");
+      for (const f of groups[struct]) gb.appendChild(findingCard(rec, f, dec));
+      gh.setAttribute("role", "button");
+      gh.setAttribute("tabindex", "0");
+      gh.setAttribute("aria-expanded", "true");
+      const gtoggle = (e) => {
+        if (e) e.stopPropagation();   // don't also toggle the parent section
+        const hidden = gb.classList.toggle("collapsed");
+        gh.classList.toggle("closed", hidden);
+        gh.setAttribute("aria-expanded", hidden ? "false" : "true");
+      };
+      gh.onclick = gtoggle;
+      gh.onkeydown = (e) => {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); gtoggle(e); }
+      };
+      g.appendChild(gh);
+      g.appendChild(gb);
+      body.appendChild(g);
+    }
+    wrap.appendChild(body);
+    c.appendChild(wrap);
+  }
+
+  // show user-added missing traits
+  if (dec.__added && dec.__added.length) {
+    const g = el("div", "group");
+    const gh = el("div", "group-h",
+      `<span class="g-name">＋ added by reviewer</span>` +
+      `<span class="g-count">${dec.__added.length}</span><span class="chev"></span>`);
+    const gb = el("div", "group-b");
+    gh.setAttribute("role", "button");
+    gh.setAttribute("tabindex", "0");
+    gh.setAttribute("aria-expanded", "true");
+    const gtoggle = (e) => {
+      if (e) e.stopPropagation();
+      const hidden = gb.classList.toggle("collapsed");
+      gh.classList.toggle("closed", hidden);
+      gh.setAttribute("aria-expanded", hidden ? "false" : "true");
+    };
+    gh.onclick = gtoggle;
+    gh.onkeydown = (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); gtoggle(e); }
+    };
+    g.appendChild(gh);
+    dec.__added.forEach((a, i) => {
+      const card = el("div", "card d-accept");
+      card.innerHTML = `<div class="card-top"><span class="trait">${esc(a.trait)}</span><span class="val">${esc(a.value)}</span></div>`;
+      const rm = el("button", "act", "✕ remove"); rm.style.marginTop = "8px";
+      rm.onclick = () => { dec.__added.splice(i,1); saveDecisions(); renderFindings(rec); renderSidebar(); };
+      card.appendChild(rm);
+      gb.appendChild(card);
+    });
+    g.appendChild(gb);
+    c.appendChild(g);
+  }
+}
+
+function findingCard(rec, f, dec) {
+  const id = fid(f);
+  const d = dec[id] || {};
+  const card = el("div", "card tier-" + f.tier + (d.status ? " d-" + d.status : "") + (d.note ? " has-note" : ""));
+
+  // value (show fix if any)
+  let valHtml;
+  if (d.status === "fix" && d.fixed != null)
+    valHtml = `<s>${esc(f.value)}</s> <span class="edited">${esc(d.fixed)}</span>`;
+  else
+    valHtml = esc(f.value);
+
+  card.appendChild(el("div", "card-top",
+    `<span class="trait">${esc(f.path)}</span><span class="val">${valHtml}</span>`));
+
+  const ev = el("div", "evidence");
+  ev.innerHTML = tierPill(f) + criticPill(f);
+  card.appendChild(ev);
+  const reason = criticReason(f);
+  if (reason) card.insertAdjacentHTML("beforeend", reason);
+
+  // actions
+  const actions = el("div", "actions");
+  const mk = (key, label) => {
+    const b = el("button", "act" + (d.status === key ? " on-" + key : ""), label);
+    // a decision is never final: clicking the active one again clears it
+    if (d.status === key) b.title = "Click again to undo this decision";
+    b.onclick = () => setDecision(rec, f, key);
+    return b;
+  };
+  actions.appendChild(mk("accept", "✓ Accept"));
+  actions.appendChild(mk("reject", "✗ Reject"));
+  actions.appendChild(mk("fix", "✎ Correct"));
+  // explicit escape hatch — undo shouldn't be hidden behind "click it again"
+  if (d.status) {
+    const undo = el("button", "act undo", "↩ Clear");
+    undo.title = "Undo — leave this finding undecided";
+    undo.onclick = () => setDecision(rec, f, d.status);   // same status => clears
+    actions.appendChild(undo);
+  }
+  const noteBtn = el("button", "act notebtn" + (d.note ? " has" : ""), d.note ? "🗒 note" : "🗒 note");
+  noteBtn.onclick = () => { const nr = card.querySelector(".noterow"); nr.classList.toggle("open"); nr.querySelector("textarea").focus(); };
+  actions.appendChild(noteBtn);
+  card.appendChild(actions);
+
+  // fix row — a pick-list for categorical traits, free text for everything else
+  const fixrow = el("div", "fixrow" + (d.status === "fix" ? " open" : ""));
+  const vocab = vocabFor(f.path);
+  let readFix;
+  if (vocab) {
+    const sel = el("select", "fixsel");
+    sel.appendChild(el("option", null, "— choose a value —"));
+    sel.firstChild.value = "";
+    for (const v of vocab) {
+      const o = el("option", null, esc(v.name) + (v.definition ? " — " + esc(v.definition) : ""));
+      o.value = v.name;
+      sel.appendChild(o);
+    }
+    const cur = d.fixed != null ? d.fixed : f.value;
+    // the current value may be off-vocabulary (or multi-valued); keep it visible
+    if (cur && !vocab.some(v => v.name === cur)) {
+      const o = el("option", null, esc(cur) + " — not in ontology");
+      o.value = cur; sel.insertBefore(o, sel.firstChild.nextSibling);
+    }
+    sel.value = cur || "";
+    sel.onchange = () => { if (sel.value) commitFix(rec, f, sel.value); };
+    readFix = () => sel.value;
+    fixrow.appendChild(sel);
+  } else {
+    const fixInput = el("input");
+    fixInput.placeholder = "corrected value…";
+    fixInput.value = d.fixed != null ? d.fixed : f.value;
+    fixInput.onkeydown = (e) => { if (e.key === "Enter") { commitFix(rec, f, fixInput.value); } };
+    readFix = () => fixInput.value;
+    fixrow.appendChild(fixInput);
+  }
+  const fixSave = el("button", "act on-fix", "save");
+  fixSave.onclick = () => commitFix(rec, f, readFix());
+  fixrow.appendChild(fixSave);
+  // a value outside the controlled vocabulary is worth flagging — it usually
+  // means the ontology is missing a value, which is itself a finding.
+  if (vocab && d.status === "fix" && d.fixed && !vocab.some(v => v.name === d.fixed)) {
+    fixrow.appendChild(el("div", "vocabwarn",
+      `⚠ “${esc(d.fixed)}” is not a value in the ontology — kept, but please add a note.`));
+  }
+  card.appendChild(fixrow);
+
+  // note row
+  const noterow = el("div", "noterow" + (d.note ? " open filled" : ""));
+  const ta = el("textarea"); ta.rows = 2; ta.placeholder = "note (ambiguity, ontology gap, reasoning)…";
+  ta.value = d.note || "";
+  // highlight as soon as there is text (onchange alone only fires on blur)
+  ta.oninput = () => {
+    const has = !!ta.value.trim();
+    noterow.classList.toggle("filled", has);
+    noteBtn.classList.toggle("has", has);   // keep the button in sync while typing
+  };
+  ta.onchange = () => { const dd = dec[id] || (dec[id] = {}); dd.note = ta.value.trim() || undefined; saveDecisions(); renderFindings(rec); renderSidebar(); };
+  noterow.appendChild(ta);
+  card.appendChild(noterow);
+
+  return card;
+}
+
+function setDecision(rec, f, status) {
+  const dec = decFor(rec.key);
+  const id = fid(f);
+  const d = dec[id] || (dec[id] = {});
+  // Clicking the active decision again clears it — including "Correct", so a
+  // reviewer can always back out and leave a finding undecided (e.g. to just
+  // add a note and come back to it later).
+  if (d.status === status) { delete d.status; delete d.fixed; }
+  else {
+    d.status = status;
+    if (status === "fix" && d.fixed == null) d.fixed = f.value;
+  }
+  saveDecisions();
+  renderFindings(rec); renderSidebar();
+}
+function commitFix(rec, f, val) {
+  const dec = decFor(rec.key);
+  const id = fid(f);
+  const d = dec[id] || (dec[id] = {});
+  d.status = "fix"; d.fixed = val.trim();
+  saveDecisions(); renderFindings(rec); renderSidebar();
+  toast("Correction saved");
+}
+
+// ---------- export ----------
+function exportDecisions() {
+  const out = { family: DATA.family, model_key: DATA.model_key, exported_at: new Date().toISOString(), species: {} };
+  for (const rec of SPECIES) {
+    const dec = decisions[rec.key];
+    if (!dec) continue;
+    const rows = [];
+    for (const f of rec.findings) {
+      const d = dec[fid(f)];
+      if (!d || (!d.status && !d.note)) continue;
+      rows.push({ path: f.path, original_value: f.value, tier: f.tier,
+                  decision: d.status || "note-only",
+                  corrected_value: d.status === "fix" ? d.fixed : undefined,
+                  note: d.note });
+    }
+    const added = (dec.__added || []).map(a => ({ path: a.trait, decision: "added", corrected_value: a.value, note: a.note }));
+    if (rows.length || added.length) out.species[rec.key] = { reviewed: rows, added };
+  }
+  const blob = new Blob([JSON.stringify(out, null, 2)], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `wagner_validation_${DATA.family}_${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+  toast("Exported decisions JSON");
+}
+
+// ---------- selection ----------
+function selectSpecies(key) {
+  curKey = key;
+  const rec = SPECIES.find(r => r.key === key);
+  renderSidebar(); renderText(rec); renderFindings(rec);
+  document.getElementById("textcol").scrollTop = 0;
+  document.getElementById("findcol").scrollTop = 0;
+}
+
+// ---------- reviewer identity ----------
+// 3 reviewers work independently; each decision file is named by reviewer, so we
+// need to know who is reviewing. Remembered locally so they only type it once.
+function askReviewer() {
+  // in-page modal (not window.prompt, which blocks the page). Resolves once a name
+  // is chosen. Pre-fills the last name and offers existing reviewers as chips.
+  return new Promise(async (resolve) => {
+    const overlay = document.getElementById("reviewerModal");
+    const input = document.getElementById("reviewerInput");
+    const go = document.getElementById("reviewerGo");
+    const known = document.getElementById("reviewerKnown");
+    input.value = localStorage.getItem("wagner_reviewer") || "";
+    known.innerHTML = "";
+    try {
+      const r = await fetch("/api/reviewers");
+      if (r.ok) {
+        const names = (await r.json()).reviewers || [];
+        for (const nm of names) {
+          const chip = el("span", "k", esc(nm));
+          chip.onclick = () => { input.value = nm; };
+          known.appendChild(chip);
+        }
+      }
+    } catch {}
+    overlay.classList.add("show");
+    input.focus();
+    const finish = () => {
+      const name = input.value.trim();
+      if (!name) { input.focus(); return; }
+      reviewer = name;
+      localStorage.setItem("wagner_reviewer", reviewer);
+      overlay.classList.remove("show");
+      setReviewerBadge();
+      resolve();
+    };
+    go.onclick = finish;
+    input.onkeydown = (e) => { if (e.key === "Enter") finish(); };
+  });
+}
+
+function setReviewerBadge() {
+  const badge = document.getElementById("reviewerBadge");
+  if (badge) {
+    badge.textContent = "👤 " + reviewer;
+    badge.title = "Click to switch reviewer";
+    badge.onclick = async () => {
+      localStorage.removeItem("wagner_reviewer");
+      await askReviewer();
+      await loadDecisions();
+      renderSidebar();
+      const rec = SPECIES.find(r => r.key === curKey);
+      if (rec) renderFindings(rec);
+      toast("Switched to reviewer: " + reviewer);
+    };
+  }
+}
+
+// ---------- boot ----------
+async function boot() {
+  try {
+    const res = await fetch(BUNDLE_URL);
+    DATA = await res.json();
+  } catch (e) {
+    document.getElementById("findContent").innerHTML =
+      `<div class="empty"><div class="ic">⚠️</div><h3>Couldn't load bundle.json</h3>
+       <p>Run the server so the page and data are served over HTTP:<br>
+       <span class="kbd">python3 server.py</span> in this folder, then visit
+       <span class="kbd">localhost:8000/validate.html</span></p></div>`;
+    document.getElementById("sbSub").textContent = "no data";
+    return;
+  }
+  await askReviewer();
+  await loadDecisions();
+  SPECIES = DATA.species;
+  document.getElementById("search").oninput = renderSidebar;
+  renderSidebar();
+  if (SPECIES.length) selectSpecies(SPECIES[0].key);
+}
+boot();
+</script>
+</body>
+</html>
